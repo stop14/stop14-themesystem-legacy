@@ -9,5 +9,10 @@ fi
 
 if [ $1 == 'default' ] || [ $1 == 'omeka' ] || [ $1 == 'drupal' ] 
 then
-  cp -rn ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
+  if [ $# -eq 2 ] && [ $2 == "rebuild" ]
+    then
+      yes | cp -rf ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
+    else
+      cp -rn ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
+    fi
 fi

@@ -22,8 +22,9 @@ var settings = {
  * Paths to project folders
  */
 
+var package_dir = "./node_modules/stop14-themesystem-legacy/source";
 var source_dir = './source';
-var build_dir = './assets';
+var build_dir = './asset';
 
 var paths = {
   input: source_dir,
@@ -38,7 +39,7 @@ var paths = {
     input: source_dir + '/sass/**/*.{scss,sass}',
     output: build_dir + '/css',
     vfilename: 'vendor', // Output file name for vendor styles
-    sassIncludePaths: [source_dir + '/sass/a_components',source_dir + '/sass/b_profiles',source_dir + '/sass/c_local',source_dir + '/sass/a_components/00_general',source_dir + '/sass/a_components/10_colours_and_patterns', source_dir + '/sass/a_components/20_layout',source_dir + '/sass/a_components/30_typography',source_dir + '/sass/a_components/40_ui',source_dir + '/sass/a_components/50_animation',source_dir + '/sass/a_components/60_site_elements','node_modules']
+    sassIncludePaths: [package_dir + '/sass/a_components',package_dir + '/sass/b_profiles',source_dir + '/sass',package_dir + '/sass/a_components/00_general',package_dir + '/sass/a_components/10_colours_and_patterns', package_dir + '/sass/a_components/20_layout',package_dir + '/sass/a_components/30_typography',package_dir + '/sass/a_components/40_ui',package_dir + '/sass/a_components/50_animation',package_dir + '/sass/a_components/60_site_elements','node_modules']
   },
   img: {
     input: source_dir + '/img/**/*',
