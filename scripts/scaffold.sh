@@ -1,12 +1,13 @@
 #!/bin/bash
 
-scheme = 'default';
+scheme='default'
 
-if [ $# -eq 0 ];
+if [ $# -eq 0 ]
 then
-  scheme='default';
-elif [ $1 -eq 'omeka' ] || [ $1 -eq 'drupal' ] 
-  scheme=$1;
+  let $1='default'
 fi
 
-mv -vn $INIT_CWD/node_modules/stop14-themesystem-legacy/scaffolding/$scheme/* $INIT_CWD
+if [ $1 == 'default' ] || [ $1 == 'omeka' ] || [ $1 == 'drupal' ] 
+then
+  mv -vn ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
+fi
