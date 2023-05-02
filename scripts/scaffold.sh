@@ -9,5 +9,5 @@ fi
 
 if [ $1 == 'default' ] || [ $1 == 'omeka' ] || [ $1 == 'drupal' ] 
 then
-  mv -vn ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
+  cp -rn ./node_modules/stop14-themesystem-legacy/scaffolding/$1/* ./
 fi
