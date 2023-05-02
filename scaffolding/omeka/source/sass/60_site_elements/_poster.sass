@@ -1,0 +1,116 @@
+/** 
+ *  @file _poster.sass 
+ *  @category 60_site_elements
+ *  @description Styling for poster block */
+
+
+.poster
+  min-height: 34rem
+  width: 100%
+  padding: rv(3) !important
+  position: relative
+
+  +bp($stack)
+    min-height: 28rem
+
+  +bp($tablet)
+    padding: rv(4) !important
+    padding-right: rv(5) !important
+
+  +bp($desktop)
+    padding: rv(5) !important
+    padding-right: rv(6) !important
+
+  &:after
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    content: " "
+    filter: grayscale(0)
+    background-repeat: no-repeat
+    background-position: bottom rv(0) right rv(0)
+    background-size: rv(2) rv(2)
+
+    +bp($stack)
+      background-size: rv(3) rv(3)
+
+    +bp($desktop)
+      background-size: rv(5) rv(5)
+
+  .image-background
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+
+    figure
+      height: 100%
+
+  img
+    filter: grayscale(100%)
+    mix-blend-mode: multiply
+    object-fit: cover
+    height: 100%
+
+  .poster-text
+    position: relative
+    z-index: 1
+
+  &.colour-scheme-1
+    background: $clr1
+
+    &:after
+      content: " "
+
+    .poster-text
+      color: $white
+
+  &.colour-scheme-2
+    &:after
+      background: $clr1
+    .poster-text
+      color: $clr2
+
+  &.colour-scheme-3
+    &:after
+      background: $clr3
+    .poster-text
+      color: $white
+
+  &.colour-scheme-4
+    &:after
+      background: $clr4
+    .poster-text
+      color: $clr2
+
+  &.text-treatment-1
+    .poster-text
+      p
+        font-family: $headingfont
+        font-weight: $heavy
+        font-size: font-value(1)
+        line-height: font-value(2)
+        +bp($tablet)
+          font-size: font-value(2)
+          line-height: font-value(3)
+        +bp($desktop)
+          font-size: font-value(4)
+          line-height: font-value(5)
+
+
+  &.text-treatment-2
+    .poster-text
+      p
+        font-family: $codefont
+        font-weight: $heavy
+        font-size: font-value(0)
+        line-height: font-value(1)
+        +bp($tablet)
+          font-size: font-value(1)
+          line-height: font-value(2)
+        +bp($desktop)
+          font-size: font-value(2)
+          line-height: font-value(3)

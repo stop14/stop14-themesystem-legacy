@@ -1,0 +1,81 @@
+/**
+ *  @file _main_content_layout_mixins_drupal.sass
+ *  @category 10_layout
+ *  @description Provides definitions for the main content stack in Drupal.
+ *    Allows you to assign contextual layouts for main content blocks, paragraphs, and fields **/
+
+/* Notes:
+ *  These mixins are defined in a_components/10_layout/layout_mixins_drupal
+ *  They are intended to add readability when laying out main content in Drupal.
+ *  Drupal has a complicated content model. The main text of a site can be provided
+ *  by field components (attached to the content itself), block components (assigned to
+ *  the main content area via the Blocks UI), and paragraph components (assigned as paragraph
+ *  fields to the content).
+ *
+ *  The goal is to provide a framework for content blocks, fields, and paragraphs to all react the same
+ *  way in the main content stack.
+ *
+ *  Each one of these content containers can have its own margins and spacing, but must be
+ *  cohesive when assembled. Moreover, you must define both a default behaviour (works with or without a
+ *  sidebar) and how the content containers will react when one or two sidebars are present.
+ *
+ *  Each of these structural mixins can be used similar to the breakpoint (+bp()) mixin. They each take
+ *  style declarations as a content block. You should be able to add the container class or id
+ *  beneath the appropriate structural mixin and style accordingly.
+ *
+ *  Remember that the styling here should be limited to how the container layout reacts IN THE MAIN
+ *  CONTENT AREA CONTEXT. That means it should be mostly limited to margins and widths.
+ *  Styles for the elements themselves should be defined elsewhere (probably 60_site_elements)
+ *  with the understanding that they may be used in other contexts. */
+
+
+// Apply to all blocks in the .tier-container of a section
+=section-block-standardized-spacing
+  margin-bottom: rv($mobile_block_spacing)
+
+  +bp($stack)
+    margin-bottom: rv($block_spacing)
+
+    &.field_paragraphs_container, &.views-element-container
+      // all: unset <!-- why?
+
+      .field_paragraphs
+        margin-bottom: $paragraph_spacing
+
+=main-content-stack-container
+  main > div
+    article.node--view-mode-full
+      @content
+
+=set-main-content-vertical-spacing
+  +main-content-stack-container
+    > *
+      +section-block-standardized-spacing
+      @content
+
+=set-main-content-blocks
+  main > div >
+    @content
+
+=set-main-content-fields
+  main > div
+    article.node--view-mode-full >
+      @content
+
+=set-main-content-paragraphs
+  +main-content-stack-container
+    @content
+      
+=set-main-content-blocks-no-sidebar
+  .region .no-sidebar
+    +main-content-stack-container
+      @content
+
+=set-main-content-fields-no-sidebar
+  .region .no-sidebar
+    +set-main-content-fields
+      @content
+
+=set-main-content-paragraphs-no-sidebar
+  +set-main-content-blocks-no-sidebar
+    @content

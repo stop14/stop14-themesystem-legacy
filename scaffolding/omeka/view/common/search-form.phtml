@@ -1,0 +1,11 @@
+<! -- START OF /COMMON/SEARCH-FORM.PHTML -->
+<?php
+$translate = $this->plugin('translate');
+$searchValue = $this->escapeHtml($this->params()->fromQuery('search', ''));
+?>
+
+<form action="<?php echo $this->escapeHtml($this->url('site/resource', ['controller' => 'item','action' => 'browse'], true)); ?>" id="search-form">
+    <input type="text" title='Search Field' name="search" value="<?php echo $searchValue; ?>" placeholder="<?php echo $translate('Search the Sid Sackson Portal'); ?>">
+    <button type="submit" title="Submit"></button>
+</form>
+<! -- END OF /COMMON/SEARCH-FORM.PHTML -->

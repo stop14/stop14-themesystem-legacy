@@ -1,0 +1,71 @@
+/* 
+   @file _grid.sass 
+   @category 10_layout
+   @component layout_foundation_basic
+   @description  Establishes responsiveness for top-level sections. Requires a set DOM structure. See usage.md for details.
+  
+  */
+  
+/*
+  The grid system expects the following html:
+  <div> <!--container-->
+    <aside> <!-- left column -->
+    <div> <!-- main column, could also be <main> or <article> -->
+    <aside> <!-- right column -->
+    
+    The snippet detects whether the centre column (<div>, <main>, or <article) is the first child, the last child, or both.
+    If it's the first child then there is no left column (<aside), and if its the last then there is no right column.
+    The grid-column starts or ends in the appropriate column, which should span either side.
+    
+    @todo: The system is not working at tablet. It's trying to reserve the column space even though the centre column 
+    is spanning the width and should take up all available space. The mixmax() solves this, but may have unexpected
+    effects if there is content in the columns.
+    
+    @todo: Also consider having different column widths at tablet, or no columns at all.
+ */
+  
+=sidebar-handling
+  max-width: 100%
+      
+  +bp($stack)
+    display: grid
+    grid-template-columns: [left] minmax(0,#{$left_sidebar_width}) [main] 1fr [right] minmax(0,#{$right_sidebar_width})
+    grid-column-gap: rv($grid_gap_factor)
+    grid-row-gap: rv($grid_gap_factor)
+      
+    > div, > main, > article
+      grid-column-start: main
+      grid-column-end: right
+      
+    > div:first-child, > main:first-child, > article:first-child
+      grid-column-start: left
+      
+    > div:last-child, > main:last-child, > article:last-child
+      grid-column-end: end
+      
+  +bp($desktop)
+    grid-template-columns: [left] $left_sidebar_width [main] 1fr [right] $right_sidebar_width
+
+body > *, .tier
+  margin-top: 0
+  margin-bottom: 0
+  width: 100%
+  
+// .region class indicates a content region. Content regions enforce $max-width, with a minimum mobile padding
+// of $mobile_edge_padding_factor and a desktop width of $edge_padding_factor.
+// See usage.md in this component for details.
+  
+body > *.region, *.auto-columns > *
+  width: 100%
+  +responsive-inset() // Also consider standard-edge-padding() for top-level tiers
+  
+  > *
+    +sidebar-handling
+
+
+// Allows for sidebars on full-width sections by assigning an additional “sidebars” class    
+body > *.sidebars
+  > *
+    +sidebar-handling
+
+    

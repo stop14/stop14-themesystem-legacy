@@ -1,0 +1,69 @@
+/*
+   @file _separated_row.sass
+   @category 10_layout
+   @component 00_core
+   @description  Mixin to create a rudimentary grid. $wrap and $rows are legacy parameters.  */
+
+=separated_row($columns: 4, $separator: -3, $row_rule: 0px, $row_rule_color: neutral(40))
+  $coldef: ""
+
+  @for $i from 1 through $columns
+    $coldef: $coldef + " minmax(0,1fr)"
+
+  display: grid
+  grid-template-columns: #{$coldef}
+  grid-column-gap: rv($separator)
+  grid-row-gap: rv($separator)
+  position: relative
+
+  > *:nth-child(1n)
+
+    &:before
+      content: unset
+
+  @if $row_rule != 0px
+
+    > *:nth-child(#{$columns}n + 1)
+
+      &:before
+        content: ''
+        position: absolute
+        width: 100%
+        height: $row_rule
+        background-color: $row_rule_color
+
+
+// Use if you need flexbox-style alignments (e.g. if you need to center the grid)
+
+=separated_row_flex($columns: 4, $separator: -3,$justification: flex-start, $alignment: flex-start)
+  display: flex
+  flex-direction: row
+  justify-content: $justification
+  align-items: $alignment
+  flex-wrap: wrap
+
+  > *
+    margin-bottom: rv($separator)
+
+  @if($columns > 1)
+    > *
+      width: calc(100%/#{$columns} - ((#{rv($separator)} * #{$columns - 1})/#{$columns}))
+      margin-right: rv($separator)
+
+      &:last-child
+        margin-right: 0
+
+=separated_row_flex_auto($separator: -3,$justification: center, $alignment: flex-start, $mobile_width: 100%, $tablet_width: auto)
+  display: flex
+  flex-direction: row
+  justify-content: $justification
+  align-items: $alignment
+  flex-wrap: wrap
+
+  > *
+    width: auto
+    margin-right: rv($separator)
+    margin-bottom: rv($separator)
+
+    &:last-child
+      margin-right: 0

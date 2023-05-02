@@ -1,0 +1,14 @@
+@mixin line-clamp($num-of-lines)
+  overflow: hidden
+  display: -webkit-box
+  -webkit-line-clamp: $num-of-lines
+  -webkit-box-orient: vertical
+
+@mixin add-ornament($urlPathStr, $width, $maxWidthPx, $topPos, $leftPos)
+  content: $urlPathStr
+  position: absolute
+  max-width: $maxWidthPx
+  width: $width
+  z-index: -1
+  top: $topPos
+  left: $leftPos
