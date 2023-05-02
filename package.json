@@ -54,6 +54,7 @@
   "jshint": "^2.13.0",
   "jshint-stylish": "^2.2.1",
   "lazypipe": "^1.0.1",
+  "add-local-binaries-to-path": "^1.1.3",
   "object-path": "^0.11.5",
   "pump": "^3.0.0",
   "select2": "*",
