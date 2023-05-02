@@ -3,6 +3,7 @@
  * Turn on/off build features
  */
 
+
 var settings = {
   clean: true,
   scripts: true,
@@ -73,31 +74,63 @@ var paths = {
  * Copy third-party scripts and styles.
  */
 
-var vendor_scripts = ['node_modules/ev-emitter/ev-emitter.js','node_modules/imagesloaded/imagesloaded.js','node_modules/jquery-reflow-table/dist/js/reflow-table.js','node_modules/in-view/dist/in-view.min.js','node_modules/select2/dist/js/select2.min.js'];
-var vendor_styles = ['node_modules/jquery-reflow-table/dist/css/reflow-table.css','node_modules/select2/dist/css/select2.min.css'];
+var vendor_scripts = ['./node_modules/ev-emitter/ev-emitter.js','./node_modules/imagesloaded/imagesloaded.js','./node_modules/jquery-reflow-table/dist/js/reflow-table.js','./node_modules/in-view/dist/in-view.min.js','./node_modules/select2/dist/js/select2.min.js'];
+var vendor_styles = ['./node_modules/jquery-reflow-table/dist/css/reflow-table.css','./node_modules/select2/dist/css/select2.min.css'];
 
 
 /**
  * Template for banner to add to file headers
  */
-
-var banner = {
-  full:
-    '/*!\n' +
-    ' * <%= package.name %> v<%= package.version %>\n' +
-    ' * <%= package.description %>\n' +
-    ' * (c) ' + new Date().getFullYear() + ' <%= package.author.name %>\n' +
-    ' * <%= package.license %> License\n' +
-    ' * <%= package.repository.url %>\n' +
-    ' */\n\n',
-  min:
-    '/*!' +
-    ' <%= package.name %> v<%= package.version %>' +
-    ' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
-    ' | <%= package.license %> License' +
-    ' | <%= package.repository.url %>' +
-    ' */\n'
-};
+ 
+if (typeof package === "undefined") {
+  let package = {
+    name: 'Stop14 Theme System Scaffolding',
+    author: {
+      name: 'See theme authoring information'
+    },
+    description: 'Automatically generated file',
+    version: '1.x.x',
+    license: "MIT",
+    repository: {
+      url: 'https://github.com/stop14/stop14-themesystem-legacy'
+    }
+  }
+  var banner = {
+    full:
+      '/*!\n' +
+      ' * <%= package.name %> v<%= package.version %>\n' +
+      ' * <%= package.description %>\n' +
+      ' * (c) ' + new Date().getFullYear() + ' Theme author' +
+      ' * <%= package.license %> License\n' +
+      ' * https://github.com/stop14/stop14-themesystem-legacy]' +
+      ' */\n\n',
+    min:
+      '/*!' +
+      ' <%= package.name %> v<%= package.version %>' +
+      ' | (c) ' + new Date().getFullYear() + ' Theme author' +
+      ' | <%= package.license %> License' +
+      ' * https://github.com/stop14/stop14-themesystem-legacy]' +
+      ' */\n'
+  };
+} else {
+  var banner = {
+    full:
+      '/*!\n' +
+      ' * <%= package.name %> v<%= package.version %>\n' +
+      ' * <%= package.description %>\n' +
+      ' * (c) ' + new Date().getFullYear() + ' <%= package.author.name %>\n' +
+      ' * <%= package.license %> License\n' +
+      ' * <%= package.repository.url %>\n' +
+      ' */\n\n',
+    min:
+      '/*!' +
+      ' <%= package.name %> v<%= package.version %>' +
+      ' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
+      ' | <%= package.license %> License' +
+      ' | <%= package.repository.url %>' +
+      ' */\n'
+  };
+}
 
 
 /**
