@@ -25,7 +25,7 @@ var settings = {
 
 var package_dir = "./node_modules/stop14-themesystem-legacy/source";
 var source_dir = './source';
-var build_dir = './assets';
+var build_dir = './asset';
 
 var paths = {
   input: source_dir,
@@ -145,6 +145,7 @@ var lazypipe = require('lazypipe');
 var rename = require('gulp-rename');
 var header = require('gulp-header');
 var package = require('./package.json');
+var exec = require('gulp-exec');
 
 // Scripts
 var eslint = require('gulp-eslint');
@@ -299,7 +300,22 @@ var buildStyles = function (done) {
   if (!settings.styles) return done();
 
   // Run tasks on all Sass files
+  
+  const options = {
+    continueOnError: false, // default = false, true means don't emit error event
+    pipeStdout: true, // default = false, true means stdout is written to file.contents
+  };
+  
+  const reportOptions = {
+    err: false, // default = true, false means don't write err
+    stderr: false, // default = true, false means don't write stderr
+    stdout: false // default = true, false means don't write stdout
+  };
+
+    
   return src(paths.styles.input)
+    .pipe(exec(file => `parse-yaml _00_main_configuration.yml`),options)
+    .pipe(exec.reporter(reportOptions))
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
