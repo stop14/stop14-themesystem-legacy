@@ -1,6 +1,2 @@
-.DS_Store
 /node_modules
-/scaffolding/.DS_Store
-/scaffolding/omeka/source/sass/.DS_Store
-/scaffolding/omeka/source/sass/70_contexts/.DS_Store
-/scaffolding/omeka/source/sass/60_site_elements/.DS_Store
+.DS_Store
