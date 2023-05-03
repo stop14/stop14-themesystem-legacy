@@ -12,7 +12,8 @@
   "url": "https://github.com/stop14/stop14-themesystem-legacy"
  },
  "bin": {
-  "scaffold": "./scripts/scaffold.sh"
+  "scaffold": "./scripts/scaffold.sh",
+  "parse-yaml": "./scripts/parse_yaml.sh"
  },
  "keywords": [
   "drupal",

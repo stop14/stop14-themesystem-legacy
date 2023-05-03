@@ -1,0 +1,14 @@
+## 01 Colour And Patterns
+clr1: #FCFF21
+clr2: #191700
+clr3: #1E15FF
+clr4: #08EE57
+clr5: #EE3AC2
+black: $clr2
+
+## Typography
+typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
+paragraph_spacing: math.div(map-get($line_heights,'base') * rv(math.round((map-get($min-sizefactors,'base') + map-get($sizefactors,'base')) * 0.5)),4)$basefont: Georgia, serif
+headingfont: "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif
+altfont: Georgia, serif
+codefont: "Andale Mono", Monaco, Courier New, monospace
