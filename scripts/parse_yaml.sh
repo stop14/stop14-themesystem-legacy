@@ -11,8 +11,8 @@ then
     vname[indent] = $2;
     for (i in vname) {if (i > indent) {delete vname[i]}}
     if (length($3) > 0) {
-       vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("\$")}
-       printf("%s%s%s: %s\n", "'$prefix'",vn, $2, $3);
+       vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("")}
+       printf("\$%s%s%s: %s\n", "'$prefix'",vn, $2, $3);
     }
   }'  > ${1%%.*}.sass
   echo "Configuration conversion from" $1 "to" ${1%%.*}.sass "is complete."
