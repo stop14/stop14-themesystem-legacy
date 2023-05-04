@@ -1,6 +1,7 @@
 <! -- START OF /LAYOUT/LAYOUT.PHTML -->
 <?php
 $escape = $this->plugin('escapeHtml');
+$siteTitle = $site->title();
 $this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
@@ -8,6 +9,7 @@ $this->headTitle($this->setting('installation_title', 'Omeka S'))->setSeparator(
 $this->headLink()->prependStylesheet($this->assetUrl('css/vendor.min.css'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headLink()->appendStylesheet($this->assetUrl('css/style.min.css'));
+$this->headScript()->prependFile($this->assetUrl('js/core.min.js'));
 $this->headScript()->prependFile($this->assetUrl('js/default.min.js'));
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('js/vendor.js'));
@@ -27,128 +29,131 @@ $nav = $site->publicNav();
 $container = $nav->getContainer();
 $activePage = $nav->findActive($container);
 
+if ($activePage && key_exists('page',$activePage) && is_object($activePage['page']) && $activePage['page']->route === 'search-page-1') {
+  $this->headTitle('Browse the collection');
+}
+
 // Add the page slug as a body class in case it’s needed for styling.
 
-if ($nav->findActive($container) && array_key_exists('page-slug',$activePage['page']->getParams())) {
+if ($activePage && method_exists($activePage['page'],'getParams') && array_key_exists('page-slug',$activePage['page']->getParams())) {
     $this->htmlElement('body')->appendAttribute('class', $activePage['page']->getParams()['page-slug']);
 }
+
+if (!empty($this->userBar())) {
+    $this->htmlElement('body')->appendAttribute('class','has-admin-bar');
+}
+
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
     <head>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-N23K88G');</script>
-        <!-- End Google Tag Manager -->
-
         <?php echo $this->headMeta(); ?>
         <?php echo $this->headTitle(); ?>
         <?php echo $this->headLink(); ?>
+        <link rel="icon" type="image/png" href=<?php echo $this->assetUrl('img/png/favicon/favicon.png'); ?>>
         <?php echo $this->headStyle(); ?>
         <?php echo $this->headScript(); ?>
-
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N23K88G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-
         <div class="full"><?php echo $userBar; ?> </div>
         <header class="full">
-            <!--DESKTOP MENU START-->
-            <nav class="desktop-nav" aria-label="menu"> 
-                <?php echo $this->navigation($this->subNav)->menu()->renderMenu($container, ['maxDepth' =>2]); ?>
-                <ul class="nav-icons">
-                    <?php if ($userLoggedIn): ?>
-                      <li>Hello <strong><?php echo $userName; ?></strong>!</li>
-                    <?php endif; ?>
-                    <div class="header-search">
-                        <?php echo $this->partial('common/search-form',['query' => $this->params()->fromQuery(), 'resourceType' => 'user']); ?>
-                    </div>
-                    <li><a class="nav-icon nav-search" href="#" title="Search"><img alt='spy glass' src=<?php echo $this->assetUrl('img/svg/icon/search.svg'); ?>></a>
-                    </li>
-                    <?php if (!$userLoggedIn): ?>
-                      <li><a class="nav-icon nav-user-login" href="/login" title="Log-in"><img alt='user login' src=<?php echo $this->assetUrl('img/svg/icon/user-login.svg'); ?>></a></li>
-                    <?php endif; ?>
-                    <li><a class="nav-icon nav-hamburger" href="#" title="Menu"><img alt='mobile menu' src=<?php echo $this->assetUrl('img/svg/icon/hamburger.svg'); ?>></a></li>
-                </ul>
-                <!--SUB MENU CONTAINER-->
-                <div class="sub-menu-container"></div> 
-                <!--MOBILE MENU START-->
-                <div class="mobile-menu" aria-label='Mobile Menu'> 
-                    <div class="mobile-icons-container"></div>
-                    <div class="sub-menu-title">
-                        <p>Menu</p>
-                    </div>
-                    <?php echo $this->navigation($this->subNav)->menu()->renderMenu($container, ['maxDepth' =>2]); ?>
-                </div> <!--MOBILE MENU END-->
-            </nav> <!--DESKTOP MENU END-->
-            <!--MOBILE SEARCH FORM START-->
-            <div class="mobile-search">
-                <?php echo $this->partial('common/search-form',['query' => $this->params()->fromQuery(), 'resourceType' => 'user']); ?>
-            </div> <!--MOBILE SEARCH FORM END-->
-        </header>
-       
-        
-        <section id='splash' class='full'></section>
-        <section id='primary-content'>
-            <a name='main-content'></a>
-            <main>
-              <div id='content-stack' contentstack>
-                <?php echo $this->content; ?>
+          <div>
+              <div id="identity">
+                <a href="<?= $site->url() ?>">
+                <?php if ($this->themeSetting('logo')): ?>
+                  <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+                <?php else: ?>
+                  <?php echo $escape($siteTitle); ?>
+                <?php endif; ?>
+                </a>
               </div>
-            </main>
-        </section>
-        <section id='feature-tier-1' class='full'></section>
-        <section id='feature-tier-2' class='full'></section>
-        <section id='feature-tier-3' class='full'></section>
-        <section class='full'>
+              <!--DESKTOP MENU START-->
+              <nav class="desktop-nav" aria-label="Main navigation for <?= $siteTitle ?>">
+                  <?php echo $this->navigation($this->subNav)->menu()->renderMenu($container, ['maxDepth' =>2]); ?>
+              </nav>
+              <!--DESKTOP MENU END-->
+
+              <!--MOBILE MENU START-->
+              <div class="mobile-menu" aria-label='Mobile Menu'>
+                  <div class="mobile-menu-header">
+                    <a class="nav-hamburger" href="#" title="Menu"><img alt='mobile menu' src=<?php echo $this->assetUrl('img/svg/icons/hamburger.svg'); ?>></a>
+                  </div>
+                  <div class="mobile-container">
+                      <div class="mobile-close">
+                          <p>Close</p>
+                      </div>
+                      <?php echo $this->navigation($this->subNav)->menu()->renderMenu($container, ['maxDepth' =>2]); ?>
+
+                      <!--MOBILE SEARCH FORM START-->
+                      <div class="mobile-search">
+                        <?php echo $this->partial('common/search-form', ['query' => $this->params()->fromQuery(), 'resourceType' => 'user','searchType' => 'browser']); ?>
+                      </div>
+                  <!--MOBILE SEARCH FORM END-->
+                  </div>
+              </div>
+            </div>
+            <!--MOBILE MENU END-->
+
+        </header>
+
+
+        <section id='splash' class='full empty'></section>
+        <section id='primary-content' class='region'>
             <div>
-            <div id='secondary-content' style="display:none"></div>
+                <main id="'main-content">
+                  <div id='content-stack' contentstack>
+                    <?php echo $this->content; ?>
+                  </div>
+                </main>
             </div>
         </section>
+        <section class='full' role="region" >
+          <div>
+            <div id='secondary-content' class="tier-container"></div>
+          </div>
+        </section>
+        <section id='feature-tier-1' class='full' role="region" style="display:none">
+          <div>
+            <div id='feature-tier-1-content' class="tier-container"></div>
+          </div>
+        </section>
+        <section id='feature-tier-2' class='full' role="region" style="display:none">
+          <div>
+            <div id='feature-tier-2-content' class="tier-container"></div>
+          </div>
+        </section>
+        <section id='feature-tier-2' class='full' role="region" style="display:none">
+          <div>
+            <div id='feature-tier-2-content' class="tier-container"></div>
+          </div>
+        </section>
         <footer class="full">
-            <section class="footer-content">
-                <div class="sackson-mark">
-                    <img alt="the-sid-sackson-portal-mark" src="<?php echo $this->assetUrl('img/png/marks/1x/portal_mark_reversed.png'); ?>">
-                </div>
-                <div class="vertical"></div>
-                <div class="strong-container">
-                    <div class="strong-mark">
-                        <img alt="strong-museum-mark" src="<?php echo $this->assetUrl('img/png/marks/1x/strong_museum_mark.png'); ?>">
-                    </div>
-                    <div class="strong-text">
-                        <p class="title">The Strong Museum of Play</p>
-                        <p>One Manhattan Square<br>
-                            Rochester, NY 14607<br>
-                            585-263-2700<br>
-                            <a href="mailto:info@museumofplay.org">info@museumofplay.org</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="vertical"></div>
-                <div class="footer-main">
-                    <div class="footer--text">  
-                        <?php if (!empty($this->themeSetting('footer'))): ?>
-                            <?php echo $this->themeSetting('footer') ; ?>
-                            <hr class="horizontal">
-                        <?php endif; ?>
-                    </div>
-                    <div class="footer--links">
-                        <?php if (!empty($this->themeSetting('footer_links'))): ?>
-                            <?php echo $this->themeSetting('footer_links'); ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="vertical mobileline"></div>
-                <div class="footer--logo">
-                    <img alt="national-archives-mark" src="<?php echo $this->assetUrl('img/png/marks/1x/national_archives_reversed.png'); ?>">
-                </div>
-            </section>
+          <section class="footer-content">
+            <div class="mark-container">
+              <?php if ($this->themeSetting('logo')): ?>
+                <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+              <?php else: ?>
+                <?php echo $escape($siteTitle); ?>
+              <?php endif; ?>
+            </div>
+            <div class="footer-main">
+              <div class="footer--text">
+                <?php if (!empty($this->themeSetting('footer'))): ?>
+                  <?php echo $this->themeSetting('footer') ; ?>
+                  <hr class="horizontal">
+                <?php endif; ?>
+              </div>
+              <div class="footer--links">
+                <?php if (!empty($this->themeSetting('footer_links'))): ?>
+                  <?php echo $this->themeSetting('footer_links'); ?>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="footer--logo">
+              <!-- No logos -->
+            </div>
+          </section>
         </footer>
     </body>
 </html>

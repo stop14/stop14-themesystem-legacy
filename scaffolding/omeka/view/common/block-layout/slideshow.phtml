@@ -3,82 +3,96 @@
 // $labelText
 // $subtitle
 // $buttonText
+$partial = $this->plugin('partial');
+
 ?>
-<div id="block-<?php echo $this->blockId; ?>" class="slideshow-block region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
-  <slide-viewer class="<?php echo $hasAudioAttachment ? 'slideshow-with-audio' : ''; ?>" option-slidesPerRow='<?php echo $optionSlidesPerRow; ?>' option-autoplay='<?php echo $optionAutoPlay; ?>' option-fade='<?php echo $optionFade; ?>'>
-    <div slot='slides'>
-          <?php if ($useTitleSlide): ?>
-              <slide-item class="title-slide">
-                  <div slot='slide-content'>
-                      <?php
-                          if ($titleSlideMedia):
-                              echo $this->thumbnail($titleSlideMedia, $thumbnailType);
-                          endif;
-                      ?>
-                  </div>
-                  <div slot='slide-caption'>
-                      <?php if (!empty($labelText)): ?>
-                          <div class='label'><?php echo $labelText; ?></div>
-                      <?php endif; ?>
-                      <?php if (!empty($titleSlideTitle)): ?>
-                          <h3><?php echo $titleSlideTitle; ?></h3>
-                      <?php endif; ?>
-                      <?php if (!empty($subtitle)): ?>
-                          <div class='subtitle'><?php echo $subtitle; ?></div>
-                      <?php endif; ?>
-                      <?php if (!empty($titleSlideIntro)): ?>
-                          <?php echo $titleSlideIntro; ?>
-                      <?php endif; ?>
-                      <?php if (!empty($buttonText)): ?>
-                          <a class='slickNext next-slide btn'><?php echo $buttonText; ?></a>
-                      <?php endif; ?>
-                  </div>
-              </slide-item>
-          <?php endif; ?>
-  
-          <?php foreach ($attachments as $attachment): ?>
-              <?php
-                  $item = $attachment->item();
-              ?>
-              <slide-item>
-                  <?php if ($item):
-                      $media = $attachment->media() ?: $item->primaryMedia();
-                      if ($media):
-                  ?>
+<div id="block-<?php echo $this->blockId; ?>" class="slideshow-block slideviewer-container region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
+    <div class='slide-container'>
+          <slide-viewer class="<?php echo $hasAudioAttachment ? 'slideshow-with-audio' : ''; ?>" option-slidesPerRow='<?php echo $optionSlidesPerRow; ?>' option-autoplay='<?php echo $optionAutoPlay; ?>' option-fade='<?php echo $optionFade; ?>' integratedcontrols>
+            <div slot='slides'>
+                  <?php if ($useTitleSlide): ?>
+                      <slide-item class="title-slide">
                           <div slot='slide-content'>
-                              <?php echo $this->thumbnail($media,$thumbnailType); ?>
+                              <?php
+                                  if ($titleSlideMedia):
+                                      echo $this->thumbnail($titleSlideMedia, $thumbnailType);
+                                  endif;
+                              ?>
+                          </div>
+                          <div slot='slide-caption'>
+                              <div class="slide-title-content">
+                                  <?php if (!empty($labelText)): ?>
+                                      <div class='item-label'><?php echo $labelText; ?></div>
+                                  <?php endif; ?>
+                                  <?php if (!empty($titleSlideTitle)): ?>
+                                      <h2><?php echo $titleSlideTitle; ?></h2>
+                                  <?php endif; ?>
+                                  <?php if (!empty($subtitle)): ?>
+                                      <div class='deck'><?php echo $subtitle; ?></div>
+                                  <?php endif; ?>
+                                  <?php if (!empty($titleSlideIntro)): ?>
+                                      <?php echo $titleSlideIntro; ?>
+                                  <?php endif; ?>
+                                  <?php if (!empty($buttonText)): ?>
+                                      <a class='slickNext next-slide btn cta'><?php echo $buttonText; ?></a>
+                                  <?php endif; ?>
+                              </div>
+                          </div>
+                      </slide-item>
+                  <?php endif; ?>
+
+                  <?php foreach ($attachments as $attachment): ?>
+                    <slide-item>
+                      <div class="slide-item-content" slot="slide-content">
+                        <?php
+                        $item = $attachment->item();
+                        $media = $attachment->media() ?: $item->primaryMedia();
+                        ?>
+                        <?= $partial('agile-item/card', [
+                          'item' => $item,
+                          'containerElement' => 'div',
+                          'cardStyle' => 'item-info caption--compact',
+                          'heading' => $showTitleOption == 'file_name' && $media ? $media->displayTitle() : $item->displayTitle(),
+                        ]) ?>
+                        <?php if (!empty($attachment->caption())): ?>
+                          <div class="caption caption--compact reverse">
+                            <?= $attachment->caption() ?>
+                          </div>
+                        <?php endif; ?>
+
+
+                      </div>
+                    </slide-item>
+
+                  <?php endforeach; ?>
+              </div>
+              <?php if($hasAudioAttachment): ?>
+                  <div class="audio-controls">
+                      <div class="audio-player">
+                          <?php echo $audioAttachment->media()->render(); ?>
+                          <div class="audio-message">
+                              <a href=='#' class='audio-text-play-control' title='Play audio' data-playbtnmsg='Play audio slideshow' data-stopbtnmsg='Pause audio slideshow'>Play audio slideshow.</a>
+                          </div>
+                      </div>
+                      <?php if ($audioAttachment->caption()): ?>
+                          <div class="audio-caption">
+                              <?php echo $audioAttachment->caption(); ?>
                           </div>
                       <?php endif; ?>
-                  <?php endif; ?>
-                  <div slot='slide-caption' class='caption--standard'>
-                      <?php if ($showTitleOption == 'item_title'): ?>
-                          <h3><?php echo $item->link($item->displayTitle()); ?></h3>
-                      <?php elseif ($showTitleOption == 'file_name'): ?>
-                          <h3><?php echo $media->displayTitle(); ?></h3>
-                      <?php endif; ?>
-                      <?php if ($attachment->caption()): ?>
-                          <?php echo $attachment->caption(); ?>
-                      <?php endif; ?>
-                  </div>
-              </slide-item>
-          <?php endforeach; ?>
-      </div>
-      <?php if($hasAudioAttachment): ?>
-          <div class="audio-controls">
-              <div class="audio-player">
-                  <?php echo $audioAttachment->media()->render(); ?>
-                  <div class="audio-message">
-                      <a href=='#' class='audio-text-play-control' title='Play audio' data-playbtnmsg='Play audio slideshow' data-stopbtnmsg='Pause audio slideshow'>Play audio slideshow.</a>
-                  </div>
-              </div>
-              <?php if ($audioAttachment->caption()): ?>
-                  <div class="audio-caption">
-                      <?php echo $audioAttachment->caption(); ?>
                   </div>
               <?php endif; ?>
-          </div>
-      <?php endif; ?>
-  </slide-viewer>
+          </slide-viewer>
+    </div>
 </div>
 
 
+<!--
+<div class="item-info">
+    <div class="item-label">Furman University Libraries | Item</div>
+    <h3 class="item-title"><a href="/s/pathways/item/760">Lillian Brock Flemming Oral History</a></h3>
+    <div class="item-description">Video interview with Lillian Brock Flemming, one of the first two African American females to graduate Furman University. Lillian enrolled at Furman in 1967 as one of the university's first African American women. She graduated in 1971, and earned her Masters of Education from Furman in 1975. In 1981, she became the first African-American woman to serve on the Greenville City Council, and in 1989 she was elected Mayor Pro Tempore.</div>
+    <div class="item-link">
+        <a href="/s/pathways/item/760">Find Out More</a> <span>&gt;</span>
+    </div>
+</div>
+-->

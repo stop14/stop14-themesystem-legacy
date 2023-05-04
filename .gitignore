@@ -1,2 +1,7 @@
 /node_modules
 .DS_Store
+/scaffolding/omeka/view/layout/.DS_Store
+/scaffolding/omeka/view/common/.DS_Store
+/scaffolding/omeka/view/.DS_Store
+/scaffolding/omeka/source/fonts/.DS_Store
+/scaffolding/omeka/source/.DS_Store

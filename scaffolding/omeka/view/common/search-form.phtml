@@ -1,11 +1,30 @@
-<! -- START OF /COMMON/SEARCH-FORM.PHTML -->
 <?php
 $translate = $this->plugin('translate');
-$searchValue = $this->escapeHtml($this->params()->fromQuery('search', ''));
+$searchType = isset($searchType) && $searchType ?: $this->siteSetting('search_type', 'sitewide');
+$searchValue = $this->escapeHtml($this->params()->fromQuery('fulltext_search', ''));
+$name = 'fulltext_search';
+$action = isset($action) ? $action : '';
+
+switch ($searchType) {
+    case 'cross-site':
+        $searchAction = $this->url('site/cross-site-search', ['action' => 'results'], true);
+        // break; // only site search supported
+    case 'browser':
+        $searchAction = '/s/pathways/browse'; //@todo: get site slug
+        $searchValue = $this->escapeHtml($this->params()->fromQuery('q', ''));
+        $name='q';
+        break;
+    case 'sitewide':
+    default:
+        $searchAction = $this->url('site/resource', ['controller' => 'index', 'action' => 'search'], true);
+}
 ?>
 
-<form action="<?php echo $this->escapeHtml($this->url('site/resource', ['controller' => 'item','action' => 'browse'], true)); ?>" id="search-form">
-    <input type="text" title='Search Field' name="search" value="<?php echo $searchValue; ?>" placeholder="<?php echo $translate('Search the Sid Sackson Portal'); ?>">
-    <button type="submit" title="Submit"></button>
+<!-- BEGIN SEARCH FORM TEMPLATE  common/search-form.phtml -->
+<form action="<?= $action ?>" id="search-form">
+    <input type="text" name="<?= $name ?>" value="<?php echo $searchValue; ?>"
+        placeholder="<?php echo $translate('Search'); ?>"
+        aria-label="<?php echo $translate('Search'); ?>">
+    <button aria-label="<?php echo $translate('Submit search'); ?>" type="submit" tabindex="0"></button>
 </form>
-<! -- END OF /COMMON/SEARCH-FORM.PHTML -->
+<!-- END SEARCH FORM TEMPLATE -->

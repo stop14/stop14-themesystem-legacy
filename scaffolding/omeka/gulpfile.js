@@ -6,6 +6,7 @@
 
 var settings = {
   clean: true,
+  coreScripts: true,
   scripts: true,
   modernizr: true,
   styles: true,
@@ -31,8 +32,10 @@ var paths = {
   input: source_dir,
   output: build_dir,
   scripts: {
+    core: package_dir + '/js',
     input: source_dir + '/js',
     output: build_dir + '/js/',
+    coreFilename: 'core',
     cfilename: 'default', // Output file name for concatenated scripts. Set to false to use output folder name
     vfilename: 'vendor' // Output file name for vendor scripts
   },
@@ -81,7 +84,7 @@ var vendor_styles = ['./node_modules/jquery-reflow-table/dist/css/reflow-table.c
 /**
  * Template for banner to add to file headers
  */
- 
+
 if (typeof package === "undefined") {
   let package = {
     name: 'Stop14 Theme System Scaffolding',
@@ -211,6 +214,46 @@ var jsTasks = lazypipe()
   .pipe(dest, paths.scripts.output);
 
 // Lint, cssnano, and concatenate scripts
+var buildCoreScripts = function (done) {
+
+  // Make sure this feature is activated before running
+  if (!settings.coreScripts) return done();
+
+  // Run tasks on script files
+  return src(paths.scripts.core)
+    .pipe(flatmap(function(stream, file) {
+
+      // If the file is a directory
+      if (file.isDirectory()) {
+
+        // Setup a suffix variable
+        var suffix = '';
+
+        // Setup a filename.
+
+        var filename = paths.scripts.coreFilename === false ? file.relative : paths.scripts.coreFilename;
+
+
+        // Grab all files and concatenate them
+
+        src(file.path + '/*.js')
+          .pipe(sourcemaps.init()) // TO DO: Sourcemaps not working as expected.
+          .pipe(concat(filename + suffix + '.js'))
+          .pipe(jsTasks())
+          .pipe(sourcemaps.write('./'));
+
+        return stream;
+
+      }
+
+      // Otherwise, process the file
+      return stream.pipe(jsTasks());
+
+    }));
+
+};
+
+// Lint, cssnano, and concatenate scripts
 var buildScripts = function (done) {
 
   // Make sure this feature is activated before running
@@ -293,6 +336,23 @@ var buildModernizr = function(done) {
     .pipe(dest(paths.scripts.output));
 }
 
+var buildSassConfig = function(done) {
+  const options = {
+    continueOnError: false, // default = false, true means don't emit error event
+    pipeStdout: true, // default = false, true means stdout is written to file.contents
+  };
+
+  const reportOptions = {
+    err: false, // default = true, false means don't write err
+    stderr: false, // default = true, false means don't write stderr
+    stdout: false // default = true, false means don't write stdout
+  };
+
+  return src(paths.styles.input)
+    .pipe(exec(file => `parse-yaml _00_main_configuration.yml`),options)
+    .pipe(exec.reporter(reportOptions));
+}
+
 // Process, lint, and cssnano Sass files
 var buildStyles = function (done) {
 
@@ -300,22 +360,8 @@ var buildStyles = function (done) {
   if (!settings.styles) return done();
 
   // Run tasks on all Sass files
-  
-  const options = {
-    continueOnError: false, // default = false, true means don't emit error event
-    pipeStdout: true, // default = false, true means stdout is written to file.contents
-  };
-  
-  const reportOptions = {
-    err: false, // default = true, false means don't write err
-    stderr: false, // default = true, false means don't write stderr
-    stdout: false // default = true, false means don't write stdout
-  };
 
-    
   return src(paths.styles.input)
-    .pipe(exec(file => `parse-yaml _00_main_configuration.yml`),options)
-    .pipe(exec.reporter(reportOptions))
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
@@ -461,28 +507,32 @@ var reloadBrowser = function (done) {
   done();
 };
 
+
+// @todo: watch functions not working, building the config file initiates an infinite loop.
+// watch function should take an ignored parameter, but it’s not working as expected.
+
 // Watch for changes
 var watchSrc = function (done) {
-  watch(paths.input, series(exports.default, reloadBrowser));
+  watch(paths.input, {ignored : '_00_main_configuration.sass'}, series(exports.default, reloadBrowser));
   done();
 };
 
 // Watch for changes
 var watchJs = function (done) {
-  watch(paths.input, series(exports.js, reloadBrowser));
+  watch(paths.input, {ignored : '_00_main_configuration.sass'}, series(exports.js, reloadBrowser));
   done();
 };
 
 // Watch for changes
 var watchSass = function (done) {
-  watch(paths.input, series(exports.sass, reloadBrowser));
+  watch(paths.input, {ignored : '_00_main_configuration.sass'}, series(exports.sass, reloadBrowser));
   done();
 };
 
 
 // Watch for changes
 var watchMin = function (done) {
-  watch(paths.input, series(exports.sass, exports.js, reloadBrowser));
+  watch(paths.input,{ignored : '_00_main_configuration.sass'}, series(exports.sassmin, exports.js, reloadBrowser));
   done();
 };
 
@@ -498,8 +548,10 @@ var watchMin = function (done) {
 // gulp
 exports.default = series(
   cleanDist,
+  buildSassConfig,
   parallel(
     lintScripts,
+    buildCoreScripts,
     buildScripts,
     buildVendorScripts,
     buildStyles,
@@ -517,11 +569,22 @@ exports.default = series(
 exports.build = exports.default;
 
 exports.sass = series(
+  buildSassConfig,
   buildStyles
+);
+
+// No config
+exports.sassmin = series(
+  buildStyles
+);
+
+exports.buildConfig = series(
+  buildSassConfig
 );
 
 exports.js = series(
   lintScripts,
+  buildCoreScripts,
   buildScripts,
   buildVendorScripts,
   buildModernizr
@@ -548,8 +611,10 @@ exports.watch = series(
 
 // Build styles and scripts without time consuming image processing
 // gulp watchmin
+// Does not build SASS config
+
 exports.watchmin = series(
-  exports.sass,
+  exports.sassmin,
   exports.js,
   startServer,
   watchMin

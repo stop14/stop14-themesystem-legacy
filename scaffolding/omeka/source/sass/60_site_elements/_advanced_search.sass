@@ -1,150 +1,129 @@
-/** 
- *  @file _advanced_search.sass 
- *  @category 60_site_elements
- *  @theme LOCAL
- *  @description Styles for the Advanced Search page. */
+/* 
+   @file _advanced_search.sass 
+   @category 60_site_elements
+   @theme LOCAL
+   @description Handles the Advanced Search Page */
 
 #advanced-search
-  color: $light_neutral
-  +bp($tablet)
-    padding: 0 rv(3)
-  +bp($desktop)
-    padding: unset
+  margin-bottom: rv(6)
+
+
+
+  #resource-class,
+  #item-sets ~ div.field
+    display: none
+ 
+  #fulltext_search
+    margin-bottom: initial
+  
+  .value
+    display: flex 
+    flex-direction: row
+    justify-content: space-between
+    flex-wrap: wrap
+    margin-top: rv(4)
+    +bp($tablet)
+      margin-top: 0
+
+    span.select2
+      flex-grow: 2
+
+    .query-text
+      width: 100%
+      margin-top: rv(1)
+      margin-bottom: rv(2)
+    
+    .select1 //made up class to unite non .select2 forms
+      font-size: .77rem
+      font-weight: $normal
+      padding: 0
+      height: 28px
+      flex-grow: 2
+      padding-left: 8px
+      background: url(get_svg_url('icons-black/drop-down-black')) no-repeat 98%
+      background-size: 10px 5px
+      background-color: $white
+      border-radius: 4px
+      margin: 0
+
+    .chosen-container
+      display: none
+      border: solid green 2px
+    
+
+  
+  
+  .inputs
+    padding: 1rem
+    background-color: $lightest_neutral
+    border-top: 1px solid $mid_neutral
+    border-bottom: 1px solid $mid_neutral
+    margin: 0 auto 1rem auto
+    position: relative
+    +bp($tablet)
+      padding: 4rem rv(1)
+      position: relative
+
+    #fulltext_search,
+    .query-text
+      @extend %search-form-textfield
+      background-image: url(get_svg_url('icons-grey/search-grey'))
+      background-size: $btn_submit_img_size
+      background-repeat: no-repeat
+      background-position: 99%
+  
+      &:hover
+        background-image: url(get_svg_url('icons-active/search-active'))
+       
+      
+    .button-container
+      position: absolute
+      top: 10px
+      right: 0
+      margin-bottom: rv(2)
+      +bp(tablet)
+        margin-bottom: 0
+
+      button
+        cursor: pointer
+        height: 15px
+        width: 15px
+        padding: rv(-1)!important
+        color: $mid_neutral
+      
 
   .field
-    margin-top: rv(2)
     margin-bottom: rv(1)
-
-  .inputs
-    background-color: $lightest_neutral
-    border-top: 1px solid $clr1
-    border-bottom: 1px solid $clr1
-    padding: rv(-2)
-
-  .field:not(#property-queries):not(#resource-class):not(#item-sets) > .inputs
-    position: relative
-    background-color: unset
-    border-top: none
-    border-bottom: none
-    padding: 0
-
-  .field:not(#property-queries):not(#resource-class):not(#item-sets) > .inputs::after
-    content: url('../img/svg/icon/search-neutral.svg')
-    width: 30px
-    display: block
-    position: absolute
-    right: rv(-2)
-    top: rv(-4)
-
-  label,
-  #by-value-label,
-  #by-resource-class-label,
-  #by-item-set-label
-    color: $clr8
-    font-weight: $bold
-
-  #fulltext_search
-    border-bottom: 1px solid $light_neutral
-    width: 100%
-
-  #fulltext_search::placeholder
-    color: $light_neutral
-    opacity: 1
-    font-weight: $light
-
-  #fulltext_search:hover,
-  #fulltext_search:focus
-    border-bottom: 5px solid $clr3
-
-  .value
-    flex-wrap: wrap
-    row-gap: rv(-1)
+  #page-actions
+    display: flex 
+    flex-direction: row 
+    justify-content: center
     +bp($tablet)
-      margin-bottom: rv(0)
+      justify-content: end
 
-  .value select,
-  .value .query-text
-    border: 1px solid $light_neutral
-    flex-basis: 100%
-    color: $light_neutral
-
-  .value select:hover,
-  .value select:focus,
-  .value .query-text:hover,
-  .value .query-text:focus
-    border: 1px solid $clr3
-
-  .value .query-text::placeholder
-    opacity: 1
-
-  .value select
-    text-transform: uppercase
-    cursor: pointer
-
-  #property-queries .value .query-type,
-  #property-queries .value .query-text
-    margin-left: 0
-
-  .remove-value
-    margin: 0 auto rv(-1) auto
-    color: $light_neutral
-    padding-left: rv(-2)
-    cursor: pointer
-    border-bottom: 5px solid $light_neutral
-    background-color: transparent
-
-  .remove-value:hover,
-  .remove-value:focus
-    color: $clr3
-    border-bottom: 5px solid $clr3
-
-  .remove-value:hover::before,
-  .remove-value:focus::before
-    color: $clr3
-
-  .remove-value::before
-    left: calc(#{rv(-4)} * -1)
-    position: relative
-
-  .add-value
-    display: inline-block
-    position: relative
-    left: 50%
-    transform: translateX(-50%)
-    margin-top: rv(-4)
-    color: $light_neutral
-    text-decoration: underline
-
-  .add-value:hover,
-  .add-value:focus
-    color: $clr3
-    border-bottom: none
-
-  #page-actions input[type="submit"]
-    padding: 0 rv(0)
-    width: 100%
-    text-transform: uppercase
-    text-decoration: underline
-    text-decoration-thickness: 5px
-    font-size: font-value(0)
-    +bp($tablet)
-      width: unset
-      margin-left: auto
-      padding: 0 rv(4)
+  input[type="checkbox"]
+    display: initial
+    width: initial
+    margin-bottom: initial
   
-  #page-actions input[type="submit"]:hover,
-  #page-actions input[type="submit"]:focus
-    background-color: $clr1
-    border: 5px solid $clr1
 
-  .input-btn-container
-    display: flex
-    flex-basis: 100%
-    flex-wrap: wrap
-    row-gap: rv(-1)
-    +bp($tablet)
-      // display: flex
-      column-gap: rv(0)
-      flex-wrap: unset
-      // flex-basis: 100%
+  .field-meta
+    position: relative
+    height: rv(4)!important
+    background-color: $lightest_neutral
+    
+    span, label
+      display: inline-block
+      font-weight: $normal
+      font-size: rv(1)
+      font-family: $headingfont
+      padding: rv(0)
+  
+
+#item-sets
+  border: solid yellow 1px
+  display: none
+
+
+///BROWSE
 

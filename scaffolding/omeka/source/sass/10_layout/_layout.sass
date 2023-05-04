@@ -4,20 +4,3 @@
  *  @theme LOCAL
  *  @description Augments basic grid system. **/
 
-section
-  main
-    > div
-      > *
-        margin-left: rv($mobile_edge_padding_factor)
-        margin-right: rv($mobile_edge_padding_factor) 
-        +bp($stack)
-          margin-left: auto
-          margin-right: auto
-          
-section:not(.full)
-  padding-left: rv($mobile_edge_padding_factor)
-  padding-right: rv($mobile_edge_padding_factor)
-  
-  +bp($stack)
-    padding-left: rv($edge_padding_factor)
-    padding-right: rv($edge_padding_factor)

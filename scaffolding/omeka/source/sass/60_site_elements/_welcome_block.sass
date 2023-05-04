@@ -1,0 +1,30 @@
+/**
+ *  @file _welcome_block.sass
+ *  @category 60_site_elements
+ *  @description Styles for the Homepage welcome block.
+ */
+
+.ctas
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: center
+
+  +bp($tablet)
+    margin-top: rv(6)
+    justify-content: flex-start
+
+  a
+    width: 100%
+    margin-bottom: rv(0)
+
+    +bp($tablet)
+      width: unset
+      margin-right: rv(3)
+
+    &:last-of-type
+      +bp($tablet)
+        margin-right: 0
+
+  +bp($desktop)
+    border: 1px solid transparent // prevent margin collpase

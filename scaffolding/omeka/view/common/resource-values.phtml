@@ -33,9 +33,13 @@ $labelInfo = $this->setting('property_label_information');
             }
             ?>
             <div class="<?php echo implode(' ', $class); ?>" lang="<?php echo $escape($value->lang()); ?>">
-                <?php if ($language = $value->lang()): ?>
-                <?php endif; ?>
-                <?php echo $value->asHtml(); ?>
+            <?php
+                    $term = $propertyData['property']->term(); // dcterm:termname
+                    $value_label = $value->__toString();
+                    $href = "/s/pathways/browse?facet" . urlencode("[") . $term . urlencode("][0]") . "=" . urlencode($value_label); // @todo: get site slug
+
+                ?>
+                <a class='subject-title' href='<?= $href ?>'><?= $value_label ?></a>
             </div>
         <?php endforeach; ?>
         </div>

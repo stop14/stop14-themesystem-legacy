@@ -1,0 +1,24 @@
+/** 
+ *  @file _main_content.sass 
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Structures the <main> content stack. 
+ * For additional paragraph sytling sere 60_elements/paragraphs **/
+
+
+#splash
+  .slideshow-block, .homepage-introduction
+    width: 100%
+    height: calc(100vh - #{$masthead_height} - #{$masthead_clearance_mobile})
+    
+    @media screen and ( min-width: $main_menu_tablet_breakpoint)
+      height: calc(100vh - #{$masthead_height} - #{$masthead_clearance})
+      min-height: 750px
+      
+.has-admin-bar
+  #splash 
+    .slideshow-block, homepage-introduction
+      height: calc(100vh - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
+
+      @media screen and ( min-width: $main_menu_tablet_breakpoint)
+        height: calc(100vh - #{$masthead_height}  - #{$admin_bar_height} - #{$masthead_clearance})

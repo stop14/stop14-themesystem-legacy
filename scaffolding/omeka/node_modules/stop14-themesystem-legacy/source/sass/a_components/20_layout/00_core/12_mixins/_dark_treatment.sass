@@ -1,0 +1,28 @@
+/**
+ * @file _dark_treatment.sas
+ * @description A mixin to apply styles in dark background presentations.
+ *  Currently designated by .reversed, .reverse, or a prefers-dark-mode query
+ */
+
+
+// “Reversed” situations are not necessarily “dark mode” situations, just one in which the type needs to
+// have reversed contrast from the background (e.g. it could easily apply to both a white-text-on-black or white-text-on-yellow).
+
+=reversed
+  @at-root .reversed &
+    @content
+
+  @at-root .reverse &
+    @content
+
+// Apply to dark mode. Also includes “reversed” class selector for legacy reasons.
+
+=dark()
+  +reversed
+    @content
+
+  @at-root .dark &
+    @content
+
+  @media (prefers-color-scheme: dark)
+    @content

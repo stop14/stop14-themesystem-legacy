@@ -1,0 +1,43 @@
+/** 
+ *  @file _callout.sass 
+ *  @category 60_site_elements
+ *  @theme LOCAL
+ *  @description  Handles styling of the callout block. */
+
+
+.callout
+  .callout-text
+    max-width: rv(10)
+    position: relative
+    background-image: url(get_png_url('ornaments/1x/triple-hex-outline-hex.png'))
+    background-position: center
+    background-size: contain
+    background-repeat: no-repeat
+    +bp($desktop)
+      display: flex 
+      justify-content: center
+      align-items: center
+      height: rv(11)
+      margin: 0 auto    
+    > p
+      font: $extrabold rv(2) $headingfont
+   
+.callout-right
+  .callout-text
+    +bp($tablet)
+      float: right
+      margin: rv(3) 0 rv(-4) rv(6)
+    +bp($desktop)
+      margin: rv(4) 0 rv(-2) 0
+      right: -70px
+
+.callout-left
+  .callout-text
+    +bp($tablet)
+      text-align: right
+      float: left
+      margin: rv(3) rv(6) rv(-4) 0
+    +bp($desktop)
+      margin: rv(4) 0 rv(-2) 0
+      left: -70px
+

@@ -1,0 +1,68 @@
+/**
+ *  @file _splash_content_container.sass
+ *  @category 10_layout
+ *  @theme CORE COMPONENT
+ *  @description Structures the splash area. Sets a container to the height of a screen less the size of admin bars.
+ *    Requires that the $masthead_height, $masthead_clearance, and $admin_bar_height variables be set.
+ *
+ *  @usage
+ *    Takes three arguments:
+ *      - A container selector that should appear the full (remaining) height o the browser. Defaults to “.block”
+ *      - The id of the splash section. Defaults to “#splash”
+ *      - <body> classes that indicate the presence of an admin bar (if any), often supplied by the CMS.
+ *        Defaults to “.has-admin-bar, .toolbar-tray-open" (Omeka S and Drupal selectors)
+ **/
+
+
+=splash-content-container($container-selector: ".block", $splash-section-selector: "#splash", $admin-toolbar-selector: ".has-admin-bar, .toolbar-tray-open")
+
+  @at-root #{$splash-section-selector}  #{$container-selector}
+    width: 100%
+    height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance_mobile})
+    
+    +bp($tablet)
+      height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance_mobile})
+
+    +bp($desktop)
+      height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$masthead_clearance})
+      min-height: 750px
+
+  @at-root #{$admin-toolbar-selector} #{$splash-section-selector} #{$container-selector}
+    height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
+    
+    +bp($tablet)
+      height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
+
+
+    +bp($desktop)
+      height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$admin_bar_tray} - #{$admin_bar_height} - #{$masthead_clearance})
+
+
+/**
+ * Forces standard Views interior containers to 100% height. Apply to views block element.
+ */
+
+=splash-drupal-views-support()
+  .container, .contextual-region, .rows, .views-row, .container > div
+    height: 100%
+    overflow: hidden
+
+  article
+    height: 100%
+
+/*
+ * Forces <figure> and <img> tags to 100% of their containers. Apply to a container element such as <figure>
+ * Container’s parent must also be 100% height, or have the splash-content-container mixin applied.
+ */
+
+=splash-image-support($object_fit: cover)
+  width: 100%
+  height: 100%
+
+  .field_media_image_container, .field_media_video_file_container, .field-values, .image, .file
+    height: 100%
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: $object_fit

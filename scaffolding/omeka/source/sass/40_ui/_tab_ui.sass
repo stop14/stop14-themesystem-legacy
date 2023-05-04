@@ -1,5 +1,27 @@
 /* reusable tab styles */
 
+
+.container-with-tabs-and-panels
+  .tabs
+    text-align: left
+    margin: rv(1) 0
+
+    +bp($desktop)
+      text-align: right
+      margin-top: 0
+
+    a
+      font-size: rv(-1)
+      font-weight: $bold
+      color: neutral(60)
+
+      &:hover, &.active-tab
+        color: neutral(100)
+
+
+// @todo: The following styles may not be used in this build
+
+
 .tab-ui 
   $tab_underscore_width: 5px
   
@@ -38,8 +60,7 @@
         color: $clr3
 
       &.active
-        color: $black 
-
+        color: $black
     
 
 

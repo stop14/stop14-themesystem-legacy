@@ -7,10 +7,7 @@
 .file
   .attachments
     margin-bottom: 0
-    // background-image: url(get_svg_url('ornaments/graph'))
-    // background-repeat: no-repeat
-    // background-position: top
-    // background-size: 100%
+
         
   // Set left and right settings
 
@@ -21,6 +18,13 @@
   &.left
     .attachments
       +callout-side('left')
+
+  &.center
+    display: flex
+    justify-content: center
+      
+     
+
         
   // Set sizing
   
@@ -33,13 +37,19 @@
     .attachments
       +bp($desktop)
         width: $legible_inset_width * .5
+
+  &.large.center
+      .attachments
+        +bp($desktop)
+          width: 100%
+          
       
 .media-embed-info            
+  background-color: neutral(4)
   h4
-    //may need to reinstate overflow. commented for now.
-    //overflow: hidden
-    //white-space: nowrap
-    //text-overflow: ellipsis
+   
+    white-space: nowrap
+    text-overflow: ellipsis
     margin-top: rv(-1)
     
   p:last-child
@@ -53,3 +63,5 @@
 
 .site-page-pagination
    display: none
+
+

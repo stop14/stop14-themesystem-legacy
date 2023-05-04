@@ -10,17 +10,18 @@ if (!$ids) {
     $ids = [null];
 }
 ?>
+<!-- BEGIN TEMPLATE: /common/advanced-search/item-sets.phtml -->
 <div id="item-sets" class="field removable multi-value" role="group">
     <div class="field-meta">
-        <span id="by-item-set-label" class="label"><?php echo $translate('Search by item set'); ?></span>
+        <span id="by-item-set-label" class="label"><?php echo $translate('Search by <span class="emphasized-text">Collection</span>'); ?></span>
         <?php echo $this->hyperlink('', '#', ['class' => 'expand', 'title' => $translate('Expand')]); ?>
         <div class="collapsible">
-            <div class="field-description"><?php echo $translate('Searches for items that are assigned to any of these item sets.'); ?></div>
+            <div class="field-description"><?php echo $translate('Searches for items that are assigned to any of these collections.'); ?></div>
         </div>
     </div>
     <div class="inputs">
         <?php foreach ($ids as $id): ?>
-        <div class="value input-btn-container">
+        <div class="value">
             <?php echo $this->itemSetSelect([
                 'name' => 'item_set_id[]',
                 'attributes' => [
@@ -28,12 +29,14 @@ if (!$ids) {
                     'aria-labelledby' =>  'by-item-set-label'
                 ],
                 'options' => [
+                    'empty_option' => '[Select Collection]',
                     'disable_group_by_owner' => $this->status()->isSiteRequest(),
                 ],
             ]); ?>
-            <button type="button" class="o-icon-delete remove-value button"><?php echo $translate('Remove value'); ?></button>
+            <button type="button" class="remove-value button"><?php echo $translate('Remove'); ?></button>
         </div>
         <?php endforeach; ?>
-        <a href="#" class="add-value button"><?php echo $translate('Add new item set'); ?></a>
+        <a href="#" class="add-value button"><?php echo $translate('Additional Value Search'); ?></a>
     </div>
 </div>
+<!-- END TEMPLATE: /common/advanced-search/item-sets.phtml -->

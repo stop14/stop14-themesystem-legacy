@@ -1,30 +1,25 @@
 .quotation
   font-family: $headingfont
-  color: $clr4
+  color: $white
   font-weight: $extrabold
-  background-image: url(get_svg_url('black-overlay/hex-bg-black-overlay.svg'))
-  background-repeat: no-repeat
-  background-size: 100%
-  font-size: font-value(1)
-
-  +bp($desktop)
-    font-size: font-value(1)
-  p
-    font-size: inherit
+  padding: rv(3)
+  margin-top: rv(2)
+  font-size: clamped(0, 2, 'sml', 'xlrg')
 
   blockquote
     margin: 0 auto
-    padding: rv(1) rv(1)
-    
-    +bp($stack)
-      +inset-text()
-      
+    padding: rv(3)
+
+    h2
+      color: $white
+
     cite
-      border-top: 1px solid $clr4
+      border-top: 1px solid $white
       padding-top: rv(0)
       display: block
-      text-transform: uppercase
-      font-style: normal
-      font-weight: $bold
       font-family: $basefont
-      font-size: font-value(0)
+      font-weight: $thin
+      font-size: clamped(-1, 0, 'sml', 'xlrg')
+
+    a
+      @extend %inline-anchor-reverse

@@ -3,19 +3,6 @@
  *  @category 60_site_elements
  *  @description Tweaking the default UV viewer. */
 
-
-.universal-viewer.viewer
-
-  margin-bottom: rv(2) + rv(-4) + rv(2)
-  
-  &::before
-    content: ""
-    // height: rv(2)
-    width: 100%
-    background: $black
-    display: block
-    margin-bottom: rv(-4)
-
 .uv
   background-color: $black !important
    
@@ -35,6 +22,28 @@
   .rightPanel
     main
       color: $white !important
+
+  .attribution
+    display: none !important
+
+  .middle
+    padding: rv(2)
+
+    .scroll
+      label
+        font-size: rv(-1)
+      .locale
+        select#locale
+          height: 28px
+          padding: 0
+          background: url(get_svg_url('icons-black/drop-down-black')) no-repeat 98%
+          background-size: 10px 5px
+          background-color: $white
+          border-radius: 4px
+          padding-left: 8px
+          font-weight: $normal
+
+    
     
 .uv .centerPanel .content .attribution
   display: none!important
@@ -59,3 +68,12 @@
   text-align: center
   min-height: unset 
   
+.uv 
+  .search
+    input
+      height: 30px !important
+      width: 30px !important
+      padding: 0 !important
+
+      margin-top: 0 !important
+      border-radius: 0 !important

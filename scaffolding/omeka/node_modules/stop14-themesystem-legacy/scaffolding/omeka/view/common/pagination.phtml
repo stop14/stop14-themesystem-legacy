@@ -1,0 +1,55 @@
+<! -- START OF /COMMON/PAGINATION.PHTML -->
+<?php
+$translate = $this->plugin('translate');
+?>
+<nav class="pagination" role="navigation">
+<?php if ($totalCount): ?>
+    <p class="page-input-top" <?php echo ($pageCount == 1) ? 'readonly' : ''; ?> aria-label="<?php echo $translate('Page'); ?>">Showing Page <span class="page-detail"><?php echo $currentPage; ?> <?php echo sprintf($translate('of %s'), $pageCount); ?></span></p>
+
+    <?php
+    $from = $offset + 1;
+    $to = ($currentPage < $pageCount) ? $offset + $perPage : $totalCount;
+    $numberOfPages = $totalCount / $perPage
+    ?>
+
+    <span class='for-js number-of-items'><?php echo $totalCount ?></span>
+    <span class='for-js end-item-counter'><?php echo $to ?></span>
+    <span class='for-js start-item-counter'><?php echo $from ?></span>
+    <span class='for-js per-page'><?php echo $perPage ?></span>
+    <span class='for-js page-count'><?php echo $pageCount?></span>
+
+    <ul class='page-bullets'>
+        <?php if (strpos($pagelessUrl, '?') !== false) : ?>
+            <?php 
+                for ($x = 1; $x < $numberOfPages + 1 ; $x++) {
+                    echo "<li><a data-pageNumber='$x' href='$pagelessUrl&page=$x'></a><p class='page-number'>$x</p></li>";
+                }
+            ?>
+        <?php else : ?>
+            <?php 
+                for ($x = 1; $x < $numberOfPages + 1 ; $x++) {
+                    echo "<li><a data-pageNumber='$x' href='$pagelessUrl?&page=$x'></a><p class='page-number'>$x</p></li>";
+                }
+            ?>
+        <?php endif ?>
+    </ul>
+    
+    <div class="page-arrows">
+        <?php if ($currentPage != 1): ?>
+        <?php echo $this->hyperlink('<', $previousPageUrl, ['class' => 'previous explore-left button', 'tabindex' => '0', 'title' => $translate('Previous'), 'aria-label' => $translate('Previous')]); ?>
+        <?php else: ?>
+        <span class="previous explore-left button inactive"></span>
+        <?php endif; ?>
+
+        <?php if ($currentPage < $pageCount): ?>
+        <?php echo $this->hyperlink('>', $nextPageUrl, ['class' => 'next explore-right button', 'tabindex' => '0', 'title' => $translate('Next'), 'aria-label' => $translate('Next')]); ?>
+        <?php else: ?>
+        <span class="next explore-right button inactive"></span>
+        <?php endif; ?>
+    </div>
+
+<?php else: ?>
+    <?php echo $translate('0 results'); ?>
+<?php endif; ?>
+</nav>
+<! -- END OF /COMMON/PAGINATION.PHTML -->

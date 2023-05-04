@@ -14,19 +14,12 @@ then
        vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("")}
        printf("\$%s%s%s: %s\n", "'$prefix'",vn, $2, $3);
     }
-  }'  > ${1%%.*}.sass
+  }'  > ${1%%.*}.tmp
+  cat ./node_modules/stop14-themesystem-legacy/boilerplate/sass_config_header.txt ${1%%.*}.tmp > ${1%%.*}.sass
   cp -r ${1%%.*}.sass ./source/sass/00_configuration
+  rm -rf ${1%%.*}.tmp
   rm -rf ${1%%.*}.sass
   echo "Configuration conversion from" $1 "to" ${1%%.*}.sass "is complete."
 else
   echo "This file ($1) does not have a proper YAML extension"
 fi
-
-# 
-# if [ ${1#*.} = "yaml" ] || [ ${1#*.} = "yml" ]
-# then
-#     <$1 sed 's/first://g' | sed ':a;N;$!ba;s/\nlast:/,/g' | sed -r '/^\s*$/d' > ${1%%.*}.sass
-#     echo "Conversion from" $1 "to" ${1%%.*}.sass "done"
-# else
-#     echo "This file didn't have YAML extension"
-# fi

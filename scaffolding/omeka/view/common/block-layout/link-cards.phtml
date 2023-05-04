@@ -17,19 +17,20 @@
   </div>
     
     <?php $i=0; ?>
+    <?p
 
     <?php foreach($this->itemFields as $itemFieldSet): ?>
       <?php $item = isset($attachments[$i]) ? $attachments[$i]->item() : null;
         if (is_array($itemFieldSet)):?>
 
-          <div class="item resource link-card">    
+          <div class="item resource card">
             <?php if (!empty($this->itemFields[$i]["label"])): ?>
                 <div class='item-label'><?php echo  $this->itemFields[$i]["label"]; ?>
                 <?php endif; ?>
               </div>
-              
 
-          <figure class="item-thumbnail"> 
+
+          <figure class="item-thumbnail">
             <?php
                 if (!empty($this->itemFields[$i]["thumbnailUrl"])):
                     printf('<img src="%s" alt="%s" />',$this->itemFields[$i]["thumbnailUrl"],$this->itemFields[$i]["title"] . " Thumbnail");
@@ -40,18 +41,18 @@
                     endif;
                 endif;
                 ?>
-            
-             <figcaption class="item-overlay-caption figcaption-link"> 
+
+             <figcaption class="item-overlay-caption figcaption-link">
                <div class="item-caption-container">
-               
+
                <p><?php echo $this->itemFields[$i]["title"]; ?></p>
              </div></figcaption>
           </figure>
 
 
-          
-                   
-        <div class="link-card-info">    
+
+
+        <div class="link-card-info">
 
               <h3><?php echo $this->itemFields[$i]["title"]; ?></h3>
               <?php if (!empty($this->itemFields[$i]["subtitle"])): ?>
@@ -66,7 +67,7 @@
                 <a class='card-link' href='<?php echo $this->itemFields[$i]["url"]; ?>'>View Item</a> >
             </div>
           </a></div>
-          
+
         <?php endif; ?>
         <?php $i++; ?>
     <?php endforeach; ?>

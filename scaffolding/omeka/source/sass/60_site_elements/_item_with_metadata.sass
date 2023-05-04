@@ -4,8 +4,17 @@
  *  @theme LOCAL
  *  @description Handles styling of metadata of items. */
 
+.item-info
+  .item-link
+    a
+      margin-top: 0
+      margin-bottom: rv(1)
+
+  summary 
+    overflow-x: hidden
+
 .item-with-metadata
-  background-image: url(get_png_url('black-overlay/1x/hex-bg-black-overlay.png'))
+  background: neutral(5)  
 
   a.media:hover,
   a.media:focus
@@ -18,39 +27,12 @@
   .info-tab
     margin-right: 0
 
-.informations-panel,
-.description-panel
-  display: flex
-  flex-direction: row
-  justify-content: flex-start
-  flex-wrap: wrap
-  padding-top: rv(-1)
+  .item-metadata-block
+    background: neutral(5)
+    padding: 0!important
+    
 
-  .metadata-label
-    font-size: font-value(-1)
-    font-weight: $bold
-
-  .value
-    padding: 2% 0
-    font-size: font-value(-1)
-    font-weight: $medium
-    color: white
-
-  .property, .value
-    display: inline-block
-
-  .property
-    margin-bottom: rv(-1)
-    padding-right: rv(3)
-
-  .property > *, .value > *
-    color: $white
-
-  h4
-    text-transform: capitalize
-    color: $clr8
-    font: $normal 1rem
-    margin-top: rv(3)
-
-.container-with-tabs-and-panels
-  background: linear-gradient(180deg, $clr8, transparent 15%)
+    .metadata-label
+      font-size: font-value(-1)
+      font-weight: $bold
+      text-transform: capitalize

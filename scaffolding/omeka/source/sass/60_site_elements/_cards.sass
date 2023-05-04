@@ -1,90 +1,57 @@
-/* 
-   @file _cards.sass 
+/*
+   @file _cards.sass
    @category 60_site_elements
    @theme LOCAL
    @component main
-   @description Handles card content blocks. */
+   @description Handles card content blocks.  */
+
+main
+  .card, li > .card, li > a.card
+    text-decoration: none
+
+.cards
+  @extend %card-grid
 
 .card
-  color: $clr1
-  width: 100%
-  max-width: 440px
-  +bp($tablet)
-    max-width: unset
+  display: block
+  background: $white
+  border-radius: $card-border-radius
+  border-collapse: collapse
+  overflow: hidden
 
-.item-label
-  text-transform: uppercase
-  color: $light_neutral
-  font-size: font-value(-1)
-  margin-bottom: rv(-7)
+  a
+    text-decoration: none
 
-.item-thumbnail
-  +proportional_height(100%, 0.8)
-  background: url('../img/svg/ornaments/img-thumbnail-bg.svg') no-repeat center
-  background-size: cover
+  figure
+    overflow: hidden
+    height: 100%
 
-.item-thumbnail img
-  padding: rv(-3) 0
-  max-height: 100%
-  object-fit: cover
-  object-position: top
+  img
+    transition-duration: $slow
 
-.figcaption-link
-  background: linear-gradient(90deg, rgb(0, 0, 0.70) -20%, rgba(0,0,0,0.70) 35%, rgba(0,0,0,0.66) 52%, rgba(0,0,0,0.56) 67%, rgba(0,0,0,0.28) 87%, rgba(59,52,63,0) 100%)
-  +bp($desktop)
-    opacity: 0
-    transition: opacity 0.4s
+  &:hover
+    img
+      transform: scale3d(1.04,1.04,1.04)
 
-.figcaption-link:hover,
-.figcaption-link:focus
-  +bp($desktop)
-    display: block
-    opacity: 1
+  @at-root .visible &
+    +fadeInUp()
 
-.item-caption-container
-  position: absolute
-  height: 100%
-  width: 100%
+  .item-info
+    +standard_edge_padding()
+    border-top-width: 10px
+    border-top-style: solid
 
-.item-caption-container p
-  @include line-clamp(4)
-  color: white
-  font-style: normal
-  font-size: font-value(-1)
-  position: absolute
-  bottom: rv(-2)
-  left: rv(-2)
-  max-width: 70%
-  
-.item-info .item-label,
-.item-info .item-description
-  display: none
+  .item-description
+    @extend %sm-normal-k-fluid
+    line-height: map-get($line_heights,'tight')
 
-.item-title
-  @include line-clamp(2)
-  margin-top: rv(-7)
+  .item-link > a
+    @extend .more
 
-.item-title a
-  font-family: $headingfont
-  font-weight: $bold
-  color: $clr1
-  word-wrap: break-word
 
-.item-title a:focus
-  border-bottom: 1px solid $clr1
+/*
+ * Define list item cards
+ */
 
-.item-link
-  margin-top: rv(-2)
-
-.item-link a
-  color: $clr1
-  text-decoration: underline
-
-.item-link a:hover
-  border-bottom: none
-
-.item-link a:hover,
-.item-link a:focus,
-.item-link a:hover + span,
-.item-link a:focus + span
-  color: $clr3
+.list-item
+  @extend %list-item

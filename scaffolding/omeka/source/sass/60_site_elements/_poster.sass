@@ -1,5 +1,5 @@
-/** 
- *  @file _poster.sass 
+/**
+ *  @file _poster.sass
  *  @category 60_site_elements
  *  @description Styling for poster block */
 
@@ -7,110 +7,72 @@
 .poster
   min-height: 34rem
   width: 100%
-  padding: rv(3) !important
+  padding: rv($mobile_edge_padding_factor) !important
   position: relative
+  background: set-color(1)
+  color: $white
 
-  +bp($stack)
-    min-height: 28rem
 
   +bp($tablet)
-    padding: rv(4) !important
-    padding-right: rv(5) !important
+    padding: rv($edge_padding_factor) !important
 
-  +bp($desktop)
-    padding: rv(5) !important
-    padding-right: rv(6) !important
-
-  &:after
-    position: absolute
+  .poster-container
+    text-align: left
     width: 100%
-    height: 100%
-    top: 0
-    left: 0
-    content: " "
-    filter: grayscale(0)
-    background-repeat: no-repeat
-    background-position: bottom rv(0) right rv(0)
-    background-size: rv(2) rv(2)
+    padding-top: rv(8)
+    word-wrap: break-word
+    overflow: hidden
 
-    +bp($stack)
-      background-size: rv(3) rv(3)
 
-    +bp($desktop)
-      background-size: rv(5) rv(5)
+    +bp($tablet)
+      padding-top: 0
+      width: 80%
 
-  .image-background
-    position: absolute
+    .pathways-mobile-bg
+      position: absolute
+      top: 0
+      left: 0
+      width: 80%
+
+      +bp($tablet)
+        display: none
+
+    .poster-title
+      font-family: $headingfont
+      font-size: clamped(3, 4, 'sml', 'xlrg')
+
+    .poster-text
+      position: relative
+      z-index: 1
+      color: $white
+      font-size: clamped(0, 2, 'sml', 'xlrg')
+      +line-height(1.25)
+
+      a
+        @extend %inline-anchor-reverse
+
+  .image-container
     width: 100%
-    height: 100%
-    top: 0
-    left: 0
-
-    figure
-      height: 100%
-
-  img
-    filter: grayscale(100%)
-    mix-blend-mode: multiply
-    object-fit: cover
-    height: 100%
-
-  .poster-text
     position: relative
     z-index: 1
 
-  &.colour-scheme-1
-    background: $clr1
+    figure.figure-landscape
+      +proportional-height(100%,0.75)
 
-    &:after
-      content: " "
+      img
+        object-fit: cover
 
-    .poster-text
-      color: $white
+  .pathways-bg
 
-  &.colour-scheme-2
-    &:after
-      background: $clr1
-    .poster-text
-      color: $clr2
-
-  &.colour-scheme-3
-    &:after
-      background: $clr3
-    .poster-text
-      color: $white
-
-  &.colour-scheme-4
-    &:after
-      background: $clr4
-    .poster-text
-      color: $clr2
-
-  &.text-treatment-1
-    .poster-text
-      p
-        font-family: $headingfont
-        font-weight: $heavy
-        font-size: font-value(1)
-        line-height: font-value(2)
-        +bp($tablet)
-          font-size: font-value(2)
-          line-height: font-value(3)
-        +bp($desktop)
-          font-size: font-value(4)
-          line-height: font-value(5)
+    +bp($tablet)
+      display: block
+      max-height: 32rem
+      z-index: 0
+      width: auto
+      position: absolute
+      bottom: 0
+      right: 0
+      pointer-events: none
 
 
-  &.text-treatment-2
-    .poster-text
-      p
-        font-family: $codefont
-        font-weight: $heavy
-        font-size: font-value(0)
-        line-height: font-value(1)
-        +bp($tablet)
-          font-size: font-value(1)
-          line-height: font-value(2)
-        +bp($desktop)
-          font-size: font-value(2)
-          line-height: font-value(3)
+

@@ -1,5 +1,5 @@
-/** 
- *  @file _item_show.sass 
+/**
+ *  @file _item_show.sass
  *  @category 60_site_elements
  *  @theme LOCAL
  *  @description Styles the item page. The template is located at ./view/agile-theme-tools/agile-item/show.[html */
@@ -7,9 +7,8 @@
 
 // =======================
 // SASS VARIABLES
-// ======================= 
+// =======================
 
-$metadata_grid_gap_factor: 1
 $hex_ornament_height: rv(10)
 $hex_ornament_bottom_shift: rv(7) * -1
 $hex_ornament_right_shift: rv(3) * -1
@@ -18,27 +17,33 @@ $hex_ornament_right_shift: rv(3) * -1
 
 // =======================
 // ITEM CONTAINER
-// ======================= 
+// =======================
 
-.item-container  
-  +bp($stack)
+.item-container
+  margin-bottom: rv($block_spacing)
+  display: flex
+  flex-direction: column-reverse
+
+  +bp($tablet)
+    max-width: 100%
+
+  +bp($desktop)
+    $item_container_object_spacing: rv($edge_padding_factor)
     display: grid
     grid-template-columns: 100%
+    grid-template-columns: calc(61.8% - #{$item_container_object_spacing}) 38.2% // using this instead of 1fr because Universal Viewer is miscalculating its size
+    grid-column-gap: $item_container_object_spacing
     max-width: 100%
-  +bp($desktop)
-    grid-template-columns: 50% 50% // using this instead of 1fr because Universal Viewer is miscalculating its size
-    grid-column-gap: 0
-    max-width: 100%
-    
+
   // transcription links
 
-  .transcription-link 
+  .transcription-link
     margin-top: rv(-1)
-  
+
   .transcription-link a
     text-decoration: underline
     font-size: font-value(0)
-  
+
   .transcription-link a:hover,
   .transcription-link a:focus
     color: $clr3
@@ -51,73 +56,63 @@ $hex_ornament_right_shift: rv(3) * -1
 
 .item-viewer
   width: 100%
-  padding: rv(0)
-  
+  border-top-width: 10px
+  border-top-style: solid
+
+  .media-render
+    width: 100%
+    +proportional-height(100%,.5625)
+    background: black
+    display: flex
+    justify-content: center
+    align-items: center
+    +standard_edge_padding
+
+    iframe
+      +proportional-height(100%,.5625)
+
+
 .item-info
   .key-metadata
-    margin-top: rv(-1)  
+    margin-top: rv(-1)
+
     .metadata-list
-      +separated_row(1,$metadata_grid_gap_factor,1px) // the last argument adds a rule between each grid line as a pseudo-element
-      
+      +separated_row(1,1,1px) // the last argument adds a rule between each grid line as a pseudo-element
+
       +bp($tablet)
-        +separated_row(3,$metadata_grid_gap_factor,1px) 
-        
+        +separated_row(3,$edge_padding_factor,1px)
+
       +bp($desktop)
-        +separated_row(5,$metadata_grid_gap_factor,1px) 
-        
+        +separated_row(5,$edge_padding_factor,1px)
+
       .metadata-label
         padding-top: rv(-1)
 
+  .informations-panel
+    max-height: rv(12)
+    overflow: scroll
+    overflow-x: hidden
 
-.item-text
-  width: 100%
-  padding: rv(0)
-  
+
   h1
     margin-bottom: 0
     word-wrap: break-word
-    
+
   h1 + .description, .subtitle + .description
     margin-top: rv(-1)
 
-  .description.item-text-description
-    font-size: font-value(0)
-    padding-bottom: rv(0)
-    font-weight: $normal
-    
-    +bp($desktop)
-      font-family: $basefont
-      color: $clr1
-      font-size: font-value(1)
-      padding-bottom: rv(0)
-  
   .metadata-list
-    padding-bottom: rv($metadata_grid_gap_factor)
-    border-bottom: 1px solid neutral(30)
-          
+    +bp($desktop)
+      padding-bottom: rv($edge_padding_factor)
+      border-bottom: 1px solid neutral(30)
+
   .value
     display: -webkit-box
     -webkit-line-clamp: 4
-    -webkit-box-orient: vertical 
+    -webkit-box-orient: vertical
     overflow: hidden
 
-  .wayfinding
-    font-size: font-value(-1)
-    font-weight: $bold
-    text-transform: uppercase
-    letter-spacing: 0.2px
-    color: $clr1
-    padding-top: rv(-1)
 
-    a
-      text-decoration: underline
-      color: $clr1
-      border-bottom: none
-
-    a:hover,
-    a:focus
-      color: $clr3
-      
 
 // =======================
 // RIGHTS
@@ -127,133 +122,89 @@ $hex_ornament_right_shift: rv(3) * -1
   display: flex
   flex-direction: column
   padding-top: rv(-1)
-
-  +bp($desktop)
-    flex-direction: row
-    align-items: flex-start
-
-// =======================
-// DOWNLOAD ICONS
-// =======================
-
-.download-icons
-  display: flex
   align-items: flex-start
 
+
   +bp($desktop)
-    justify-content: space-between
-    margin-left: auto // forces to the right
-    padding-left: rv(0)
-    
-  > *
-    margin-right: rv(-1)
-    
-    +bp($desktop)
-      margin: 0 0 0 rv(-1)
+    align-items: flex-start
+
+
 
 // =======================
 // FULL METADATA
 // =======================
 
 .item-metadata-block
-  background-image: url(get_png_url('black-overlay/1x/hex-bg-black-overlay.png'))
   background-color: $black
   color: $white
   max-width: 100%
   padding: rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) calc(#{$hex_ornament_height} + #{$hex_ornament_bottom_shift}) rv($mobile_edge_padding_factor) !important
   position: relative
   overflow: hidden
-  
+
+  a
+    @extend %inline-anchor-reverse
+
+
   +bp($desktop)
     padding: rv($edge_padding_factor) rv($edge_padding_factor) calc(#{$hex_ornament_height} + #{$hex_ornament_bottom_shift}) rv($edge_padding_factor) !important
-    
+
   .metadata-list
     //Breakpoints
-    +separated_row(1,$metadata_grid_gap_factor,1px) // the last argument adds a rule between each grid line as a pseudo-element
-    
+    +separated_row(1,$mobile_edge_padding_factor,1px) // the last argument adds a rule between each grid line as a pseudo-element
+
     +bp($tablet)
-      +separated_row(3,$metadata_grid_gap_factor,1px) 
-      
+      +separated_row(3,$edge_padding_factor,1px)
+
     +bp($desktop)
-      +separated_row(6,$metadata_grid_gap_factor,1px) 
+      +separated_row(6,$edge_padding_factor,1px)
 
   h2
     color: $white
     margin-top: 0
 
-  .subtitle
-    word-wrap: break-word
-    
-  .subtitle, .metadata-label
-    color: neutral(20)
-    
-  .metadata-label
-    padding-top: rv(-1)
-    
-  .label, .value
-    color: $white
-    
-    a
-      color: inherit
-      border-bottom: 1px solid $white
-      
-      &:hover
-        border-color: $impact
-        
-  [data-term="scripto:transcription"]
-    display: none
-  
-.triple-circle-hex
-  width: auto 
-  height: $hex_ornament_height
-  position: absolute
-  transform: rotate(-70deg)
-  right: $hex_ornament_right_shift
-  bottom: $hex_ornament_bottom_shift
-    
-  // this will enfore padding below the rule
-    
+  // this will enforce padding below the rule
+
   .property > *:first-child
-    padding-top: rv($metadata_grid_gap_factor)
-  
-  .propter > *:last-child
-    padding-top: rv($metadata_grid_gap_factor)
+    padding-top: rv($mobile_edge_padding_factor)
 
-// =======================
-// TRANSCRIPTION BLOCK
-// =======================
+    +bp($desktop)
+      padding-top: rv($edge_padding_factor)
 
-#primary-content .transcription-block
-  position: relative
-  margin-top: rv(9)
-  margin-bottom: rv(4) 
+
+
+/**
+  ITEM W/ METADATA EXHIBIT BLOCK
+ **/
+
+.item-with-metadata
+  .item-metadata-block
+    &:before
+      background: none
+
+    .subject-title
+      color: $black
+      text-decoration: underline
+
+      &:hover, &.focus
+        color: $clr2
+
+
+
+/**
+ *  RELATED ITEMS
+ */
+
+#related-items
+  @extend %card-browser-container
+  padding: rv($mobile_edge_padding_factor) !important
+
   +bp($tablet)
-    padding-left: rv(1)
-    padding-right: rv(1)
-  +bp($desktop)
-    margin-top: rv(7)
-    margin-bottom: rv(7)
+    padding: rv($edge_padding_factor) !important
 
-  h2
-    margin-bottom: 0
+  .browse-title
+    width: 100%
+    margin-bottom: rv(1)
 
-  hr
-    border-color: $lighter_neutral
-
-.transcription-ornament
-  position: absolute
-  width: 160px
-  height: auto
-  top: calc((#{rv(8)} * -1) + 20px)
-  left: 0
-  +bp($desktop)
-    width: 240px
-    top: calc(#{rv(1)} * -1)
-    left: calc(#{rv(9)} * -1)
-
-.transcript-note
-  font-weight: $medium
-
-.no-transcription
-  font-style: italic
-  
+    span
+      color: $impact

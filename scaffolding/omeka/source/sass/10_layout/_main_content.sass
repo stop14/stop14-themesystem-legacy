@@ -1,65 +1,82 @@
-/** 
- *  @file _main_content.sass 
+/**
+ *  @file _main_content.sass
  *  @category 10_layout
  *  @theme LOCAL
- *  @description Structures the <main> content stack. 
+ *  @description Structures the <main> content stack.
  * For additional paragraph sytling sere 60_elements/paragraphs **/
 
 
 main
   padding-top: rv(0)
-  
+
   +bp($tablet)
     padding-top: rv(3)
 
 main, #feature-tier-1
-  > div > 
-    *
+  > div
+    > *
       +inset-text()
-          
-    .resource-list, .explore-the-archive, .browse-controls, nav.pagination, .media-list-wrapper, .listing-cards, .preview-block, .quotation
+
+    // Apply consistent bottom margin
+    [class$="-block"], .resources-for-educators, .title-block
+      margin-bottom: rv($block_spacing)
+
+    .resource-list, .explore-the-archive, .browse-controls, nav.pagination, .media-list-wrapper, .listing-cards, .preview-block
       +negative-content-margin(7)
-      
+
     .slideshow-block
       width: 100%
       height: 80vh
-      
+
+      > *
+        +bp($desktop)
+          +proportional_height(100%,0.75)
+
+
       +bp($desktop)
-        width: calc((80vh / 9) * 16) !important
-        max-width: calc((90vh / 9) * 16) !important
+        width: calc((80vh / 3) * 4) !important
+        max-width: calc((90vh / 3) * 4) !important
         margin: 0 auto
         min-width: $legible_inset_width
-      
-    .storymap, .tl-timeline, .item-container,  .item-metadata-block, .search-filters, .browse-tool
+
+    #search-page, .section-list-cards, .browser-container, .top-bar-ui
       +inset-full()
-      
-    .item-metadata-block
-      margin: rv($mobile_edge_padding_factor)
-      
-      +bp($tablet)
-        margin: rv(0)
-      
+
+    .storymap, .tl-timeline, .item-container,  .item-metadata-block, .search-filters, .browse-tool, .title-block, #related-items, .preview-block, .item-listing
+      +inset-full()
+      clear: both
+
+    .welcome-block
+      +negative-content-margin(10)
+
+    .poster
+      clear: both
+
     .item-list
       +inset-full()
       padding: 0 rv($mobile_edge_padding_factor)
-      
+
       +bp($tablet)
         padding: 0 rv($edge_padding_factor)
-      
+
     .tl-timeline
-      max-width: 100%!important
-      
-    .poster
-      margin: rv(1) 0 !important
-  
+      max-width: 100% !important
+
+    /*.poster
+      margin: 0 !important
+
       +bp($stack)
-        margin: rv(2) 0 !important
-  
+        margin: 0 !important
+
       +bp($desktop)
-        margin: rv(4) 0 !important
-    
-    .slideshow-block
-      +proportional_height(100%,0.75)
-      
+        margin: 0 !important*/
+
     .file.right, .file.left
-      margin-bottom: 0 !important // Override standard spacing on all 
+      margin-bottom: 0 !important // Override standard spacing on all
+
+
+  // Hide representative images and excerpts from main page. Used in cards only.
+
+  #content-stack
+    > .representative-image, > .excerpt
+      display: none

@@ -1,0 +1,60 @@
+/** 
+ *  @file _heading.sass 
+ *  @category 30_typography
+ *  @theme LOCAL
+ *  @description Define headings H1-H6, plus any subclasses. 
+ *
+ **/
+
+
+h1, h2
+  font-family: $headingfont
+  font-weight: $bold
+  color: $clr1
+
+  
+h1
+  margin-bottom: rv(-1)
+  
+  & + .subtitle
+    margin-top: 0
+
+h3
+  font-family: $headingfont
+  font-weight: $normal
+  text-transform: none
+
+h4
+  font-family: $basefont
+  font-weight: $normal
+  text-transform: uppercase
+  margin-top: rv(0)
+
+h5 
+  font-family: $basefont
+  font-weight: $normal
+  text-transform: uppercase
+  font-style: normal
+
+h6
+  font-family: $basefont
+  font-weight: $bold
+  
+.subtitle
+  font-size: font-value(1)
+  font-weight: $normal
+  font-family: $headingfont
+  color: neutral(80)
+
+#content-stack > h2
+  margin-left: 0
+  padding: 0 rv(-2)
+  color: $clr1
+  +bp($tablet)
+    padding: 0 rv(3)
+    margin-left: auto
+    margin-right: auto 
+  +bp($desktop)
+    padding: unset
+
+
