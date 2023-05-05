@@ -12,7 +12,7 @@ then
     for (i in vname) {if (i > indent) {delete vname[i]}}
     if (length($3) > 0) {
        vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("")}
-       printf("\$%s%s%s: %s\n", "'$prefix'",vn, $2, $3);
+       printf("$%s%s%s: %s\n", "'$prefix'",vn, $2, $3);
     }
   }'  > ${1%%.*}.tmp
   cat ./node_modules/stop14-themesystem-legacy/boilerplate/sass_config_header.txt ${1%%.*}.tmp > ${1%%.*}.sass
