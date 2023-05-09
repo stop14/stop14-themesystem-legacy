@@ -81,7 +81,7 @@ $basetypesize: 1rem
 $sizefactors: (base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)
 $line_heights: (base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)
 $typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
-$paragraph_spacing: math.div(map-get($line_heights,'base') * rv(math.round((map-get($min-sizefactors,'base') + map-get($sizefactors,'base')) * 0.5)),4)
+$paragraph_spacing: clamped(map-get($min-sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))
 $typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
 $basefont: Roboto, Tahoma, Arial, sans-serif
 $headingfont: Roboto, Tahoma, Arial, sans-serif
@@ -100,6 +100,8 @@ $ui_padding: rv(1)
 $ui_element_height: 50px
 $ui_minheight: $ui_element_height
 $ui_maxheight: 60px
+$ui_compactheight: 40px
+$ui_largeheight: 80px
 $ui_border_radius: 8px
 $btn_minwidth: 250px
 $btn_border_width: 4px
@@ -114,6 +116,8 @@ $btn_border_width: $ui_border_width
 $btn_border_radius: $ui_border_radius
 $btn_min_width: 200px
 $btn_width: 280px
+$btn_compactwidth: 180px
+$btn_largewidth: 280px
 $btn_max_width: 375px
 $btn_color: $cta
 $btn_bg_color: $white

@@ -1,0 +1,5 @@
+#ignore built assets
+assets
+
+#ignore node_modules
+node_modules

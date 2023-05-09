@@ -33,7 +33,7 @@ button:not(.trigger)
   @extend %button
 
 input:not([type='checkbox'])
-  padding: 0 rv($ui_padding)
+  padding: 0 $ui_padding
   height: $ui_minheight
   border-radius: $ui_border_radius
   border: 1px solid neutral(60)
@@ -49,12 +49,12 @@ textarea#edit-message
   font-family: $headingfont
   font-weight: $light
   font-size: rv(-1)
-  
+
 input[type="submit"] //BUTTON
   @extend %button-submit
 
-  
-input[type="search"]::-webkit-search-cancel-button 
+
+input[type="search"]::-webkit-search-cancel-button
   -webkit-appearance: none
   display: inline-block
   width: 20px
@@ -62,7 +62,7 @@ input[type="search"]::-webkit-search-cancel-button
   margin-left: 10px
   background: url(get_svg_url('icons/close-grey')) no-repeat center
   +close-icon-hover
-  
+
 label + input
   margin-top: rv(-3)
 
@@ -77,11 +77,11 @@ legend
 
 label
   @extend %value-label
-  
+
 label.option
   font-family: $basefont
   font-weight: $normal
-    
+
 input.js-form-type-search + input.js-form-submit
   display: inline-flex
   margin-left: rv(0)
@@ -97,16 +97,16 @@ input.js-form-type-search + input.js-form-submit
 .webform-element-description
   +font-size(-1)
   font-weight: $semibold
-  
+
 // Search page form. @todo: move elsewhere
 
 .views-exposed-form.bef-exposed-form
   form
     display: flex
-  
+
   .form-actions
     padding-left: rv(0)
-    
+
     input
       margin: 0
 
@@ -131,7 +131,7 @@ input.js-form-type-search + input.js-form-submit
 
 
     .select2-selection__rendered
-      padding-left: rv($ui_padding)
+      padding-left: $ui_padding
 
 
     .select2-selection__arrow
