@@ -1,0 +1,114 @@
+/**
+ *  @file _mobile_overlay_blocks.sass
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Defines mobile overlay blocks. */
+
+#main-nav
+  position: relative
+
+
+#modal-overlay
+  position: fixed
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0,0.9)
+  z-index: 503
+  top: 0
+  display: none
+    
+  .tier-container
+    display: flex
+    justify-content: center
+    margin-top: -25px
+    +bp($tablet)
+      margin-top: 200px
+
+    div
+      background: rgba(0, 0, 0,0.4)
+      display: grid
+      grid-column: 1/span 2
+      border-radius: 40px
+      
+      +bp($desktop)
+        grid-column: 1/span 4
+
+      nav
+        padding: rv(-1)
+        +bp($tablet)
+          padding: rv(1)
+
+        h2
+          color: $white
+          display: initial
+          padding: rv(-4) rv(2) rv(-4) rv(-4)
+          background-color: $clr3
+          margin-bottom: rv(0)
+        
+        a
+          color: $white  
+          
+        ul
+          padding: 0
+
+          li
+            margin-bottom: 10px
+            +bp($tablet)
+              margin-bottom: .960925rem 
+              list-style-type: none
+
+  #block-exposedformsearch-pagepage-1-2
+    display: flex
+    margin: 0 auto rv(1) auto
+    
+    input[type=text]
+      +bp($tablet)
+        width: 400px
+        max-width: initial
+    
+    input[type=submit]
+      @extend %button-search
+      margin-top: 0 !important
+
+  
+  //input#edit-keys
+  //  min-width: rv(8)
+  //  height: 40px
+  //  margin-right: rv(-2)
+  //  +bp($desktop)
+  //    height: 50px
+  //    min-width: rv(9)
+      
+  .nav-close,
+  .nav-close-mobile
+    height: rv(0)
+    width: rv(0)
+    margin: rv(1)
+
+
+.nav-close
+  display: none
+  +bp($tablet)
+    display: block
+
+.nav-close-mobile
+  display: block
+  margin: rv(0)!important
+  margin-left: auto!important
+  +bp($tablet)
+    display: none
+
+
+#block-menu-menu
+  +menu-icon
+
+#block-useraccountmenu-menu
+  +user-icon
+
+#block-projects-menu
+  +project-icon
+  background-size: 1.3rem !important // why these adjustments?
+  background-position: center right 10px
+
+#block-admin-menu
+  +admin-icon

@@ -1,0 +1,29 @@
+/**
+ *  @file _project_showcase.sass
+ *  @category 60_site_elements
+ *  @theme LOCAL
+ *  @description Project showcase on the home page. */
+
+
+#block-views-block-showcase-block-1
+  h2, .deck
+    text-align: center
+
+  h2
+    margin-bottom: 0
+
+  .deck
+    margin-bottom: rv($mobile_edge_padding_factor)
+
+    +bp($tablet)
+      margin-bottom: rv($edge_padding_factor)
+
+
+  article.node--type-project.node
+    margin: 0 auto // centre on slide
+    
+  div[slot='slide-content']
+    padding: 1px // Compensates for a strange 1px cutoff on mobile
+    
+    +bp($desktop)
+      padding: 0

@@ -1,0 +1,85 @@
+/**
+ *  @file _definitions.sass
+ *  @category 30_typography
+ *  @theme LOCAL
+ *  @description Defines elementary type definitions. To be applied in _general typography and elsewhere
+ *
+ **/
+
+// Base styles
+
+$ribbon_padding_factor: -3
+
+%underscore
+  text-decoration: underline
+
+%display-font
+  font-family: $altfont
+
+%ribbon-black
+  padding: rv($ribbon_padding_factor)
+  +font-size(1)
+  background-color: $black
+  color: $white
+  font-family: $headingfont
+  font-weight: $bold
+  width: fit-content
+
+%ribbon-red
+  @extend %ribbon-black
+  background: set-color(3)
+
+%deck-alt
+  font-family: $headingfont
+  font-size: clamped(1, 4, 'sml', 'lrg')
+  font-weight: $light
+  font-style: italic
+  +line-height(1.25)
+
+  +reversed
+    color: $white
+
+%deck
+  font-family: $basefont
+  font-size: clamped(0, 2, 'xsml', 'xlrg')
+  font-weight: $heavy
+  +line-height(1.5)
+
+  +reversed
+    color: $white
+
+%value
+  font-family: $headingfont
+  font-weight: $light
+  color: $black
+  +font-size(0)
+  line-height: 1.25
+
+  +reversed
+    color: $white
+
+%value-label
+  font-family: $headingfont
+  font-weight: $medium
+  color: $black
+  +font-size(0)
+  line-height: 1.25
+
+  +reversed
+    color: $white
+
+%h2-display
+  font-family: $altfont
+  font-size: clamped(4,6)
+
+%details-grid
+  +separated_row(2,$mobile_edge_padding_factor)
+  
+  +bp($tablet)
+    +separated_row(4,$mobile_edge_padding_factor)
+  
+  +bp($desktop)
+    +separated_row(5,$edge_padding_factor)
+    
+  +bp($ultrawide)
+    +separated_row(6,$edge_padding_factor)

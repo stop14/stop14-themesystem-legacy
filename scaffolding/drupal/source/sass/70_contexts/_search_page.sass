@@ -1,0 +1,20 @@
+/**
+ * @file _search_page.sass
+ * @description Styles for the Search results page (supplied by Solr module through Views).
+ *  see also: 60_site_elements/content/_node_search_result
+ */
+
+
+body.path-search
+  #edit-rendered-item--2
+    +bp($desktop)
+      width: 400px
+      max-width: initial
+  
+  #block-cinemobilia-content, #block-pagetitle
+    +inset-text()
+    
+  .search-page
+    .rows
+      article
+        margin-bottom: rv(0)

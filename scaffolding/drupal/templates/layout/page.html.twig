@@ -1,0 +1,236 @@
+{#
+/**
+ * @file
+ * Theme override to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ * - logo: The url of the logo image, as defined in theme settings.
+ * - site_name: The name of the site. This is empty when displaying the site
+ *   name has been disabled in the theme settings.
+ * - site_slogan: The slogan of the site. This is empty when displaying the site
+ *   slogan has been disabled in theme settings.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+* navigation: Navigation
+* menus: Second-level Menus
+* splash: Splash area
+* tabs: Tabs
+* wayfinding: Wayfinding
+* title: Title area
+* content: Content
+* main_sidebar: Main sidebar
+* secondary_content: Secondary content tier
+* secondary_sidebar: Secondary sidebar
+* tertiary_content: Tertiary content tier
+* tertiary_sidebar: Tertiary sidebar
+* quaternary_content: Quaternary content
+* quaternary_sidebar: Quaternary sidebar
+* footer: Footer
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+
+
+<header>
+  <section id="main-nav" class='full'>
+    <a class="hamburger-menu" title="Hamburger Menu" href="#"><img class="hamburger-menu-img" alt="Hamburger Menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
+    <div class="logo-div"><a class="nav-logo" title="Home" href="{{ url('<front>') }}">{{ logo }}</a></div>
+    <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user-login" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-active.svg"></a>
+    {{ page.navigation }}
+  </section>
+
+</header>
+
+
+
+{% if page.splash  %}
+  <section id="splash" class='full' role="region">
+    {{ page.splash }}
+  </section>
+{% endif %}
+{% if page.tabs  %}
+<section  class='full' id='in-page-navigation'>
+  <div id="tabs" role="navigation">
+    {{ page.tabs }}
+  </div>
+</section>
+{% endif %}
+{% if page.title or page.wayfinding|render|length %}
+  <section id="title">
+    {% if page.wayfinding|render|length  %}
+      <div id="wayfinding"{% if logged_in  %} class='compact' {% endif %} role="navigation">
+        {{ page.wayfinding }}
+      </div>
+    {% endif %}
+    {% if page.title %}
+      {{ page.title }}
+    {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+{% set above_content_render = page.above_content|render %}
+{% if above_content_render|render|length %}
+  <section id="above-content" class='region' role="region">
+  <div class='no-sidebar'>
+    <div class='tier-container'>
+      {{ above_content_render }}
+    </div>
+  </div>
+  </section>
+{% endif %}
+
+
+{% if page.content or page.messages or page.help or page.main_sidebar or page.page.main_sidebar_left %}
+  <section id='primary-content' class='region' role="region">
+    <div class='{% if not page.main_sidebar is empty or not page.main_sidebar_left is empty %}with-sidebar{% else %}no-sidebar{% endif %}'>
+      {% if not page.main_sidebar_left is empty %}
+        <aside role="complementary" class="left">
+          {{ page.main_sidebar_left }}
+        </aside>
+      {% endif %}
+      <main id='main-content'>
+        {{ page.help }}
+        {{ page.messages }}
+        {{ page.content }}
+      </main>
+      {% if not page.main_sidebar is empty %}
+        <aside role="complementary" class="right">
+          {{ page.main_sidebar }}
+        </aside>
+        {% endif %}
+      {# /.primary-content #}
+    </div>
+  </section>
+{% endif %}
+
+{% if page.main_alt or page.main_alt_sidebar or page.main_alt_sidebar_left%}
+  <section id="main-alt" class='region'>
+    <div class='{% if not page.main_alt_sidebar is empty or not page.main_alt_sidebar_left is empty %} with-sidebar {% else %} no-sidebar {% endif %}'>
+
+
+      {% if not page.main_alt_sidebar_left is empty %}
+        <aside role="complementary" class="left">
+          {{ page.main_alt_sidebar_left }}
+        </aside>
+      {% endif %}
+      <div class='tier-container'>
+        {{ page.main_alt }}
+      </div>
+      {% if not page.main_alt_sidebar is empty %}
+        <aside role="complementary" class="right">
+          {{ page.main_alt_sidebar }}
+        </aside>
+      {% endif %}
+      {# /.main-alt #}
+    </div>
+  </section>
+{% endif %}
+
+{% if page.secondary_content or page.secondary_sidebar or page.secondary_sidebar_left%}
+  <section id="secondary-content" class='full reversed {% if not page.secondary_sidebar is empty or not page.secondary_sidebar_left is empty %}sidebars{% endif %}'>
+  <div class='{% if not page.secondary_sidebar is empty or not page.secondary_sidebar_left is empty %}with-sidebar{% else %}no-sidebar{% endif %}'>
+
+    {% if not page.secondary_sidebar_left is empty %}
+      <aside role="complementary" class="left">
+        {{ page.secondary_sidebar_left }}
+      </aside>
+    {% endif %}
+    <div class='tier-container'>
+      {{ page.secondary_content }}
+    </div>
+    {% if not page.secondary_sidebar is empty %}
+      <aside role="complementary" class="right">
+        {{ page.secondary_sidebar }}
+      </aside>
+      {% endif %}
+    {# /.secondary-content #}
+  </div>
+  </section>
+{% endif %}
+
+{% if page.tertiary_content or page.tertiary_sidebar %}
+  <section id="tertiary-content" class='full {% if not page.tertiary_sidebar is empty or not page.tertiary_sidebar_left is empty %}sidebars{% endif %}' role="region">
+  <div class='{% if not page.tertiary_sidebar is empty or not page.tertiary_sidebar_left is empty %}with-sidebar{% else %}no-sidebar{% endif %}'>
+      {% if not page.tertiary_sidebar_left is empty %}
+      <aside role="complementary" class="left">
+        {{ page.tertiary_sidebar_left }}
+      </aside>
+    {% endif %}
+    <div class='tier-container'>
+      {{ page.tertiary_content }}
+    </div>
+    {% if not page.tertiary_sidebar is empty %}
+      <aside role="complementary" class="right">
+        {{ page.tertiary_sidebar }}
+      </aside>
+      {% endif %}
+    {# /.tertiary-content #}
+  </div>
+  </section>
+{% endif %}
+
+{% if page.quaternary_content or page.quaternary_sidebar %}
+  <section id="quaternary-content" class='full {% if not page.quaternary_sidebar is empty or not page.quaternary_sidebar_left is empty %}sidebars{% endif %}' role="region">
+    <div class='{% if not page.quaternary_sidebar is empty or not page.quaternary_sidebar_left is empty %}with-sidebar{% else %}no-sidebar{% endif %}'>
+      {% if not page.quaternary_sidebar_left is empty %}
+        <aside role="complementary" class="left">
+          <button class="filter-btn results-btn" title="Go back to results" type="button">View results</button>
+          {{ page.quaternary_sidebar_left }}
+        </aside>
+      {% endif %}
+      <div class='tier-container'>
+        {% if not page.quaternary_sidebar_left is empty %}
+          <button class="filter-btn facets-btn" title="Open filter menu" type="button">Filter results</button>
+        {% endif %}
+        {{ page.quaternary_content }}
+      </div>
+      {% if not page.quaternary_sidebar is empty %}
+        <aside role="complementary" class="right">
+          {{ page.quaternary_sidebar }}
+        </aside>
+      {% endif %}
+      {# /.quaternary-content #}
+    </div>
+  </section>
+{% endif %}
+
+{% if page.overlay or page.overlay %}
+<section id="modal-overlay" class='full' role="region">
+    <img class="nav-close-mobile" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-white.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
+
+  <div class='tier-container'>
+
+    {{ page.overlay }}
+    <img class="nav-close" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-white.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
+  </div>
+
+</section>
+{% endif %}
+
+<footer id='page-footer' class='full' role="contentinfo">
+  {{ page.footer }}
+</footer>

@@ -1,0 +1,20 @@
+/**
+ * @file _repository_item_card.sass
+ * @description The page view for repository items.
+ */
+
+.node--type-repository-item.full
+  .details-container
+    background-color: neutral(3)
+    
+    h2
+      padding: rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) 0 rv($mobile_edge_padding_factor)
+    
+      +bp($desktop)
+        padding:  rv($edge_padding_factor) rv($edge_padding_factor) 0 rv($edge_padding_factor)
+          
+    .details-grid
+      padding: 0 rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor)
+      
+      +bp($desktop)
+        padding: 0 rv($edge_padding_factor) rv($edge_padding_factor) rv($edge_padding_factor)

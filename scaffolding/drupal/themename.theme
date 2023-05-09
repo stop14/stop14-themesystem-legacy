@@ -1,0 +1,107 @@
+<?php
+
+/**
+ * @file themename.theme
+ * @description Supports theme templates.
+ *
+ */
+
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+
+function themename_preprocess_html(&$vars) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node && is_object($node)) {
+    $title = $node->getTitle();
+    $vars['attributes']['class'][] = 'page-'. str_replace(' ','-',strtolower($title));
+  }
+}
+
+function themename_preprocess_page(&$vars) {
+  $config = \Drupal::config('system.site');
+  $vars['site']['name'] = $config->get('name');
+}
+
+function themename_preprocess_block(&$vars) {
+  $vars['basepath'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+  $vars['themepath'] = $vars['basepath'] . \Drupal::theme()->getActiveTheme()->getPath();
+}
+
+function themename_preprocess_node(&$vars) {
+  if ($vars['view_mode'] == 'downloads') {
+    $vars['downloads'] = false;
+
+    foreach ($vars['content'] as $item) {
+
+     if (isset($item['#view'])) {
+       if (isset($item['#view']->total_rows) && $item['#view']->total_rows !== null) {
+         $vars['downloads']==true;
+       }
+     }
+    }
+
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function themename_preprocess_views_view(&$vars) {
+  $vars['#cache']['contexts'][] = 'route';
+  if ($vars['view_array']['#name'] == 'exhibit_slide_header') {
+    $vars['#attached']['library'][] = 'agile_slide_viewer/agile.viewer';
+  }
+}
+
+function themename_preprocess_taxonomy_term(&$vars) {
+  $vocab =\Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')->load($vars['term']->bundle());
+  $vars['vocubulary'] = $vocab;
+  $vars['vocabulary']['name'] = $vocab->get('name');
+}
+
+/**
+ * Implements hook_theme_suggestions_field_alter().
+ *
+ * Adds a theme suggestion based on element view type.
+ */
+function themename_theme_suggestions_field_alter(&$suggestions, array $variables)
+{
+  $element = $variables['element'];
+
+  $sanitized_view_mode = strtr($element['#view_mode'], '.', '_');
+
+  // Add view mode to field elements
+  $suggestions[] = 'field__' . $element['#entity_type'] . '__' .
+    $element['#field_name'] . '__' . $element['#bundle'] . '__' .
+    $sanitized_view_mode;
+
+  return $suggestions;
+
+}
+
+function themename_theme_suggestions_taxonomy_term_alter(&$suggestions, array $variables) {
+  /** @var \Drupal\taxonomy\TermInterface $term */
+  $term = $variables['elements']['#taxonomy_term'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $suggestions[] = 'taxonomy_term__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $term->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'taxonomy_term__' . $term->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ *
+ * Adds a page theme suggestion based on bundle type.
+ */
+function themename_theme_suggestions_page_alter(&$suggestions, array $variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+    if ($node && is_object($node)) {
+      $suggestions[] = 'page__' . $node->bundle();
+    }
+}

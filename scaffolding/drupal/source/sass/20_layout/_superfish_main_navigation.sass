@@ -1,0 +1,129 @@
+.block-superfish
+    background-color: neutral(20)
+    display: none
+
+
+    +bp($tablet)
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+
+
+
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu *
+    padding: 0
+    margin: 0
+    list-style: none
+
+
+.sf-menu li
+    position: relative
+
+.sf-menu ul
+    position: absolute
+    display: none
+    top: 100%
+    left: 0
+    z-index: 99
+
+.sf-menu > li
+    float: left
+
+.sf-menu li:hover > ul,
+.sf-menu li.sfHover > ul
+    display: block
+
+
+.sf-menu a
+    display: block
+    position: relative
+
+.sf-menu ul ul
+    top: 0
+    left: 100%
+
+
+
+/*** DEMO SKIN ***/
+.sf-menu
+    float: left
+    margin-bottom: 1em
+
+.sf-menu ul
+    box-shadow: 2px 2px 6px rgba(0,0,0,.2)
+    min-width: 100% /* allow long menu items to determine submenu width */
+    *width: 12em /* no auto sub width for IE7, see white-space comment below */
+
+.sf-menu a
+    /* padding: .75em 1em */
+    color: $white
+    text-transform: uppercase
+    white-space: normal
+    overflow: hidden
+
+.sf-menu a:hover
+    text-decoration: none
+    border-bottom: none
+
+
+
+.sf-menu li
+    background: $clr7
+    white-space: nowrap /* no need for Supersubs plugin */
+    *white-space: normal /* ...unless you support IE7 (let it wrap) */
+    -webkit-transition: background .2s
+    transition: background .2s
+
+
+.sf-menu li a:hover,
+.sf-menu li a.sfHover,
+.sf-menu li:hover > a
+    color: $true_black
+    transition: 0.1s color ease
+
+.sf-menu ul li
+    background: neutral(10)
+
+
+
+.sf-menu ul li a
+    color: $true_black
+    font-size: 0.875rem
+
+
+.sf-menu ul ul li
+    background: $clr9
+
+
+.sf-menu li:hover,
+.sf-menu li.sfHover
+    background: neutral(5)
+    -webkit-transition: none
+    transition: none
+
+
+
+
+/* styling arrows */
+.sf-depth-1 .sf-with-ul:after
+    content: ''
+    background-size: contain
+    background-position: center
+    width: rv(-1)
+    height: rv(-4)
+    position: absolute
+    top: rv(0)
+    margin-left: rv(-1)
+    justify-content: center
+
+
+.sf-depth-2 .sf-with-ul:after
+    content: ''
+
+/* superfish generated arrows */
+.sf-menu li .sf-sub-indicator
+    display: none
+
+

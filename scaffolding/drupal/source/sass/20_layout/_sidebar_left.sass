@@ -1,0 +1,21 @@
+/**
+ *  @file _sidebar_left.sass
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Structures the left sidebars. **/
+
+
+#primary-content
+  aside.left
+    padding: rv($mobile_edge_padding_factor)
+    +font-size(-1)
+
+    +bp($desktop)
+      padding: rv($edge_padding_factor)
+
+    *
+      color: inherit
+      font-size: inherit
+      
+    .block > h2
+        margin-bottom: rv($mobile_edge_padding_factor) !important

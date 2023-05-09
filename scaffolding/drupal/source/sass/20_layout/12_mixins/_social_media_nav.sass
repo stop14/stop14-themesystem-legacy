@@ -1,0 +1,118 @@
+// Social Media Icons
+
+$fb_icon: no-repeat url(get_svg_url('icons/facebook-black'))
+$insta_icon: no-repeat url(get_svg_url('icons/instagram-black'))
+$twitter_icon: no-repeat url(get_svg_url('icons/twitter-black'))
+
+
+// Overlay Menu Icons
+$project_icon: no-repeat url(get_svg_url('icons/projects-transparent'))
+$user_icon: no-repeat url(get_svg_url('icons/user-transparent'))
+$admin_icon: no-repeat url(get_svg_url('icons/admin-transparent'))
+$menu_icon: no-repeat url(get_svg_url('icons/menu-transparent'))
+$search_icon: no-repeat url(get_svg_url('icons/search-yellow'))
+
+
+// Button Icons
+
+$submit_arrow: no-repeat url(get_svg_url('icons/button-arrow-black'))
+$submit_arrow_hover: no-repeat url(get_svg_url('icons/button-arrow-white'))
+$submit_icon: no-repeat url(get_svg_url('icons/magnifying-black'))
+$submit_icon_hover: no-repeat url(get_svg_url('icons/magnifying-white'))
+$more_arrow: no-repeat url(get_svg_url('icons/more-arrow-black'))
+$more_arrow_hover: no-repeat url(get_svg_url('icons/more-arrow-white'))
+// Form Icons
+$close_icon: no-repeat url(get_svg_url('icons/close-black'))
+
+
+// Icon Mixins
+
+=close-icon-hover
+  +form-close($close_icon)
+
+=facebook-icon
+  +icon($fb_icon)
+
+=instagram-icon
+  +icon($insta_icon)
+
+=twitter-icon
+  +icon($twitter_icon)
+
+=search-icon
+  +search($search_icon)
+
+
+=project-icon
+  +overlay($project_icon)
+
+=user-icon
+  +overlay($user_icon)
+
+=admin-icon
+  +overlay($admin_icon)
+
+=menu-icon
+  +overlay($menu_icon)
+
+=submit-arrow 
+  +button($submit_arrow)
+
+=submit-arrow-hover 
+  +button($submit_arrow_hover)
+
+=submit-icon 
+  +search($submit-icon)
+
+$more-arrow-shift: 30px
+$more-arrow-width: 10px
+
+=more-arrow
+  +arrow-rotate($more_arrow)
+  background-position: right $more-arrow-shift center
+  background-size: $more-arrow-width 30px
+  
+  > *
+    transform: translateX(#{$more-arrow-shift * -0.5 + ($more-arrow-width * 0.5)})
+
+=submit-icon-hover
+  +search($submit_icon_hover)
+
+
+=button ($background: $black)
+  background: $background
+  background-position: right 15px center
+  background-size: rv(0)
+
+=arrow-rotate ($background: $black)
+  background: $background
+  background-position: right 15px center
+  background-size: 10px 30px
+
+
+=icon ($background: $black)
+  display: block
+  background: $background
+  height: rv(0)
+  width: rv(0)
+
+
+=overlay($background: $black)
+  display: block
+  background: $background
+  background-position: right 5px center
+  background-size: rv(1)
+
+
+=search($background: $black)
+  background: $background
+  background-position: center
+  background-size: rv(1)
+
+=form-close($background: $black)
+  &:hover
+    background: $background
+    display: inline-block
+    width: 20px
+    height: 20px
+    margin-left: 10px

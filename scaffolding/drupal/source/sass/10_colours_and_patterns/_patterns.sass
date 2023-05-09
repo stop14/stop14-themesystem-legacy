@@ -1,0 +1,53 @@
+=gradient-overlay-dark()
+  position: relative
+
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 3
+    pointer-events: none
+    background: linear-gradient(180deg, transparent 0%, rgba($black,0.8) 66%, rgba($black,1) 100%)
+    background-size: cover
+    background-position: bottom
+    mix-blend-mode: multiply
+    opacity: 1
+
+
+=image-overlay($image_url:'../img/jpg/folder/some-image.jpg', $opacity: 0.4)
+  position: relative
+
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 2
+    pointer-events: none
+    background: url(#{$image_url}) no-repeat
+    background-size: cover
+    background-position: bottom
+    mix-blend-mode: exclusion
+    opacity: $opacity
+
+
+=colour-wash($colour: 1,$opacity: 1)
+  position: relative
+
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 2
+    background-color: set-color($colour)
+    pointer-events: none
+    mix-blend-mode: color
+    opacity: $opacity

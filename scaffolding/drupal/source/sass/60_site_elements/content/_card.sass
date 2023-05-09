@@ -1,0 +1,114 @@
+/**
+ *  @file _card.sass
+ *  @category 60_site_elements
+ *  @group content
+ *  @theme LOCAL
+ *  @description Defines a basic content card view.
+ *
+ **/
+
+.visible
+  .card
+    +fadeInUp($slow,$heartbeat * 3,$heartbeat*3)
+
+$card_footer_element_spacing: rv(-6)
+
+.card
+  background-color: $white
+  border-radius: $border-radius
+  border: 1px solid neutral(5)
+  padding: rv($mobile_edge_padding_factor)
+  font-size: clamped(-1,0)
+  max-width: 750px
+
+  &:focus, &:hover
+    background-color: set-color-tint(2,3)
+
+    figure
+      img
+        transform: scale(1.1)
+        transition: all $heartbeat ease-in-out
+
+    footer
+      border-top-color: mix(set-color-tint(2,5),neutral(5),50)
+
+
+  +clearfix()
+
+  h3
+    padding-bottom: 0
+    margin-bottom: rv(-4)
+
+    a:hover
+      color: set-color(2)
+      border: 0
+
+  .content-label, .content-label-compact
+    margin-top: rv($mobile_edge_padding_factor)
+
+    & + h3
+      margin-top: 2px
+
+  .content-label-compact
+    display: inline-flex
+
+  .new
+    margin-left: rv(-2)
+
+    +dark
+      color: $black
+
+  .node--content
+    padding: rv($mobile_edge_padding_factor)
+
+  .media
+    .image, .video, .remote-video
+      +proportional-height(100%,0.75)
+
+    .image
+      img
+        object-fit: cover
+        height: 100%
+        width: 100%
+        transition: all $heartbeat ease-in-out
+
+  footer
+    padding-top: rv($mobile_edge_padding_factor)
+    margin: 0  rv($mobile_edge_padding_factor)
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    border-top: 1px solid neutral(5)
+    box-sizing: border-box
+
+    > *
+      margin-right: $card_footer_element_spacing * 2
+
+      &:last-child
+        margin-right: 0
+
+    .card-footer,
+    .card-footer > div > .field-values
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: space-between
+
+      > *
+        margin: 0 $card_footer_element_spacing $card_footer_element_spacing 0
+
+    .field-value
+      @extend %value
+
+    .label, .value, .field-value
+      color: neutral(60)
+      text-align: center
+
+      a
+        color: inherit
+        font-weight: inherit
+
+    .lozenge
+      .field-value
+        color: $white
+

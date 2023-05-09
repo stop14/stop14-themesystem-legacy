@@ -1,0 +1,21 @@
+/**
+ *  @_block_sponsors.sass
+ *  @category 60_site_elements
+ *  @theme LOCAL
+ *  @description Styles for logo grid above footer
+ *  **/
+#block-views-block-sponsors-block-1
+  .rows
+    +separated_row_flex(1,0)
+    justify-content: center
+
+    +bp($tablet)
+      +separated_row_flex_auto(3)
+
+    .views-row
+      .views-field-field-logo
+        .field_media_image
+          img
+            width: auto
+            height: 100px
+            object-fit: contain

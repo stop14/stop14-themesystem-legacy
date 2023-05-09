@@ -1,0 +1,31 @@
+/**
+ *  @file _our_team_block.sass
+ *  @category 60_site_elements
+ *  @theme LOCAL
+ *  @description Our team block styles. */
+
+#block-views-block-our-team-block-block-1
+  padding: rv($mobile_edge_padding_factor)
+
+  +bp($tablet)
+    padding: rv($edge_padding_factor)
+
+  .view-header
+    margin-bottom: rv($edge_padding_factor) * 2    
+  
+
+  h2
+    margin-top: 0
+    @extend %h2-display
+
+
+  .rows
+    margin-top: rv(1)
+
+    +bp($tablet)
+      margin-top: 0
+      +separated_row(2,$edge_padding_factor)
+      grid-row-gap: rv($edge_padding_factor)
+
+    +bp($desktop)
+      +separated_row(3,$edge_padding_factor)

@@ -1,0 +1,59 @@
+/**
+ *  @file _welcome.sass
+ *  @category 60_site_elements
+ *  @group views_and_blocks
+ *  @theme LOCAL
+ *  @description Defines the views-generated Welcome block. **/
+
+#block-views-block-welcome-homepage
+  +standard_edge_padding_horizontal()
+
+  .capsule_wide, .capsule_wide_autoplay
+    video
+      +fadeIn($very_slow,$heartbeat * 3)
+      height: 100% !important
+
+  figure
+    +splash-image-support()
+    +colour-wash(4,0.2)
+    +gradient-overlay-dark()
+
+  .welcome
+    height: 100%
+
+
+#block-cinemobiliawelcomeblock
+  +splash-feature-inset() // see 60_site_elements/12_mixins/splash_feature
+
+  .welcome-contents
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+    +bp($desktop)
+      > *
+        margin-top: rv($block_spacing)
+
+    .cta-link
+      display: none // No need for a more button on mobile as the welcome screen is not full viewport height
+
+      +bp($desktop)
+        display: block
+
+  figure
+    +fadeIn($very_slow,$heartbeat * 4)
+    width: 60vw
+    margin-left: auto
+    margin-right: auto
+
+    +bp($tablet)
+      width: 40vw
+
+    +bp($desktop)
+      width: 33vw
+
+  .deck
+    @extend %deck-alt
+    margin-top: rv($mobile_edge_padding_factor)
+

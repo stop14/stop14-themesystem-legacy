@@ -1,0 +1,97 @@
+/**
+ *  @file _slides.sass
+ *  @category 60_site_elements
+ *  @theme LOCAL
+ *  @description Styles for the slide viewer
+ *  **/
+
+/** NOT LOADED - MAY BE LEGACY **/
+
+// Hides the slide figcaption
+:root
+  --slide-item-figcaption-display: none
+
+////////// GENERAL STYLES //////////
+
+slide-viewer
+  margin: rv($mobile_block_spacing) 0
+  height: 60vh
+  padding-bottom: rv(6)
+
+  +bp($desktop)
+    margin: rv($block_spacing) 0
+
+  div,
+  article,
+  figure
+    height: 100%
+    width: 100%
+
+  slide-item
+    background-color: $clr5
+
+    a
+      display: block
+      height: 100%
+      width: 100%
+
+      &:hover,
+      &:focus
+        border-bottom: none
+        text-decoration: none
+
+        +bp($desktop)
+          .caption--compact
+            opacity: 1
+
+.paragraph--type--slides
+  position: relative
+
+  .caption--compact
+    position: absolute
+    bottom: 0
+    left: 0
+    height: unset
+    transition: opacity 0.3s
+    +bp($desktop)
+      opacity: 0
+
+  .img-portrait,
+  .img-landscape
+    padding: rv(0)
+
+////////// STYLES FOR 1 SLIDE PER ROW //////////
+
+slide-viewer[option-slidesperrow="1"]
+  +bp($tablet)
+    height: 80vh
+
+  slide-item
+    +bp($desktop)
+      width: 100% !important
+
+////////// STYLES FOR 2 SLIDES PER ROW //////////
+
+slide-viewer[option-slidesperrow="2"]
+  slide-item
+    +bp($desktop)
+      width: calc( 50% - #{rv(-6)} ) !important
+
+  slide-item:first-of-type
+    +bp($desktop)
+      margin-right: rv(-6)
+
+  slide-item:last-of-type
+    +bp($desktop)
+      margin-left: rv(-6)
+
+////////// STYLES FOR 3 SLIDES PER ROW //////////
+
+slide-viewer[option-slidesperrow="3"]
+  slide-item
+    +bp($desktop)
+      width: calc( 33.3% - #{rv(-3)} ) !important
+
+  slide-item:nth-of-type(2)
+    +bp($desktop)
+      margin: 0 rv(-3)

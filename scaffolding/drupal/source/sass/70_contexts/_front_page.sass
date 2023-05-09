@@ -1,0 +1,19 @@
+/**
+ * @file _front_page.sass
+ * @description Styles for the homepage
+ */
+
+
+body.path-frontpage
+  #above-content
+    display: none // Temporary measure. This region is appearing in spite of having no content, adding unwanted vertical spacing.
+
+  // H1 area emulates h2 on front page. H1 tag left for structural purposes
+
+  #block-cinemobilia-page-title
+    border-bottom: none !important
+    padding: 0 !important
+    margin-bottom: 0 !important
+
+    +bp($tablet)
+      padding-top: rv($edge_padding_factor) * 2

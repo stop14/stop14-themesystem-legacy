@@ -1,0 +1,20 @@
+/**
+ *  @file _sidebar_left.sass
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Structures right sidebars. **/
+
+aside.right
+  padding: rv($mobile_edge_padding_factor)
+  +font-size(0)
+
+  +bp($desktop)
+    padding: rv($edge_padding_factor)
+
+  *
+    color: inherit
+    font-size: inherit
+    
+  .block > h2
+    margin-bottom: rv($mobile_edge_padding_factor) !important
+
