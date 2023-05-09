@@ -26,7 +26,7 @@ var settings = {
 
 var package_dir = "./node_modules/stop14-themesystem-legacy/source";
 var source_dir = './source';
-var build_dir = './asset';
+var build_dir = './assets';
 
 var paths = {
   input: source_dir,
