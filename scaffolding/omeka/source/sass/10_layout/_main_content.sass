@@ -21,6 +21,9 @@ main, #feature-tier-1
     [class$="-block"], .resources-for-educators, .title-block
       margin-bottom: rv($block_spacing)
 
+    .html-block
+      margin-bottom: $paragraph_spacing // not a relative value in this implementation
+
     .resource-list, .explore-the-archive, .browse-controls, nav.pagination, .media-list-wrapper, .listing-cards, .preview-block
       +negative-content-margin(7)
 

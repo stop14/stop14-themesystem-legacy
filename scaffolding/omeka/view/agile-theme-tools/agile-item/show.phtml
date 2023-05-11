@@ -12,6 +12,8 @@
   $contentType = [];
   $contentType['value'] = ucfirst(!empty($item->value('dcterms:type')) ? $item->value('dcterms:type') : 'Item');
 
+  $metadata_file_name = "metadata-" . urlencode(strtolower(str_replace(' ','_',$item->title()))) .".json";
+
   $relatedItems = [];
   $relatedProperties = ['dcterms:subject']; // Array of properties to find related items.
 
@@ -40,6 +42,7 @@
   }
 ?>
 
+<!-- BEGIN agile-theme-tools/agile-item/show.phtml -->
 
 <?php $this->trigger("view.show.before"); ?>
 <div class='item-container  <?= $institutionClass; ?>'>
@@ -56,7 +59,7 @@
   </div>
   <div class='item-info item-text'>
     <div class="wayfinding">
-      <a href="<?php echo $site->siteUrl(); ?>"><img alt='Home Icon' class='wayfinding-home' src='<?php echo $this->assetUrl('img/svg/icons-grey/home-grey.svg')?>'></a>
+      <a href="<?php echo $site->siteUrl(); ?>"><img alt='Home Icon' class='wayfinding-home' src='<?php echo $this->assetUrl('img/svg/icons/home-grey.svg')?>'></a>
       <a href="<?php echo $site->siteUrl(); ?>/browse">Browse the collection</a>
     </div>
     <header>
@@ -115,6 +118,7 @@
             <div class='rights'>
               <p class="metadata-label">Download</p>
               <div class=download-icons>
+                <?php if ($item->primaryMedia()): ?>
                 <div class='download-item'>
                   <?php
                   // See https://stackoverflow.com/a/64719808/16534002
@@ -123,7 +127,6 @@
                   $file_name = array_pop($url_parts);
                   $dl_attribute = !empty($file_name) ? ' download="'. $file_name .'"' : '';
 
-                  $metadata_file_name = "metadata-" . urlencode(strtolower(str_replace(' ','_',$item->title()))) .".json";
                   ?>
                   <a class='icon-ui' title="Download item" href='<?php echo $item
                     ->primaryMedia()
@@ -132,6 +135,7 @@
                     Item
                   </a>
                 </div>
+                <?php endif; ?>
                 <div class='download-metadata'>
                   <a class='icon-ui' title="Download metadata" target="_blank" type='application/json' href='<?php echo $item->apiUrl(); ?>' download='<?php echo $metadata_file_name; ?>'>
                     <span class="screen-reader-text">Download metadata</span>
@@ -182,12 +186,14 @@
   <?php
     $page = $this->params()->fromQuery("page", 1);
     $property = $this->params()->fromQuery("property");
-    $subjectValues = $item->displaySubjectValues($page, 25, $property);
+    //$subjectValues = $item->displaySubjectValues($page, 25, $property);
+    $subjectValues = null; //@todo: getting error
   ?>
-  <?php if ($subjectValues): ?><div id="item-linked">
+  <?php if ($subjectValues): ?>
+    <div id="item-linked">
     <h3><?php echo $translate("Linked resources"); ?></h3>
     <?php echo $subjectValues; ?>
-  </div>
+    </div>
   <?php endif; ?>
 </div>
 <?php if (count($relatedItems) > 0): ?>
@@ -203,3 +209,4 @@
     </ul>
   </div>
 <?php endif; ?>
+<!-- END agile-theme-tools/agile-item/show.phtml -->

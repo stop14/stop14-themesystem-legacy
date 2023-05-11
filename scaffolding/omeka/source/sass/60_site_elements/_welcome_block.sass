@@ -4,27 +4,15 @@
  *  @description Styles for the Homepage welcome block.
  */
 
-.ctas
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: center
 
-  +bp($tablet)
-    margin-top: rv(6)
-    justify-content: flex-start
+.homepage-introduction
+  .discovery-tool
+    z-index: 2
+    width: 37.3%
 
-  a
-    width: 100%
-    margin-bottom: rv(0)
+    +bp($desktop)
+      position: absolute
+      right: rv($edge_padding_factor)
+      margin-top: auto
+      margin-bottom: auto
 
-    +bp($tablet)
-      width: unset
-      margin-right: rv(3)
-
-    &:last-of-type
-      +bp($tablet)
-        margin-right: 0
-
-  +bp($desktop)
-    border: 1px solid transparent // prevent margin collpase

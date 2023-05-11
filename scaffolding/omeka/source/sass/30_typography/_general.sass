@@ -1,10 +1,11 @@
-/** 
- *  @file _general.sass 
+/**
+ *  @file _general.sass
  *  @category 30_typography
  *  @theme LOCAL
- *  @description Defines various type classes 
+ *  @description Defines various type classes
  *
  **/
+
 
 // Primary Elements
 
@@ -15,7 +16,12 @@ p, main li
   & > a
     @extend %inline-anchor
 
+
 // TEXT TREATMENTS
+
+.reversed, .reverse
+  *
+    color: $white
 
 .compact
   @extend %s-normal-k
@@ -45,11 +51,11 @@ figcaption, .caption
   > *
     font-size: inherit
     font-family: inherit
-    
+
 .callout-text
   @extend %xl-alt-bold-accent
   line-height: 1.25
-    
+
 label, .label, .metadata-label
   @extend %s-normal-k-70
   line-height: 1.25
@@ -61,11 +67,11 @@ label, .label, .metadata-label
   @extend %s-normal-k
   line-height: 1.25
 
-  
+
 .label, .metadata-label
   & + .value, & + .values, & + .metadata-value
     margin-top: rv(-4)
-     
+
 .read-more-link, .more
   @extend %inline-anchor-block
   @extend %s-bold-k

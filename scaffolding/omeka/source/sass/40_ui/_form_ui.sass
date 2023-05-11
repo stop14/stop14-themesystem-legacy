@@ -40,7 +40,7 @@ select
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  background: url(../img/svg/icons-black/down-arrow-black.svg) no-repeat calc(100% - #{$ui_padding}) center
+  background: url(../img/svg/icons/down-arrow-black.svg) no-repeat calc(100% - #{$ui_padding}) center
   background-size: auto rv(0)
   padding-right: calc(#{rv(0)} + (#{$ui_padding} * 3))
   font-weight: $bold
@@ -54,7 +54,7 @@ option
 
 input[type="text"], input[type='search']
   height: $ui_element_height !important
-  padding: $ui_padding !important
+  padding: $ui_padding
   border-radius: $ui_border_radius !important
   max-width: 100%
 
@@ -80,7 +80,7 @@ input[type="checkbox"]
     position: relative
 
     &::after
-      content: url('../img/svg/icons-black/check-mark-black.svg')
+      content: url('../img/svg/icons/check-mark-black.svg')
       position: absolute
       width: rv(-1)
       top: 50%
@@ -142,7 +142,7 @@ fieldset, details
     position: relative
 
     &::after
-      content: url('../img/svg/icons-grey/left-arrow-grey.svg')
+      content: url('../img/svg/icons/left-arrow-grey.svg')
       position: absolute
       right: 0
       top: 50%

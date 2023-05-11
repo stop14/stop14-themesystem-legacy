@@ -12,6 +12,7 @@
 
 $plugins = $this->getHelperPluginManager();
 $translate = $plugins->get('translate');
+$icon_path = "/themes/ctc-19/asset/img/svg/icons";
 
 // Default values of the module.
 $displayParts = [
@@ -29,7 +30,7 @@ $paginationPerPages = isset($displayParts['per_pages']) ? $searchPage->subSettin
 $sortFields = isset($displayParts['sort']) ? $searchPage->subSetting('sort', 'fields') : [];
 
 // Grid list mode can also be set via Javascript if configured to remember the user’s last selection.
-// See modules/AdvancedSearch/asset/search.js and themes/ptd/source/js/collectionBrowser.js
+// See modules/AdvancedSearch/asset/search.js and themes/ctc-19/source/js/collectionBrowser.js
 
 $gridListMode = $searchPage->subSetting('display', 'grid_list_mode', 'auto');
 $multiMode = isset($displayParts['grid_list']) && !in_array($gridListMode, ['list_only', 'grid_only']);
@@ -47,8 +48,8 @@ $multiMode = isset($displayParts['grid_list']) && !in_array($gridListMode, ['lis
 
 <?php if ($multiMode): ?>
 <div class="search-results-display ui-icon-container">
-    <a class="search-view-type search-view-type-list<?= $gridListMode == 'list' ? ' active' : '' ?>" href="#" title="Browse results as a list"><img class='ui-icon<?= $gridListMode == 'list' ? ' active' : '' ?>' alt="list view" src="/themes/ptd/asset/img/svg/icons/list-view-grey.svg" data-src="/themes/ptd/asset/img/svg/icons/list-view-grey.svg" data-src-active="/themes/ptd/asset/img/svg/icons/list-view-active.svg"></a>
-    <a class="search-view-type search-view-type-grid<?= $gridListMode == 'grid' ? ' active' : '' ?>" href="#" title="Browse results as a grid"><img class='ui-icon<?= $gridListMode == 'grid' ? ' active' : '' ?>' alt="grid view" src="/themes/ptd/asset/img/svg/icons/masonry-view-grey.svg" data-src="/themes/ptd/asset/img/svg/icons/masonry-view-grey.svg" data-src-active="/themes/ptd/asset/img/svg/icons/masonry-view-active.svg"></a>
+    <a class="search-view-type search-view-type-list<?= $gridListMode == 'list' ? ' active' : '' ?>" href="#" title="Browse results as a list"><img class='ui-icon<?= $gridListMode == 'list' ? ' active' : '' ?>' alt="list view" src="<?= $icon_path ?>/list-view-grey.svg" data-src="<?= $icon_path ?>/list-view-grey.svg" data-src-active="<?= $icon_path ?>/list-view-active.svg"></a>
+    <a class="search-view-type search-view-type-grid<?= $gridListMode == 'grid' ? ' active' : '' ?>" href="#" title="Browse results as a grid"><img class='ui-icon<?= $gridListMode == 'grid' ? ' active' : '' ?>' alt="grid view" src="<?= $icon_path ?>/masonry-view-grey.svg" data-src="<?= $icon_path ?>/masonry-view-grey.svg" data-src-active="<?= $icon_path ?>/masonry-view-active.svg"></a>
 </div>
 <?php endif; ?>
 <?php if ($resultPart === 'footer'): ?>

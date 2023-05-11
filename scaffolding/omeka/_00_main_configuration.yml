@@ -39,6 +39,11 @@ darkest_neutral: neutral(90)
 bgcolor: $white
 footer_bg: $black
 
+#Gradients
+
+overlay_dark: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 67%, rgba(0,0,0,1) 90%)"
+
+
 # Colour Aliases
 impact: $clr7
 cta: $clr4
@@ -129,16 +134,12 @@ h6fontsize: "map-get($sizefactors,'h6')"
 
 
 ## 04 UI | Needs an overhaul
-ui_padding: rv(1)
+ui_padding: rv(-2)
 ui_element_height: 50px
 ui_minheight: $ui_element_height
 ui_maxheight: 60px
 ui_border_radius: 8px
 
-btn_minwidth: 250px
-btn_border_width: 4px
-
-btn_submit_img_size: rv(3)
 ui_checkbox_height: rv(1)
 
 # mobile ui controls
@@ -171,9 +172,10 @@ btn_submit_border_color: $impact
 btn_submit_hover_color: $white
 btn_submit_hover_border_color: "mix($impact,$black,10%)"
 btn_submit_hover_bg_color: "mix($impact,$black,10%)"
-
 outline_btn_color: $mid_neutral
 outline_btn_hover_color: $ui_hover_border_color
+btn_minwidth: 250px
+btn_submit_img_size: rv(1)
 
 
 # Animation
@@ -197,11 +199,11 @@ slide_transition: $slow
 card_border_radius: $border-radius
 
 # 06 Slide Viewer
-default_next_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0ibmV4dC1idG4iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE4LjQ1IDIwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwMTcxYTt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCwyMFYxNC45TDEzLjYzLDEwLDAsNS4xVjBMMTguNDUsNy4zNXY1LjNaIi8+PC9zdmc+'"
-default_prev_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0iY2hhcmFjdGVyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC40NSAyMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDE3MWE7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4LjQ1LDBWNS4xTDQuODIsMTAsMTguNDUsMTQuOVYyMEwwLDEyLjY1VjcuMzVaIi8+PC9zdmc+'"
-default_slide_item_template: 1
-default_slide_viewer_template: 1
-slide_viewer_padding: rv(0)
+default_next_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0ibmV4dC1idG4iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE4LjQ1IDIwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZmZmZjt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCwyMFYxNC45TDEzLjYzLDEwLDAsNS4xVjBMMTguNDUsNy4zNXY1LjNaIi8+PC9zdmc+'"
+default_prev_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0iY2hhcmFjdGVyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC40NSAyMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNGRkZGRkY7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4LjQ1LDBWNS4xTDQuODIsMTAsMTguNDUsMTQuOVYyMEwwLDEyLjY1VjcuMzVaIi8+PC9zdmc+'"
+default_slide_item_template: 2
+default_slide_viewer_template: 2
+slide_viewer_padding: 0
 slide_viewer_marker_size: rv(-1)
 slide_viewer_ui_spacing: rv(-1)
 slide_viewer_midpoint: 50%
@@ -231,9 +233,9 @@ slide_item_caption_width: 100%
 
 slide_item_portrait_object_fit: contain
 slide_item_portrait_position: center
-slide_item_portrait_slide_padding: 0
+slide_item_portrait_slide_padding: #{rv(0)}
 
-slide_item_landscape_object_fit: contain
+slide_item_landscape_object_fit: cover
 slide_item_landscape_position: center
 slide_item_landscape_slide_padding: 0
 
@@ -258,7 +260,7 @@ page_marker_margin: 0 $slide_viewer_ui_spacing 0 0
 # Sequential Slider Nav (next/previous)
 
 sequential_nav_top: 0
-sequential_nav_bottom: 0
+sequential_nav_bottom: "#{rv($edge_padding_factor)}"
 sequential_nav_left: $slide_viewer_padding
 sequential_nav_right: $slide_viewer_padding
 sequential_nav_justify_content: space-between

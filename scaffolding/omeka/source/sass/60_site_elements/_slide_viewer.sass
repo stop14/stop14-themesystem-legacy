@@ -7,23 +7,32 @@
 
 @use 'sass:math'
 
+// Ensure that slick calculates the right with based on the main container size
+.slideviewer-container,
+.slide-container,
+slide-viewer,
+.slick-slider,
+.slick-list
+  width: 100%
+
 .slideviewer-container
-  +bp($desktop)
-    padding: rv($edge_padding_factor)
-    padding-left: rv(3)
-    display: flex
-    flex-direction: row-reverse
-    flex-wrap: nowrap
-    align-items: center
+    position: relative
+    flex-direction: column-reverse
+    background: $black
+
+    +bp($desktop)
+      display: flex
+      flex-direction: row-reverse
+      flex-wrap: nowrap
+      align-items: center
 
 
 slide-viewer
   background-size: cover
-  padding: rv($mobile_edge_padding_factor)
-  padding-bottom: rv(6) // Clearance for controls
   background-color: neutral(3)
   height: 80vh
   --sequential-nav-justify-content: center
+  --sequential-nav-top: initial
   --sequential-nav-left: 50%
   --sequential-nav-right: auto
   --sequential-nav-bottom: #{rv($mobile_edge_padding_factor)}
@@ -38,10 +47,8 @@ slide-viewer
   --sequential-control-background-size: 75%
 
   +bp($desktop)
-    padding: 0 0 rv(4) 0 // Clearance for controls
     background-color: transparent
     height: 100%
-    --sequential-nav-bottom: 0
 
   .slick-slide > div, .slick-slide .card > a
     display: flex
@@ -56,6 +63,7 @@ slide-viewer
 
 
 slide-item
+  isolation: isolate
   p:last-of-type
       margin-bottom: rv(-5)
 
@@ -93,18 +101,43 @@ slide-item
     img
       border-radius: $card-border-radius
 
+  [slot="slide-content"]
+    position: relative
+    z-index: 0
+
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background: $overlay_dark
+      pointer-events: none
+
+  $integrated_nav_height: 34px
 
   [slot='slide-caption']
     $element_spacing: rv(0)
-    padding: rv(2)
+    margin: rv($mobile_edge_padding_factor)
+    padding-top: rv($mobile_edge_padding_factor)
+    padding-bottom: calc(#{rv($mobile_edge_padding_factor)} + #{$integrated_nav_height}) // cheat: actual height of nav
     margin-top: 0
-    border: 0
+    border-top: 1px solid $white
     display: flex
     flex-direction: column
     justify-content: flex-end
+    color: $white
+
+    *
+      color: inherit
+
+    h2, h3
+      margin-top: 0
 
     +bp($desktop)
-      padding: rv(4)
+      margin: rv($edge_padding_factor)
+      padding-bottom: calc(#{rv($edge_padding_factor)} + #{$integrated_nav_height}) // cheat: actual height of nav
 
     .btn
       +font-size(0)

@@ -42,8 +42,8 @@
         $thumbnail = !empty($altText) ? $this->thumbnail($item, $thumbnailSize,['alt' => $escape(strip_tags($altText))]) : $this->thumbnail($item, $thumbnailSize);
         $contentType['value'] = ucfirst(!empty($item->value('dcterms:type')) ? $item->value('dcterms:type') : 'Item');
         $viewItemPage = $viewItemPageTerm ? $item->value($viewItemPageTerm, ['default' => $translate('Find Out More')]) : 'Find out more';
-        $heading = isset($heading) ? $heading : $item->displayTitle();
-        $body = isset($body) ? $body : $item->displayDescription();
+        $heading = $heading ?? $item->displayTitle();
+        $body = $body ?? $item->displayDescription();
         break;
       case 'resource':
         $url = $resource->url();

@@ -8,9 +8,9 @@ $partial = $this->plugin('partial');
 
 ?>
 <!-- HOMEPAGE INTRODUCTION BLOCK TEMPLATE  common/block-layout/homepage-introduction.phtml -->
-<div id="block-<?php echo $this->blockId; ?>" class="homepage-introduction slideviewer-container region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
+<div id="block-<?php echo $this->blockId; ?>" class="homepage-introduction main-slide-viewer slideviewer-container region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
 
-  <div class="title-area reversed">
+  <div class="title-area reversed discovery-tool">
       <div>
         <?php if (!empty($labelText)): ?>
             <div class='label'><?php echo $labelText; ?></div>
@@ -46,19 +46,16 @@ $partial = $this->plugin('partial');
       <slide-viewer class="<?php echo $hasAudioAttachment ? 'slideshow-with-audio' : ''; ?>" option-slidesPerRow='<?php echo $optionSlidesPerRow; ?>'  option-autoplay='<?php echo $optionAutoPlay; ?>' option-fade='<?php echo $optionFade; ?>' integratedcontrols>
         <div slot='slides'>
             <?php foreach ($attachments as $attachment): ?>
-              <slide-item>
                 <?php
                 $item = $attachment->item();
-                $media = $attachment->media() ?: $item->primaryMedia();
                 ?>
-                <?= $partial('agile-item/card', [
+                <?= $partial('agile-item/slide-item', [
                   'item' => $item,
-                  'containerElement' => 'div',
-                  'cardStyle' => 'item-info caption--compact',
-                  'heading' => $showTitleOption == 'file_name' && $media ? $media->displayTitle() : $item->displayTitle(),
-                  'slot' => 'slide-content'
-                ]) ?>
-              </slide-item>
+                  'media' => $attachment->media() ?? $item->primaryMedia(),
+                  'caption' => $attachment->caption() ?? $item->displayDescription(),
+                  'imageSize' => 'large'
+                ])
+                ?>
             <?php endforeach; ?>
           </div>
           <?php if($hasAudioAttachment): ?>
