@@ -8,7 +8,7 @@ $partial = $this->plugin('partial');
 
 ?>
 <!-- HOMEPAGE INTRODUCTION BLOCK TEMPLATE  common/block-layout/homepage-introduction.phtml -->
-<div id="block-<?php echo $this->blockId; ?>" class="homepage-introduction main-slide-viewer slideviewer-container region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
+<div id="block-<?php echo $this->blockId; ?>" class="homepage-introduction  <?= $this->compositionClass; ?>  viewer slideviewer-container region <?php echo $this->regionClass; ?>" data-target-region-id="<?php echo $this->targetID; ?>">
 
   <div class="title-area reversed discovery-tool">
       <div>
@@ -43,7 +43,7 @@ $partial = $this->plugin('partial');
   </div>
   <?php if($hasAttachments): ?>
     <div class='slide-container'>
-      <slide-viewer class="<?php echo $hasAudioAttachment ? 'slideshow-with-audio' : ''; ?>" option-slidesPerRow='<?php echo $optionSlidesPerRow; ?>'  option-autoplay='<?php echo $optionAutoPlay; ?>' option-fade='<?php echo $optionFade; ?>' integratedcontrols>
+      <slide-viewer class="<?php echo $hasAudioAttachment ? 'slideshow-with-audio' : ''; ?>" option-slidesPerRow='<?php echo $optionSlidesPerRow; ?>' option-slidesToShow='<?php echo $optionSlidesToShow; ?>' option-autoplay='<?php echo $optionAutoPlay; ?>' option-fade='<?php echo $optionFade; ?>' integratedcontrols>
         <div slot='slides'>
             <?php foreach ($attachments as $attachment): ?>
                 <?php

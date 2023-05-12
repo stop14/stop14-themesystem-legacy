@@ -1,0 +1,59 @@
+/**
+ *  @file _search_form.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Styling for the common/search-form.phtml template.
+ *
+ **/
+
+
+%search-form-container
+  display: flex
+  flex-direction: row
+  width: 100%
+  justify-content: flex-start
+  align-items: center
+  flex-wrap: nowrap
+  position: relative
+
+%search-form-textfield
+  width: 100%
+  padding: 0 $btn_submit_img_size + $ui_padding 0 $ui_padding
+
+%search-form-submit
+  position: absolute
+  height: $btn_submit_img_size
+  width: $btn_submit_img_size
+  right: $ui_padding
+  background-image: url(get_svg_url('icons/search-grey'))
+  background-size: contain
+  background-repeat: no-repeat
+  background-color: transparent
+  padding: 0
+  font-size: 0 // hide text in favour of icon. Still readable by screen readers.
+
+  &:hover
+    background-image: url(get_svg_url('icons/search-active'))
+    background-color: transparent
+
+  &:focus
+    outline: 3px solid $impact !important
+    
+// Adjust search bar for pecularities in search field implementation
+#form-search
+  @extend %search-form-container
+  > *:first-child
+    width: 100%
+    *
+      width: inherit
+
+  > *:last-child
+    position: absolute
+    bottom: 0
+    right: 0
+    height: 100%
+    margin-top: 0 !important
+    height: $ui_element_height
+    
+  .field-meta
+    display: none // No label on submit button

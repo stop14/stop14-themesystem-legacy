@@ -1,0 +1,114 @@
+/**
+ *  @file _ui_definitions.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Define various user interface elements.
+ *
+ **/
+
+
+%button
+  all: unset
+  display: inline-flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  height: $ui_element_height
+  line-height: map-get($line_heights,'tight')
+  border-radius: $ui_border_radius
+  font-family: $basefont
+  font-size: clamped(0,1)
+  font-weight: $medium
+  text-align: center
+  padding: 0 $ui_padding
+  cursor: pointer
+
+  a
+    color: inherit
+
+%btn-reversed
+  height: $ui_minheight
+  border-radius: $ui_border_radius
+  font-family: $basefont
+  font-size: rv(1)
+  font-weight: $medium
+  text-align: center
+  padding: 0 $ui_padding
+  cursor: pointer
+  background-color: $white
+  color: $black
+
+  &:hover, &:focus
+    background: $cta
+    color: $white
+
+  &.outlined
+    color: $white
+    border: 1px solid $white
+    background-color: transparent
+
+    &:hover,
+    &:focus,
+    &:active
+      opacity: 0.6
+
+%btn-outlined
+  color: $darker_neutral
+  border: 1px solid $light_neutral
+
+  &:hover,
+  &:focus
+    border-color: $darker_neutral
+
+  &:active
+    background-color: $lightest_neutral
+    border-color: $darker_neutral
+
+  &.reversed
+    color: $white
+    border: 1px solid $white
+    background-color: transparent
+
+    &:hover,
+    &:focus,
+    &:active
+      opacity: 0.6
+
+%btn-solid
+  color: white
+  background-color: $darker_neutral
+
+  &:hover,
+  &:focus
+    background-color: $darkest_neutral
+
+  &:active
+    background-color: $black
+
+%btn-cta
+  color: white
+  background-color: neutral(80, $clr5, $white)
+
+  &:hover,
+  &:focus
+    background-color: neutral(90, $clr5, $white)
+
+  &:active
+    background-color: $clr5
+
+%btn-ghost
+  color: $darkest_neutral
+  background-color: white
+  border-bottom: 3px solid $darkest_neutral
+  border-radius: unset
+  height: 35px
+
+  &:hover,
+  &:focus
+    color: neutral(90, $clr5, $white)
+    border-bottom-color: neutral(90, $clr5, $white)
+
+  &:active
+    color: $clr5
+    border-color: set-color(4)
+    border-bottom-color: $clr5
