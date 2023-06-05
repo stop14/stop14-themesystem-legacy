@@ -1,0 +1,86 @@
+/**
+ *  @file _mobile_overlay_blocks.sass
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Defines mobile overlay blocks. */
+
+#main-nav
+  position: relative
+
+#modal-overlay
+  position: fixed
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0,0.9)
+  background-image: url($logo_path)
+  background-repeat: no-repeat
+  background-size: auto 28px // fudge to match _main_navigation logo size
+  background-position: top rv($mobile_edge_padding_factor) center
+
+  +bp($desktop)
+    background-position: top calc(#{rv($edge_padding_factor) * 0.5} + 2.5px) center // see _main_navigation line 12 for positioning. Still requires a little fudge so the logos line up
+
+  z-index: 503
+  top: 0
+  display: none
+
+  .tier-container
+    display: flex
+    justify-content: center
+    margin-top: calc(#{$masthead_height} + #{rv($mobile_edge_padding_factor)})
+    +bp($tablet)
+      margin-top: calc(#{$masthead_height} + #{rv($edge_padding_factor)})
+
+    div
+      background: rgba(0, 0, 0,0.4)
+      display: grid
+      grid-column: 1/span 2
+      border-radius: 40px
+      padding: rv($mobile_edge_padding_factor)
+
+      +bp($desktop)
+        grid-column: 1/span 4
+        padding: rv($edge_padding_factor)
+
+      nav
+        padding: rv(-1)
+        +bp($tablet)
+          padding: rv(1)
+
+        h2
+          color: $white
+          display: initial
+          padding: rv($mobile_edge_padding_factor)
+          background-color: $clr3
+          margin-bottom: rv(0)
+
+        a
+          color: $white
+
+        ul
+          padding: 0
+
+          li
+            margin-bottom: 10px
+            +bp($tablet)
+              margin-bottom: .960925rem
+              list-style-type: none
+
+  .nav-close,
+  .nav-close-mobile
+    height: rv(0)
+    width: rv(0)
+    margin: rv(1)
+
+
+  .nav-close
+    display: none
+    +bp($tablet)
+      display: block
+
+  .nav-close-mobile
+    display: block
+    margin: rv(0)!important
+    margin-left: auto!important
+    +bp($tablet)
+      display: none

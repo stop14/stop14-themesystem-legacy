@@ -1,0 +1,213 @@
+/**
+ *  @file _forms.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Define various form elements.
+ *
+ **/
+
+
+/** HERE ARE SOME CLASSES THAT MUST BE SUPPORTED
+  *
+  * TYPES:
+  * standard|Standard
+  * link|Internal Link
+  * outline|Outline
+  * cta|Call to action
+  * feature-cta|Feature CTA
+  * ghost|Ghost
+  * emphatic-ghost|Emphatic ghost
+  *
+  * SIZING:
+  * compact|Size: compact
+  * large|Size: large
+  *
+  * OVERLAYS
+  * overlay-dark|Overlay: dark background
+  * overlay-light|Overlay: light background
+  * overlay-colour|Overlay: yellow background
+  *
+  */
+// “trigger” class used by Drupal for its contextual menus
+button:not(.trigger)
+  @extend %button
+
+input:focus
+  outline: none !important
+  border-color: $clr2
+
+input[type='text'],
+input[type='email'],
+textarea#edit-message
+  @extend %input-text
+
+input[type="search"] // Button
+  @extend %button-search
+
+input[type="submit"] //Button
+  @extend %button-submit
+
+input[type="search"]::-webkit-search-cancel-button
+  -webkit-appearance: none
+  display: inline-block
+  width: 20px
+  height: 20px
+  margin-left: 10px
+  background: url(get_svg_url('icons/close-grey')) no-repeat center
+  +close-icon-hover
+
+input[type="checkbox"],
+input[type="radio"]
+  padding: unset
+  cursor: pointer
+
+input[type="checkbox"]
+  appearance: none
+  border-radius: unset
+  border: 1px solid neutral(20)
+  height: $ui_checkbox_height
+  width: $ui_checkbox_height
+  background-color: white
+  display: inline-block
+  vertical-align: middle
+  float: left
+  margin: 0
+
+  & + label
+    display: block
+    vertical-align: middle
+    padding: (($ui_checkbox_height - rv(0)) * 0.5) 0 0 $ui_checkbox_height + rv(0) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    line-height: $ui_checkbox_height
+    font-weight: $normal
+
+input[type="radio"]
+  appearance: none
+  border: 1px solid neutral(20)
+  border-radius: 50%
+  height: $ui_checkbox_height
+  width: $ui_checkbox_height
+  background-color: white
+  display: inline-block
+  vertical-align: middle
+
+  &:hover,
+  &:checked
+    box-shadow: inset 0 0 0 3px white !important
+    background-color: neutral(20)
+
+label + input
+  margin-top: rv(-3)
+
+fieldset
+  border: 1px solid neutral(20)
+  margin-bottom: rv($block_spacing)
+
+legend
+  padding: 0 rv(-2)
+  color: neutral(80)
+  +font-size(0)
+
+label
+  @extend %value-label
+
+label.option
+  font-family: $basefont
+  font-weight: $normal
+
+input.js-form-type-search + input.js-form-submit
+  display: inline-flex
+  margin-left: rv(0)
+
+// This also seems too broad. What in particular are we trying to make a column? Buttons?
+
+.form-item:not(fieldset, .js-form-type-checkbox, .js-form-type-search, .js-form-item-rendered-item)
+  padding-bottom: rv(1)
+  display: flex
+  flex-direction: column
+
+
+.webform-element-description
+  +font-size(-1)
+  font-weight: $semibold
+
+// Search page form. @todo: move elsewhere
+
+.views-exposed-form.bef-exposed-form
+  form
+    display: flex
+
+  .form-actions
+    padding-left: rv(0)
+
+    input
+      margin: 0
+
+/////////// SELECT ELEMENT STYLES ///////////
+
+.select2-container.select2-container--default
+  min-width: 100%
+  transition: none
+  align-self: flex-start
+
+  &:hover .select2-selection--single,
+  &:focus .select2-selection--single
+    @extend %glow-hover
+    text-decoration: none
+
+  .select2-selection--single
+    height: $ui_minheight
+    border-radius: $ui_border_radius
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+
+    .select2-selection__rendered
+      padding-left: $ui_padding
+
+
+    .select2-selection__arrow
+      position: relative
+      background: url(get_svg_url('icons/pulldown-grey')) no-repeat center
+      background-size: 60%
+      width: 30px
+
+      b
+        display: none
+
+  .select2-results__option--highlighted.select2-results__option--selectable,
+  .select2-results__option--selected
+    background-color: neutral(10)
+    color: $black
+
+  li
+    margin-bottom: unset
+
+  .select2-dropdown
+    border: 1px solid $ui_border_color
+    border-top: none
+// These seems like something that should be targeting a specific context
+
+/* .js-form-type-checkbox
+  display: inline-block
+  #edit-email-list
+
+    align-self: flex-start
+    height: 15px */
+
+
+
+/* .js-form-item
+  div
+    display: inherit
+    textarea#edit-message
+      resize: none
+      padding-left: rv($ui_padding)
+      padding-top: rv(0)
+      height: rv(10)
+      border-radius: $ui_border_radius
+      width: 500px
+
+    textarea:focus
+      outline: none !important
+      border-color: $clr2 */

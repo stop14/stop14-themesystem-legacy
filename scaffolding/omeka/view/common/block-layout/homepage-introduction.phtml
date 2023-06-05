@@ -5,6 +5,9 @@
 // $buttonText
 
 $partial = $this->plugin('partial');
+$searchMainPage = $this->siteSetting('advancedsearch_main_config');
+/** @var  \AdvancedSearch\Api\Representation\SearchConfigRepresentation $searchConfig */
+$searchConfig = $this->api()->searchOne('search_configs', ['id' => $searchMainPage])->getContent();
 
 ?>
 <!-- HOMEPAGE INTRODUCTION BLOCK TEMPLATE  common/block-layout/homepage-introduction.phtml -->
@@ -28,7 +31,7 @@ $partial = $this->plugin('partial');
         <?php endif; ?>
           <?php echo $this->partial(
               'common/search-form',
-              ['query' => $this->params()->fromQuery(), 'resourceType' => 'user','searchType' => 'browser', 'action' => '/s/pathways/browse']
+              ['query' => $this->params()->fromQuery(), 'resourceType' => 'user','searchType' => 'browser']
           ); ?>
 
           <div id="intro-browse">

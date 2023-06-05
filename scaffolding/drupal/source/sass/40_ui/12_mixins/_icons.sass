@@ -10,15 +10,14 @@ $project_icon: no-repeat url(get_svg_url('icons/projects-transparent'))
 $user_icon: no-repeat url(get_svg_url('icons/user-transparent'))
 $admin_icon: no-repeat url(get_svg_url('icons/admin-transparent'))
 $menu_icon: no-repeat url(get_svg_url('icons/menu-transparent'))
-$search_icon: no-repeat url(get_svg_url('icons/search-yellow'))
 
 
 // Button Icons
 
-$submit_arrow: no-repeat url(get_svg_url('icons/button-arrow-black'))
-$submit_arrow_hover: no-repeat url(get_svg_url('icons/button-arrow-white'))
-$submit_icon: no-repeat url(get_svg_url('icons/magnifying-black'))
-$submit_icon_hover: no-repeat url(get_svg_url('icons/magnifying-white'))
+$submit_arrow: no-repeat url(get_svg_url('icons/right-arrow-black'))
+$submit_arrow_hover: no-repeat url(get_svg_url('icons/right-arrow-white'))
+$search_icon: no-repeat url(get_svg_url('icons/magnifying-black'))
+$search_icon_hover: no-repeat url(get_svg_url('icons/magnifying-white'))
 $more_arrow: no-repeat url(get_svg_url('icons/more-arrow-black'))
 $more_arrow_hover: no-repeat url(get_svg_url('icons/more-arrow-white'))
 // Form Icons
@@ -40,54 +39,38 @@ $close_icon: no-repeat url(get_svg_url('icons/close-black'))
   +icon($twitter_icon)
 
 =search-icon
-  +search($search_icon)
+  +button-icon($search_icon)
 
+=submit-arrow
+  +button-icon($submit_arrow)
 
-=project-icon
-  +overlay($project_icon)
+=submit-arrow-hover
+  +button-icon($submit_arrow_hover)
 
-=user-icon
-  +overlay($user_icon)
+=search-icon
+  +button-icon($search_icon)
 
-=admin-icon
-  +overlay($admin_icon)
-
-=menu-icon
-  +overlay($menu_icon)
-
-=submit-arrow 
-  +button($submit_arrow)
-
-=submit-arrow-hover 
-  +button($submit_arrow_hover)
-
-=submit-icon 
-  +search($submit-icon)
-
-$more-arrow-shift: 30px
-$more-arrow-width: 10px
+=search-icon-hover
+  +button-icon($search_icon_hover)
 
 =more-arrow
   +arrow-rotate($more_arrow)
-  background-position: right $more-arrow-shift center
-  background-size: $more-arrow-width 30px
-  
+  background-position: right $ui_padding center
+  background-size: $btn_icon_size
+
   > *
-    transform: translateX(#{$more-arrow-shift * -0.5 + ($more-arrow-width * 0.5)})
-
-=submit-icon-hover
-  +search($submit_icon_hover)
+    transform: translateX(#{$ui_padding * -0.5 + ($btn_icon_size * 0.5)})
 
 
-=button ($background: $black)
+=button-icon ($background: $black)
   background: $background
-  background-position: right 15px center
-  background-size: rv(0)
+  background-position: right $ui_padding center
+  background-size: $btn_icon_size
 
 =arrow-rotate ($background: $black)
   background: $background
-  background-position: right 15px center
-  background-size: 10px 30px
+  background-position: right $ui_padding center
+  background-size: $btn_icon_size
 
 
 =icon ($background: $black)
@@ -97,17 +80,10 @@ $more-arrow-width: 10px
   width: rv(0)
 
 
-=overlay($background: $black)
-  display: block
-  background: $background
-  background-position: right 5px center
-  background-size: rv(1)
-
-
 =search($background: $black)
   background: $background
-  background-position: center
-  background-size: rv(1)
+  background-position: right $ui_padding center
+  background-size: $btn_icon_size
 
 =form-close($background: $black)
   &:hover

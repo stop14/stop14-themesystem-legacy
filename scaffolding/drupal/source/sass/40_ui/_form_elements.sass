@@ -32,27 +32,20 @@
 button:not(.trigger)
   @extend %button
 
-input:not([type='checkbox'])
-  padding: 0 $ui_padding
-  height: $ui_minheight
-  border-radius: $ui_border_radius
-  border: 1px solid neutral(60)
-  max-width: 500px
 input:focus
   outline: none !important
   border-color: $clr2
 
 input[type='text'],
 input[type='email'],
-input[type='search'],
 textarea#edit-message
-  font-family: $headingfont
-  font-weight: $light
-  font-size: rv(-1)
+  @extend %input-text
 
-input[type="submit"] //BUTTON
+input[type="search"] // Button
+  @extend %button-search
+
+input[type="submit"] //Button
   @extend %button-submit
-
 
 input[type="search"]::-webkit-search-cancel-button
   -webkit-appearance: none
@@ -62,6 +55,45 @@ input[type="search"]::-webkit-search-cancel-button
   margin-left: 10px
   background: url(get_svg_url('icons/close-grey')) no-repeat center
   +close-icon-hover
+
+input[type="checkbox"],
+input[type="radio"]
+  padding: unset
+  cursor: pointer
+
+input[type="checkbox"]
+  appearance: none
+  border-radius: unset
+  border: 1px solid neutral(20)
+  height: $ui_checkbox_height
+  width: $ui_checkbox_height
+  background-color: white
+  display: inline-block
+  vertical-align: middle
+  float: left
+  margin: 0
+
+  & + label
+    display: block
+    vertical-align: middle
+    padding: (($ui_checkbox_height - rv(0)) * 0.5) 0 0 $ui_checkbox_height + rv(0) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    line-height: $ui_checkbox_height
+    font-weight: $normal
+
+input[type="radio"]
+  appearance: none
+  border: 1px solid neutral(20)
+  border-radius: 50%
+  height: $ui_checkbox_height
+  width: $ui_checkbox_height
+  background-color: white
+  display: inline-block
+  vertical-align: middle
+
+  &:hover,
+  &:checked
+    box-shadow: inset 0 0 0 3px white !important
+    background-color: neutral(20)
 
 label + input
   margin-top: rv(-3)

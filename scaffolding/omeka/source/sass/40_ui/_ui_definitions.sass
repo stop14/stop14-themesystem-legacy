@@ -1,114 +1,249 @@
 /**
- *  @file _ui_definitions.sass
+ *  @file _general_ui_elements.sass
  *  @category 40_ui
  *  @theme LOCAL
  *  @description Define various user interface elements.
  *
  **/
 
+/** HERE ARE SOME DEFINITIONS THAT MUST BE SUPPORTED
+  *
+  * TYPES:
+  * standard|Standard
+  * link|Internal Link
+  * outline|Outline
+  * outline.reversed|Reversed outline
+  * cta|Call to action
+  * feature-cta|Feature CTA
+  * ghost|Ghost
+  * emphatic-ghost|Emphatic ghost
+  * sppoky|Spooky (inactive only)
+
+  *
+  * SIZING:
+  * compact|Size: compact
+  * large|Size: large
+  *
+  * OVERLAYS
+  * overlay-dark|Overlay: dark background
+  * overlay-light|Overlay: light background
+  * overlay-colour|Overlay: yellow background
+  *
+  */
+
+%button-base
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  font-size: $btn_fontsize
+  font-family: $headingfont
+  font-weight: $normal
+  padding: $btn_padding
+  height: $ui_minheight
+  min-width: $btn_minwidth
+  border: $btn_border_width solid $black
+  border-radius: $ui_border_radius
+  text-align: center
+  width: fit-content
+  white-space: nowrap
+
+
 
 %button
-  all: unset
+  @extend %button-base
+  background: $black
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  margin: rv(-1) 0
+  cursor: pointer
+  @extend %underscore
+  transform: scale(0.8) // buttons are a little large on mobile
+  transform-origin: center left
+
+  +bp($tablet)
+    transform: initial
+
+  a
+    border: 0
+    display: block
+    height: fit-content
+    width: 100%
+
+    &:hover
+      border: 0
+
+%button-reverse
+  @extend %button
+  border: solid $white $btn_border_width
+
+
+%button-feature-cta
+  @extend %button
+  @extend %feature-glow
+  border: $btn_border_width solid $black
+  color: $black
+  background: transparent
+  position: relative
+
+  a
+    color: $black !important
+
+%button-ghost
+  @extend %button-base
+  color: $black
+  border: none
+  background: transparent
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  margin: rv(-1) 0
+  @extend %underscore
+
+  &:hover
+    color: $clr4
+
+
+%button-reset
+  @extend %button-base
+  border: none
+  background: neutral(60)
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  margin: rv(-1) 0
+  @extend %underscore
+
+  &:hover
+    background: $black
+
+  &:active
+    background: neutral(80)
+
+
+%button-text
+  background: $black
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  margin: rv(-1) 0
+  border: none
+  @extend %underscore
+
+%button-standard
+  @extend %button
+  color: $white
+  text-decoration: none
+
+  &:hover
+    color: $black
+    background: $clr2
+    border: 0
+
+%button-link
+  @extend %button
+  color: $white
+
+
+%button-outline
+  @extend %button
+  background: transparent
+  font-style: normal
+  text-decoration: none
+
+  &:hover
+    border: $btn_border_width solid $clr2
+
+
+%button-cta
+  @extend %button
+  background: $clr3
+  color: $white
+  border: 0
+
+%button-compact
+  height: $ui_compactheight
+  min-width: $btn_compactwidth !important
+  font-size: $btn_compact_fontsize
+
+%button-large
+  height: $ui_largeheight
+  min-width: $btn_largewidth
+
+
+
+%button-more
+  @extend %rotation-glow
+  color: $black
+  font-style: normal
+  text-decoration: none
+  border: 0
+  padding: 0 45px
+  min-width: 0 !important
   display: inline-flex
   flex-direction: row
   justify-content: center
   align-items: center
-  height: $ui_element_height
-  line-height: map-get($line_heights,'tight')
-  border-radius: $ui_border_radius
-  font-family: $basefont
-  font-size: clamped(0,1)
-  font-weight: $medium
-  text-align: center
-  padding: 0 $ui_padding
-  cursor: pointer
+  height: 50px
+  +more-arrow
 
   a
     color: inherit
+    font-style: inherit
+    border-bottom: 2px solid $black
+    text-decoration: inherit
 
-%btn-reversed
+    &:hover
+      border-bottom: 2px solid $black
+
+%button-submit
+  @extend %button
+  border: 0
+  font-style: normal
+  background-color: set-color(2) !important
+  color: $black
+  min-width: $btn_compactwidth
+  text-decoration: none
+  justify-content: flex-start
+  +submit-arrow
+
+  &:hover
+    background-color: $black!important
+    color: white
+    +submit-arrow-hover
+
+%button-search
+  @extend %button
+  border: 0
+  font-style: normal
+  background-color: set-color(2) !important
+  color: transparent
+  min-width: $ui_minheight !important
+  height: $ui_minheight !important
+  text-decoration: none
+  justify-content: flex-start
+  +search-icon
+
+  &:hover
+    background-color: $black!important
+    +search-icon-hover
+    border: 1px solid $white
+
+%input-text
+  font-family: $basefont
+  font-weight: $normal
+  font-size: $btn_fontsize
+  padding: 0 $ui_padding
   height: $ui_minheight
   border-radius: $ui_border_radius
-  font-family: $basefont
-  font-size: rv(1)
-  font-weight: $medium
-  text-align: center
-  padding: 0 $ui_padding
-  cursor: pointer
-  background-color: $white
-  color: $black
+  border: 1px solid neutral(60)
+  max-width: 500px
 
-  &:hover, &:focus
-    background: $cta
-    color: $white
-
-  &.outlined
-    color: $white
-    border: 1px solid $white
-    background-color: transparent
-
-    &:hover,
-    &:focus,
-    &:active
-      opacity: 0.6
-
-%btn-outlined
-  color: $darker_neutral
-  border: 1px solid $light_neutral
-
-  &:hover,
-  &:focus
-    border-color: $darker_neutral
-
-  &:active
-    background-color: $lightest_neutral
-    border-color: $darker_neutral
-
-  &.reversed
-    color: $white
-    border: 1px solid $white
-    background-color: transparent
-
-    &:hover,
-    &:focus,
-    &:active
-      opacity: 0.6
-
-%btn-solid
-  color: white
-  background-color: $darker_neutral
-
-  &:hover,
-  &:focus
-    background-color: $darkest_neutral
-
-  &:active
-    background-color: $black
-
-%btn-cta
-  color: white
-  background-color: neutral(80, $clr5, $white)
-
-  &:hover,
-  &:focus
-    background-color: neutral(90, $clr5, $white)
-
-  &:active
-    background-color: $clr5
-
-%btn-ghost
-  color: $darkest_neutral
-  background-color: white
-  border-bottom: 3px solid $darkest_neutral
-  border-radius: unset
-  height: 35px
-
-  &:hover,
-  &:focus
-    color: neutral(90, $clr5, $white)
-    border-bottom-color: neutral(90, $clr5, $white)
-
-  &:active
-    color: $clr5
-    border-color: set-color(4)
-    border-bottom-color: $clr5

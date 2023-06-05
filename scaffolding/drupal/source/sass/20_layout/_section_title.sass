@@ -30,14 +30,7 @@ $title_area_spacing_factor: 0
   // Put a border on the title or submission block
 
   .region-title
-    > *:last-child:is(#block-cinemobilia-page-title, #block-views-block-submission-info-default-info)
+    > *:last-child:is(#block-views-block-submission-info-default-info)
       border-bottom: 1px solid $black
       padding-bottom: rv($title_area_spacing_factor)
       margin-bottom: rv($title_area_spacing_factor)
-
-
-  #block-views-block-title-area-projects
-    margin-bottom: rv($mobile_block_spacing)
-
-    +bp($tablet)
-      margin-bottom: rv($block_spacing)

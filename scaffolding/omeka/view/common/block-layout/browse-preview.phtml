@@ -1,6 +1,10 @@
 <?php
 $translate = $this->plugin('translate');
 $partial = $this->plugin('partial');
+$searchMainPage = $this->siteSetting('advancedsearch_main_config');
+/** @var  \AdvancedSearch\Api\Representation\SearchConfigRepresentation $searchConfig */
+$searchConfig = $this->api()->searchOne('search_configs', ['id' => $searchMainPage])->getContent();
+
 ?>
 <div class="preview-block">
   <?php if ($this->heading): ?>
@@ -30,7 +34,7 @@ $partial = $this->plugin('partial');
       */
     ?>
 
-    <div class="browse--collections"><a class="intro-browse--all" href="/s/pathways/browse">Browse all</a> <a class="centre-college" href="/s/pathways/browse?facet%5Bvra%3AplaceOfRepository%5D%5B%5D=Centre+College">Centre College</a> <a class="furman-university" href="/s/pathways/browse?facet%5Bvra%3AplaceOfRepository%5D%5B%5D=Furman+University">Furman University</a> <a class="rollins-college" href="/s/pathways/browse?facet%5Bvra%3AplaceOfRepository%5D%5B%5D=Rollins+College">Rollins College</a> <a class="washington-and-lee" href="/s/pathways/browse?facet%5Bvra%3AplaceOfRepository%5D%5B%5D=W%26L+University">W&amp;L University</a></div>
+    <div class="browse--collections"><a class="intro-browse--all" href="<?= $searchConfig->siteUrl() ?>">Browse all</a></div>
   <?php
   endif;
   ?>

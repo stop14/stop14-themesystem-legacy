@@ -2,6 +2,11 @@
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
 $labelInfo = $this->setting('property_label_information');
+$searchMainPage = $this->siteSetting('advancedsearch_main_config');
+/** @var  \AdvancedSearch\Api\Representation\SearchConfigRepresentation $searchConfig */
+$searchConfig = $this->api()->searchOne('search_configs', ['id' => $searchMainPage])->getContent();
+$searchPath = $searchConfig->siteUrl();
+
 ?>
 <?php foreach ($values as $term => $propertyData): ?>
     <div class="property" data-term="<?php echo $escape($term); ?>" >
@@ -36,7 +41,7 @@ $labelInfo = $this->setting('property_label_information');
             <?php
                     $term = $propertyData['property']->term(); // dcterm:termname
                     $value_label = $value->__toString();
-                    $href = "/s/pathways/browse?facet" . urlencode("[") . $term . urlencode("][0]") . "=" . urlencode($value_label); // @todo: get site slug
+                    $href = $path. "?facet" . urlencode("[") . $term . urlencode("][0]") . "=" . urlencode($value_label); // @todo: get site slug
 
                 ?>
                 <a class='subject-title' href='<?= $href ?>'><?= $value_label ?></a>

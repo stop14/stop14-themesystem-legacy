@@ -50,14 +50,23 @@
 +set-main-content-blocks
   .search-page, #block-exposedformsearch-pagepage-1
     +inset-text()
-    
+
   .slideshow-block
     width: 100%
     height: 80vh
-    
+
     +bp($desktop)
       +proportional_height(100%,0.75)
-      
+
++set-main-content-paragraphs
+  .paragraph
+    margin-bottom: $paragraph_spacing
+
+    p:last-child
+      margin-bottom: 0
+
++set-main-content-fields
+
 // Set main content layout for Block elements when there are no sidebars.
 // Normally block elements (like Drupal’s Content block itself) should default to +inset-text()
 
@@ -66,13 +75,6 @@
 
   .tl-timeline
     max-width: 100%!important
-    
-+set-main-content-paragraphs
-  .paragraph
-    margin-bottom: $paragraph_spacing
-    
-    p:last-child
-      margin-bottom: 0
 
 // Set main content layout for Paragraph elements when there are no sidebars.
 

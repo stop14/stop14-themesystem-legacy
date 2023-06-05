@@ -3,6 +3,7 @@ dir_image: "'../img'"
 asset_dirs: "('svg': $dir_image + '/svg','png': $dir_image + '/png', 'jpg': $dir_image + '/jpg')"
 subdir_icons: "'/icons'"
 subdir_marks: "'/marks'"
+logo_path: "map-get($asset_dirs,'svg') + $subdir_marks + '/logo.svg'"
 
 ## 00 VISIBILITY CONTROL
 visibility_stack: "('main > div','#secondary-content','#tertiary-content','#quaternary-content','.block-facets-block','#block-responses-profile-feature')"
@@ -39,11 +40,6 @@ darkest_neutral: neutral(90)
 bgcolor: $white
 footer_bg: $black
 
-#Gradients
-
-overlay_dark: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 67%, rgba(0,0,0,1) 90%)"
-
-
 # Colour Aliases
 impact: $clr7
 cta: $clr4
@@ -53,10 +49,10 @@ link_colour: $black
 
 ## 02 LAYOUT
 rootsize: 100%
-basesize: 1.5rem
-base_line_height: strip-unit($basesize)
-blh: $basesize
-scale: 1.5
+basesize: 1rem
+base_line_height: 1.5
+blh: $basesize * $base_line_height
+scale: 1.33
 max_width: 1400px
 legible_inset_width: 750px
 
@@ -106,8 +102,8 @@ font_path: "'../fonts'"
 basetypesize: 1rem
 default-min-bp: sml
 default-max-bp: xlrg
-min-sizefactors: "(base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)"
-sizefactors: "(base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)"
+min-sizefactors: "(base: -1, h1: 4, h2: 3, h3: 2, h4: 0, h5: -1, h6: -1)"
+sizefactors: "(base: 0, h1: 6, h2: 5, h3: 3, h4: 2, h5: 0, h6: 0)"
 line_heights: "(base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)"
 typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
 paragraph_spacing: "clamped(map-get($min-sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
@@ -134,12 +130,13 @@ h6fontsize: "map-get($sizefactors,'h6')"
 
 
 ## 04 UI | Needs an overhaul
-ui_padding: rv(-2)
+ui_padding: rv(0)
 ui_element_height: 50px
 ui_minheight: $ui_element_height
 ui_maxheight: 60px
+ui_compactheight: 40px
+ui_largeheight: 80px
 ui_border_radius: 8px
-
 ui_checkbox_height: rv(1)
 
 # mobile ui controls
@@ -151,13 +148,22 @@ mobile_filter_height: rv(5)
 border_radius: $ui_border_radius
 
 #Buttons
-buttonfontsize: 1
-btn_padding: $ui_padding
+btn_padding: "5px $ui_padding"
 btn_border_width: $ui_border_width
 btn_border_radius: $ui_border_radius
 btn_min_width: 200px
 btn_width: 280px
+btn_compactwidth: 180px
+btn_largewidth: 280px
 btn_max_width: 375px
+btn_icon_size: rv(-2)
+
+btn_fontsize: "clamped(0,1)"
+btn_compact_fontsize: "clamped(-1,0)"
+btn_minwidth: 250px
+btn_border_width: 1px
+btn_submit_img_size: rv(3)
+
 
 btn_color: $cta
 btn_bg_color: $white
@@ -172,10 +178,9 @@ btn_submit_border_color: $impact
 btn_submit_hover_color: $white
 btn_submit_hover_border_color: "mix($impact,$black,10%)"
 btn_submit_hover_bg_color: "mix($impact,$black,10%)"
+
 outline_btn_color: $mid_neutral
 outline_btn_hover_color: $ui_hover_border_color
-btn_minwidth: 250px
-btn_submit_img_size: rv(1)
 
 
 # Animation
@@ -199,11 +204,11 @@ slide_transition: $slow
 card_border_radius: $border-radius
 
 # 06 Slide Viewer
-default_next_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0ibmV4dC1idG4iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE4LjQ1IDIwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZmZmZjt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCwyMFYxNC45TDEzLjYzLDEwLDAsNS4xVjBMMTguNDUsNy4zNXY1LjNaIi8+PC9zdmc+'"
-default_prev_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0iY2hhcmFjdGVyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC40NSAyMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNGRkZGRkY7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4LjQ1LDBWNS4xTDQuODIsMTAsMTguNDUsMTQuOVYyMEwwLDEyLjY1VjcuMzVaIi8+PC9zdmc+'"
-default_slide_item_template: 2
-default_slide_viewer_template: 2
-slide_viewer_padding: 0
+default_next_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0ibmV4dC1idG4iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDE4LjQ1IDIwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwMTcxYTt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCwyMFYxNC45TDEzLjYzLDEwLDAsNS4xVjBMMTguNDUsNy4zNXY1LjNaIi8+PC9zdmc+'"
+default_prev_btn: "'data:image/svg+xml;base64,PHN2ZyBpZD0iY2hhcmFjdGVyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOC40NSAyMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDE3MWE7fTwvc3R5bGU+PC9kZWZzPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE4LjQ1LDBWNS4xTDQuODIsMTAsMTguNDUsMTQuOVYyMEwwLDEyLjY1VjcuMzVaIi8+PC9zdmc+'"
+default_slide_item_template: 1
+default_slide_viewer_template: 1
+slide_viewer_padding: rv(0)
 slide_viewer_marker_size: rv(-1)
 slide_viewer_ui_spacing: rv(-1)
 slide_viewer_midpoint: 50%
@@ -233,9 +238,9 @@ slide_item_caption_width: 100%
 
 slide_item_portrait_object_fit: contain
 slide_item_portrait_position: center
-slide_item_portrait_slide_padding: #{rv(0)}
+slide_item_portrait_slide_padding: 0
 
-slide_item_landscape_object_fit: cover
+slide_item_landscape_object_fit: contain
 slide_item_landscape_position: center
 slide_item_landscape_slide_padding: 0
 
@@ -260,7 +265,7 @@ page_marker_margin: 0 $slide_viewer_ui_spacing 0 0
 # Sequential Slider Nav (next/previous)
 
 sequential_nav_top: 0
-sequential_nav_bottom: "#{rv($edge_padding_factor)}"
+sequential_nav_bottom: 0
 sequential_nav_left: $slide_viewer_padding
 sequential_nav_right: $slide_viewer_padding
 sequential_nav_justify_content: space-between

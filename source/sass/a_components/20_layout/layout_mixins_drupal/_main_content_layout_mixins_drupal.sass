@@ -51,6 +51,11 @@
   +main-content-stack-container
     > *
       +section-block-standardized-spacing
+
+      // fields (including paragraph fields) will have paragraph spacing by default.
+      &[class^=field]
+        margin-bottom: $paragraph_spacing
+
       @content
 
 =set-main-content-blocks
@@ -65,7 +70,7 @@
 =set-main-content-paragraphs
   +main-content-stack-container
     @content
-      
+
 =set-main-content-blocks-no-sidebar
   .region .no-sidebar
     +main-content-stack-container

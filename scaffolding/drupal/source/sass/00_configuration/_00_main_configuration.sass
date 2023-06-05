@@ -9,6 +9,7 @@ $dir_image: '../img'
 $asset_dirs: ('svg': $dir_image + '/svg','png': $dir_image + '/png', 'jpg': $dir_image + '/jpg')
 $subdir_icons: '/icons'
 $subdir_marks: '/marks'
+$logo_path: map-get($asset_dirs,'svg') + $subdir_marks + '/logo.svg'
 $visibility_stack: ('main > div','#secondary-content','#tertiary-content','#quaternary-content','.block-facets-block','#block-responses-profile-feature')
 $remove_visibility_class: true
 $visibility_offset: 50
@@ -42,10 +43,10 @@ $de_emphasized: $light_neutral
 $de_activated: $lighter_neutral
 $link_colour: $black
 $rootsize: 100%
-$basesize: 1.5rem
-$base_line_height: strip-unit($basesize)
-$blh: $basesize
-$scale: 1.5
+$basesize: 1rem
+$base_line_height: 1.5
+$blh: $basesize * $base_line_height
+$scale: 1.33
 $max_width: 1400px
 $legible_inset_width: 750px
 $masthead_height: 60px
@@ -78,7 +79,7 @@ $desktop: $desktop_breakpoint
 $ultrawide: $ultrawide_breakpoint
 $font_path: '../fonts'
 $basetypesize: 1rem
-$sizefactors: (base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)
+$sizefactors: (base: 0, h1: 6, h2: 5, h3: 3, h4: 2, h5: 0, h6: 0)
 $line_heights: (base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)
 $typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
 $paragraph_spacing: clamped(map-get($min-sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))
@@ -96,22 +97,18 @@ $h3fontsize: map-get($sizefactors,'h3')
 $h4fontsize: map-get($sizefactors,'h4')
 $h5fontsize: map-get($sizefactors,'h5')
 $h6fontsize: map-get($sizefactors,'h6')
-$ui_padding: rv(1)
+$ui_padding: rv(0)
 $ui_element_height: 50px
 $ui_minheight: $ui_element_height
 $ui_maxheight: 60px
 $ui_compactheight: 40px
 $ui_largeheight: 80px
 $ui_border_radius: 8px
-$btn_minwidth: 250px
-$btn_border_width: 4px
-$btn_submit_img_size: rv(3)
 $ui_checkbox_height: rv(1)
 $mobile_overlay_spacing: rv(2)
 $mobile_filter_height: rv(5)
 $border_radius: $ui_border_radius
-$buttonfontsize: 1
-$btn_padding: $ui_padding
+$btn_padding: 5px $ui_padding
 $btn_border_width: $ui_border_width
 $btn_border_radius: $ui_border_radius
 $btn_min_width: 200px
@@ -119,6 +116,12 @@ $btn_width: 280px
 $btn_compactwidth: 180px
 $btn_largewidth: 280px
 $btn_max_width: 375px
+$btn_icon_size: rv(-2)
+$btn_fontsize: clamped(0,1)
+$btn_compact_fontsize: clamped(-1,0)
+$btn_minwidth: 250px
+$btn_border_width: 1px
+$btn_submit_img_size: rv(3)
 $btn_color: $cta
 $btn_bg_color: $white
 $btn_border_color: $cta
