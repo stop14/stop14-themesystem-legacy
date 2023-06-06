@@ -41,17 +41,16 @@
   padding: $btn_padding
   height: $ui_minheight
   min-width: $btn_minwidth
-  border: $btn_border_width solid $black
+  border: $btn_border_width solid $btn_border_color
   border-radius: $ui_border_radius
   text-align: center
   width: fit-content
   white-space: nowrap
-
-
+  background-color: $btn_bg_color
+  color: $btn_color
 
 %button
   @extend %button-base
-  background: $black
   text-decoration: underline
   display: inline-flex
   flex-direction: row
@@ -60,11 +59,11 @@
   margin: rv(-1) 0
   cursor: pointer
   @extend %underscore
-  transform: scale(0.8) // buttons are a little large on mobile
-  transform-origin: center left
 
-  +bp($tablet)
-    transform: initial
+  &:hover
+    color: $btn_hover_color
+    background-color: $btn_hover_bg_color
+    border-color: $btn_border_color
 
   a
     border: 0
@@ -82,7 +81,6 @@
 
 %button-feature-cta
   @extend %button
-  @extend %feature-glow
   border: $btn_border_width solid $black
   color: $black
   background: transparent
@@ -206,36 +204,40 @@
 
 %button-submit
   @extend %button
-  border: 0
+  +submit-arrow
+  border-width: $btn_submit_border_width
+  border-color: $btn_submit_border_color
   font-style: normal
-  background-color: set-color(2) !important
-  color: $black
+  background-color: $btn_submit_bg_color
+  color: $btn_submit_color
   min-width: $btn_compactwidth
   text-decoration: none
   justify-content: flex-start
-  +submit-arrow
 
   &:hover
-    background-color: $black!important
-    color: white
     +submit-arrow-hover
+    color: $btn_submit_hover_color
+    background-color: $btn_submit_hover_bg_color
+    border-color: $btn_submit_hover_border_color
 
 %button-search
   @extend %button
-  border: 0
+  +search-icon
+  border-width: $btn_search_border_width
+  border-color: $btn_search_border_color
   font-style: normal
-  background-color: set-color(2) !important
-  color: transparent
+  background-color: $btn_search_bg_color
+  color: $btn_search_color
   min-width: $ui_minheight !important
   height: $ui_minheight !important
   text-decoration: none
   justify-content: flex-start
-  +search-icon
 
   &:hover
-    background-color: $black!important
     +search-icon-hover
-    border: 1px solid $white
+    color: $btn_search_hover_color
+    background-color: $btn_search_hover_color
+    border-color: $btn_search_hover_border_color
 
 %input-text
   font-family: $basefont
@@ -244,6 +246,9 @@
   padding: 0 $ui_padding
   height: $ui_minheight
   border-radius: $ui_border_radius
-  border: 1px solid neutral(60)
+  border: 1px solid $ui_border_color
   max-width: 500px
+
+  &:hover
+    border-color: $ui_hover_border_color
 

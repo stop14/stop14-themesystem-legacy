@@ -1,0 +1,25 @@
+/**
+ *  @file _advanced_search_form.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Forms specific to the advanced search module. */
+
+#advanced-search-ajax, #advanced-search-ajax > .container
+  display: flex !important
+  flex-direction: row
+  justify-content: flex-start
+  align-items: flex-start
+
+  > *,
+  > * > *
+    margin: 0 rv($mobile_edge_padding_factor) 0 0
+
+    &:last-child
+      margin-right: 0
+
+  .js-form-type-checkbox
+    align-self: center
+
+.pager__link--is-active
+  border: 0
+  background-color: $impact
