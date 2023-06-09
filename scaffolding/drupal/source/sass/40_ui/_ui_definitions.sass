@@ -160,7 +160,6 @@
   &:hover
     border: $btn_border_width solid $clr2
 
-
 %button-cta
   @extend %button
   background: $clr3
@@ -176,10 +175,25 @@
   height: $ui_largeheight
   min-width: $btn_largewidth
 
+%button-reset
+  @extend %button
+  +submit-arrow
+  border-width: $btn_reset_border_width
+  border-color: $btn_reset_border_color
+  font-style: normal
+  background-color: $btn_reset_bg_color
+  color: $btn_reset_color
+  min-width: $btn_compactwidth
+  text-decoration: none
+  justify-content: flex-start
 
+  &:hover
+    +submit-arrow-hover
+    color: $btn_reset_hover_color
+    background-color: $btn_reset_hover_bg_color
+    border-color: $btn_reset_hover_border_color
 
 %button-more
-  @extend %rotation-glow
   color: $black
   font-style: normal
   text-decoration: none

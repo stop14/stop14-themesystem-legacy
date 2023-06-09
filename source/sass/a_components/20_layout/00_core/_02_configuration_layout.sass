@@ -32,7 +32,6 @@ $standard_sidebar_width: $proportional_width_unit
 $right_sidebar_width: $standard_sidebar_width * 2
 $left_sidebar_width: $standard_sidebar_width
 
-$grid_gap_factor: 0
 
 // Block spacing is a reference variable (in relative value) that determines the spacing between items in a layout.
 // Typically used for vertical spacing (e.g. between stacked content boxes).
@@ -47,10 +46,13 @@ $grid_gap_factor: 0
 // of “0”, which is an integer on the relative scale).
 
 $block_spacing: 2
-$mobile_block_spacing: -2
+$mobile_block_spacing: 0
 
 $edge_padding_factor: $block_spacing
 $mobile_edge_padding_factor: $mobile_block_spacing
+
+$mobile_grid_gap_factor: $mobile_block_spacing
+$grid_gap_factor: $block_spacing
 
 // Standardized breakpoint for moving from desktop layouts to stacked layouts
 

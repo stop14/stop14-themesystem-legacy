@@ -73,6 +73,7 @@ right_sidebar_width: "$standard_sidebar_width * 2"
 left_sidebar_width: $standard_sidebar_width
 
 # Spacing
+mobile_grid_gap_factor: -1
 grid_gap_factor: 0
 block_spacing: 2
 mobile_block_spacing: -2

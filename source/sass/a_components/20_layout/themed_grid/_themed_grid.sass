@@ -1,0 +1,22 @@
+/**
+ * @file _themed_grid.sass
+ * @description Component supports the themed grid syntax used in Stop14 Tools
+
+.themed-grid
+  display: grid
+  grid-template-columns: repeat(var(--grid-columns-sml,1), minmax(0,1fr))
+  grid-column-gap: rv($mobile_grid_gap_factor)
+  grid-row-gap: rv($mobile_grid_gap_factor)
+  position: relative
+
+  +bp(med)
+    grid-template-columns: repeat(var(--grid-columns-med,2), minmax(0,1fr))
+    grid-column-gap: rv($grid_gap_factor)
+    grid-row-gap: rv($grid_gap_factor)
+
+  +bp(lrg)
+    grid-template-columns: repeat(var(--grid-columns-lrg,3), minmax(0,1fr))
+
+  +bp(xlrg)
+    grid-template-columns: repeat(var(--grid-columns-xlrg,3), minmax(0,1fr))
+
