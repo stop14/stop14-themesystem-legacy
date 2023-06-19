@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Supporting Drupal’s Mirador implementation.
+ * Drupal’s admin bar has a lower z-index than the Mirador viewer, causing visual havoc for administrators.
+ * This provides a fix.
+ */
+
+
+.toolbar-oriented .toolbar-bar
+  z-index: 1102

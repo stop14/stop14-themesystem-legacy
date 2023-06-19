@@ -20,8 +20,8 @@ $header-elements: (h1,h2,h3,h4,h5,h6)
 @each $element in $header-elements
   #{$element}, .#{$element}, %#{$element}-size
     $preferred: map-get($sizefactors,#{$element})
-    $min-size: map-get($min-sizefactors,#{$element})
-    font-size: clamped($min-size,$preferred)
+    $min_size: map-get($min_sizefactors,#{$element})
+    font-size: clamped($min_size,$preferred)
 
 
 h1, .h1

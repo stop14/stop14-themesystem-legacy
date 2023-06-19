@@ -21,7 +21,7 @@ $default-max-bp: xlrg
 
 // Preferred size, as per standard typography
 
-$min-sizefactors: (base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)
+$min_sizefactors: (base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)
 $sizefactors: (base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)
 
 // $line_height_factors replace $blh. Note that line-height is an intrinsically proportional value when used without a unit.
@@ -37,7 +37,7 @@ $typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
 // Sets the bottom margin of paragraph and paragraph-level block elements. Looks at the median fluid type factor and
 // adjusts for line-height. The divides to a quarter for a readable space. Needs more thinking, to be honest.
 
-$paragraph_spacing: math.div(map-get($line_heights,'base') * rv(math.round((map-get($min-sizefactors,'base') + map-get($sizefactors,'base')) * 0.5)),4)
+$paragraph_spacing: math.div(map-get($line_heights,'base') * rv(math.round((map-get($min_sizefactors,'base') + map-get($sizefactors,'base')) * 0.5)),4)
 
 // Type faces are defined in 00_configuration folders, which get loaded before all other styles.
 

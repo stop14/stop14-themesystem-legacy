@@ -26,6 +26,6 @@ html
 
 body
   $preferred: map-get($sizefactors,'base')
-  $min-size: map-get($min-sizefactors,'base')
-  font-size: clamped($min-size,$preferred)
+  $min_size: map-get($min_sizefactors,'base')
+  font-size: clamped($min_size,$preferred)
   +standard-line-height()
