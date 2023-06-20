@@ -1,7 +1,22 @@
-/* Retrives a derivative colour from a colour map */
+/**
+  * @file _set_colour.sass
+  * Retrieves a from preconfigured colours.
+  * Legacy version would return a tint from the present colour map. This is now deprecated
+  *  in favour of returning a tint or shade of the colour by wrapping the mix() SASS function.
+  *
+ **/
 
 
-@function set-colour($colour: 1,$derivative: 'primary')
+@function set-colour($colour: 1,$intensity: 100, $mixer: white)
+  @if is-int($intensity)
+    // Variable interpolation e.g. $clr#{$colour}) doesn’t work in SASS functions. Use a map instead.
+    $colourmaps: (1: $clr1, 2: $clr2, 3: $clr3, 4: $clr4, 5: $clr5, 6: $clr6, 7: $clr7, 8: $clr8, 9: $clr9)
+    @return mix(map-get($colourmaps,$colour),$mixer,$intensity * 1%)
+  @else
+    @return mix(set-colour-legacy($colour),$mixer,$intensity * 1%)
+
+
+@function set-colour-legacy($colour: 1,$derivative: 'primary')
   $colourmaps: (1: $clr1_map, 2: $clr2_map, 3: $clr3_map, 4: $clr4_map, 5: $clr5_map, 6: $clr6_map, 7: $clr7_map, 8: $clr8_map, 9: $clr9_map)
   $map: map-get($colourmaps,$colour)
   @return map-get($map,$derivative)
@@ -12,8 +27,8 @@
 
 // Alias for Americans
 
-@function set-color($colour: 1,$derivative: 'primary')
-  @return set-colour($colour,$derivative)
+@function set-color($colour: 1, $intensity: 100, $mixer: white)
+  @return set-colour($colour,$intensity,$mixer)
 
 @function set-color-tint($colour: 1,$intensity:100,$mixer: white)
   @return set-colour-tint($colour,$intensity,$mixer)
