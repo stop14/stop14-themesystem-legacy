@@ -201,6 +201,7 @@ ui_select_width: fit-content
 ui_select_min_width: $btn_width
 ui_select_max_width: 100%
 
+ui_mobile_app_controls_footer_height: $masthead_height
 
 # Animation
 heartbeat: 0.2s

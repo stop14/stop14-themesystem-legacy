@@ -7,11 +7,6 @@
  **/
 
 
-label
-  +font-size(0)
-  font-weight: $semibold
-  color: $darker_neutral
-
 input,
 select,
 textarea
@@ -20,7 +15,7 @@ textarea
   padding: $ui_padding
   border: 1px solid $lighter_neutral
   font-family: $basefont
-  +font-size(0)
+  font-size: $ui_element_font_size
 
 input,
 textarea
@@ -58,7 +53,7 @@ input[type="text"], input[type='search']
   border-radius: $ui_border_radius !important
   max-width: 100%
 
-input[type="checkbox"], 
+input[type="checkbox"],
 input[type="radio"]
   padding: unset
   cursor: pointer
@@ -85,14 +80,18 @@ input[type="checkbox"]
       width: rv(-1)
       top: 50%
       left: 50%
-      transform: translate(-50%, -50%)
+      transform: translate(-50%, -50%) scale(0.75)
 
   // Fix alignment of checkbox labels
 
   & + label
+    font-size: $ui_checkbox_label_font_size
     display: block
     vertical-align: middle
-    padding: (($ui_checkbox_height - rv(0)) * 0.5) 0 0 $ui_checkbox_height + rv(0) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    padding-top: calc((#{$ui_checkbox_height} - #{rv(0)}) * 0.5) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    padding-right: 0
+    padding-bottom: 0
+    padding-left: calc(#{$ui_checkbox_height} + #{rv(0)})
     line-height: $ui_checkbox_height
     font-weight: $normal
 
@@ -120,33 +119,30 @@ button[type='submit']
 // Search field
 // See 40_ui/_search_form
 
-
-
 fieldset, details
   border: none
   padding: unset
   overflow-y: hidden
-  transition: max-height 0.3s ease-in-out
+  transition: all $heartbeat ease-in-out
+
+  // Open accordion styles
 
   &.open, &[open]
-
     legend::after, summary::after
-      transform: translateY(-50%) rotate(-90deg)
+      content: url(../img/svg/icons/accordion-collapse-icon.svg)
 
   legend, summary
-    border-bottom: 1px solid $lighter_neutral
-    +font-size(0)
+    font-size: $ui_checkbox_label_font_size
     font-weight: $bold
-    color: $darker_neutral
     width: 100%
     position: relative
 
+    // General and closed accordion styles
     &::after
-      content: url('../img/svg/icons/left-arrow-grey.svg')
+      content: url(../img/svg/icons/accordion-open-icon.svg)
       position: absolute
+      width: 8px
       right: 0
-      top: 50%
-      transform: translateY(-50%)
       transition: transform 0.3s ease-in-out
 
   summary

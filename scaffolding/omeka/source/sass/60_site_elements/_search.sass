@@ -9,9 +9,8 @@
 //SEARCH PAGE
 
 
-.browser-container
-  @extend %card-browser-container
-
+.item-browser > div
+  @extend %browser-container
 
 #content-stack
   .browse-tool
@@ -21,8 +20,4 @@
       margin-top: rv(1)
 
 #mobile-browse-controls
-  @extend %card-browser-mobile-controls
-
-  +bp($tablet)
-    display: none
-
+  @extend %browser-mobile-toolbar

@@ -1,0 +1,27 @@
+#graphics
+  width: 100%
+  padding: 0
+
+  > *
+    width: 100%
+
+  figure
+    position: absolute
+    bottom: 0
+    width: 100%
+
+    img
+      width: 100%
+      object-fit: cover
+
+  .clipping-group
+    opacity: 0.5
+
+  .graph
+    opacity: 0.4
+
+  @for $i from 1 through 5
+    $timestop: $heartbeat * $i * 1.5
+
+    .layer-#{$i}
+      +fadeIn($very_slow,$timestop)

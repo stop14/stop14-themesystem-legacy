@@ -1,60 +1,60 @@
 /**
- *  @file _form_elements.sass
+ *  @file _form_ui.sass
  *  @category 40_ui
  *  @theme LOCAL
- *  @description Define various form elements.
+ *  @description Define various form user interface elements.
  *
  **/
 
 
-/** HERE ARE SOME CLASSES THAT MUST BE SUPPORTED
-  *
-  * TYPES:
-  * standard|Standard
-  * link|Internal Link
-  * outline|Outline
-  * cta|Call to action
-  * feature-cta|Feature CTA
-  * ghost|Ghost
-  * emphatic-ghost|Emphatic ghost
-  *
-  * SIZING:
-  * compact|Size: compact
-  * large|Size: large
-  *
-  * OVERLAYS
-  * overlay-dark|Overlay: dark background
-  * overlay-light|Overlay: light background
-  * overlay-colour|Overlay: yellow background
-  *
-  */
-// “trigger” class used by Drupal for its contextual menus. “MuiButtonBase used for Mirador.
-button:not(.trigger,.MuiButtonBase-root)
-  @extend %button
+input,
+select,
+textarea
+  display: block
+  height: $ui_element_height
+  padding: $ui_padding
+  border: 1px solid neutral(90)
+  background: transparent
+  font-family: $basefont
+  font-size: $ui_element_font_size
 
-input:focus
-  outline: none !important
-  border-color: $clr2
+input,
+textarea
+  border-radius: $ui_border_radius
 
-input[type='text'],
-input[type='email'],
-textarea#edit-message
-  @extend %input-text
+textarea
+  height: unset
 
-input[type="search"] // Button
-  @extend %button-search
+::placeholder
+  +font-size(0)
+  color: $darker_neutral
+  opacity: 1
+  font-family: $basefont
 
-input[type="submit"] //Button
-  @extend %button-submit
-
-input[type="search"]::-webkit-search-cancel-button
+select
+  border-radius: $ui_border_radius
   -webkit-appearance: none
-  display: inline-block
-  width: 20px
-  height: 20px
-  margin-left: 10px
-  background: url(get_svg_url('icons/close-grey')) no-repeat center
-  +close-icon-hover
+  -moz-appearance: none
+  appearance: none
+  background: url(../img/svg/icons/down-arrow-black.svg) no-repeat calc(100% - #{$ui_padding}) center
+  background-size: auto rv(0)
+  padding-right: calc(#{rv(0)} + (#{$ui_padding} * 3))
+  font-weight: $bold
+
+option
+  font-weight: $normal
+  background-color: white
+  color: black
+
+// !important flag overrides built-in form stylesheets
+
+input[type="text"], input[type='search']
+  height: $ui_element_height !important
+  padding: $ui_padding 0
+  border: 0
+  border-bottom: 1px solid neutral(90)
+  border-radius: 0
+  max-width: 100%
 
 input[type="checkbox"],
 input[type="radio"]
@@ -64,31 +64,43 @@ input[type="radio"]
 input[type="checkbox"]
   appearance: none
   border-radius: unset
-  border: 1px solid $ui_border_color
+  border: 1px solid $lighter_neutral
   height: $ui_checkbox_height
   width: $ui_checkbox_height
-  background-color: transparent
+  background-color: white
   display: inline-block
   vertical-align: middle
   float: left
   margin: 0
 
-  &:hover
-    border-color: $ui_hover_border_color
-
+  &:hover,
   &:checked
-    background-color: $impact
+    position: relative
+
+    &::after
+      content: url('../img/svg/icons/check-mark-black.svg')
+      position: absolute
+      width: rv(-1)
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%) scale(0.75)
+
+  // Fix alignment of checkbox labels
 
   & + label
+    font-size: $ui_checkbox_label_font_size
     display: block
     vertical-align: middle
-    padding: calc((#{$ui_checkbox_height} - #{rv(0)}) * 0.5) 0 0 calc(#{$ui_checkbox_height} + #{rv(0)}) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    padding-top: calc((#{$ui_checkbox_height} - #{rv(0)}) * 0.5) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
+    padding-right: 0
+    padding-bottom: 0
+    padding-left: calc(#{$ui_checkbox_height} + #{rv(0)})
     line-height: $ui_checkbox_height
     font-weight: $normal
 
 input[type="radio"]
   appearance: none
-  border: 1px solid neutral(20)
+  border: 1px solid $lighter_neutral
   border-radius: 50%
   height: $ui_checkbox_height
   width: $ui_checkbox_height
@@ -99,47 +111,42 @@ input[type="radio"]
   &:hover,
   &:checked
     box-shadow: inset 0 0 0 3px white !important
-    background-color: neutral(20)
+    background-color: $lighter_neutral
 
-// Select2 handles pulldowns via js/selectStylesSupport
-// Currently set to use <select> element values to determine sizing
+// Submit Button
 
-select
-  width: $ui_select_width
-  min-width: $ui_select_min_width
-  max-width: $ui_select_max_width
+button[type='submit']
+  @extend %button
+  @extend %btn-cta
 
-label + input
-  margin-top: rv(-3)
+// Search field
+// See 40_ui/_search_form
 
-fieldset
-  border: 1px solid neutral(20)
-  margin-bottom: rv($block_spacing)
+fieldset, details
+  border: none
+  padding: unset
+  overflow-y: hidden
+  transition: all $heartbeat ease-in-out
 
-legend
-  padding: 0 rv(-2)
-  color: neutral(80)
-  +font-size(0)
+  // Open accordion styles
 
-label
-  @extend %value-label
+  &.open, &[open]
+    legend::after, summary::after
+      content: url(../img/svg/icons/accordion-collapse-icon.svg)
 
-label.option
-  font-family: $basefont
-  font-weight: $normal
+  legend, summary
+    font-size: $ui_checkbox_label_font_size
+    font-weight: $bold
+    width: 100%
+    position: relative
 
-input.js-form-type-search + input.js-form-submit
-  display: inline-flex
-  margin-left: rv(0)
+    // General and closed accordion styles
+    &::after
+      content: url(../img/svg/icons/accordion-open-icon.svg)
+      position: absolute
+      width: 8px
+      right: 0
+      transition: transform 0.3s ease-in-out
 
-// This also seems too broad. What in particular are we trying to make a column? Buttons?
-
-.form-item:not(fieldset, .js-form-type-checkbox, .js-form-type-search, .js-form-item-rendered-item)
-  padding-bottom: rv(1)
-  display: flex
-  flex-direction: column
-
-
-.webform-element-description
-  +font-size(-1)
-  font-weight: $semibold
+  summary
+    list-style-type: none

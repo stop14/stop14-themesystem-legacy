@@ -19,6 +19,9 @@ p, main li
 
 // TEXT TREATMENTS
 
+.page-title
+  margin-bottom: 0
+
 .reversed, .reverse
   *
     color: $white
@@ -40,9 +43,11 @@ figcaption, .caption
   @extend %xl-normal-k
 
 .deck
-  @extend %xl-alt-normal-k-fluid
+  @extend %sm-normal-k-fluid
   line-height: 1.5
   margin-bottom: rv(0)
+  border-bottom: solid 1px $clr5
+
 
   p
     font-size: inherit
@@ -78,7 +83,8 @@ label, .label, .metadata-label
   margin-right: rv(-2)
   margin-top: rv(1)
 
-
+.more, .more-options
+  @extend %more
 // Separate fields
 
 fieldset, .field

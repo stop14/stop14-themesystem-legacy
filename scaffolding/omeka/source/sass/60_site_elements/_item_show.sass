@@ -9,10 +9,6 @@
 // SASS VARIABLES
 // =======================
 
-$hex_ornament_height: rv(10)
-$hex_ornament_bottom_shift: rv(7) * -1
-$hex_ornament_right_shift: rv(3) * -1
-
 // $column_gap_calc: calc(50% - (#{$column_gap}/2)) 1fr
 
 // =======================
@@ -31,7 +27,7 @@ $hex_ornament_right_shift: rv(3) * -1
     $item_container_object_spacing: rv($edge_padding_factor)
     display: grid
     grid-template-columns: 100%
-    grid-template-columns: calc(61.8% - #{$item_container_object_spacing}) 38.2% // using this instead of 1fr because Universal Viewer is miscalculating its size
+    grid-template-columns: calc(50% - #{$item_container_object_spacing * 0.5}) calc(50% - #{$item_container_object_spacing * 0.5}) // using this instead of 1fr because Universal Viewer is miscalculating its size
     grid-column-gap: $item_container_object_spacing
     max-width: 100%
 
@@ -106,12 +102,13 @@ $hex_ornament_right_shift: rv(3) * -1
       padding-bottom: rv($edge_padding_factor)
       border-bottom: 1px solid neutral(30)
 
-  .value
-    display: -webkit-box
-    -webkit-line-clamp: 4
-    -webkit-box-orient: vertical
-    overflow: hidden
 
+
+.container-with-tabs-and-panels
+  .contributor
+    margin-top: rv(1)
+    font-style: italic
+    font-size: rv(2)
 
 
 // =======================
@@ -135,19 +132,22 @@ $hex_ornament_right_shift: rv(3) * -1
 // =======================
 
 .item-metadata-block
-  background-color: $black
+  background-color: $clr5
   color: $white
   max-width: 100%
-  padding: rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) calc(#{$hex_ornament_height} + #{$hex_ornament_bottom_shift}) rv($mobile_edge_padding_factor) !important
+  padding: rv($mobile_edge_padding_factor) !important
   position: relative
   overflow: hidden
 
   a
     @extend %inline-anchor-reverse
+    text-decoration: none
+    &:hover
+      color: $clr1
 
 
   +bp($desktop)
-    padding: rv($edge_padding_factor) rv($edge_padding_factor) calc(#{$hex_ornament_height} + #{$hex_ornament_bottom_shift}) rv($edge_padding_factor) !important
+    padding: rv($edge_padding_factor)  !important
 
   .metadata-list
     //Breakpoints
@@ -162,6 +162,10 @@ $hex_ornament_right_shift: rv(3) * -1
   h2
     color: $white
     margin-top: 0
+    font-family: $basefont
+  span
+    font-style: italic
+
 
   // this will enforce padding below the rule
 
@@ -196,7 +200,7 @@ $hex_ornament_right_shift: rv(3) * -1
  */
 
 #related-items
-  @extend %card-browser-container
+  @extend %browser-container
   padding: rv($mobile_edge_padding_factor) !important
 
   +bp($tablet)

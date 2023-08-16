@@ -1,8 +1,8 @@
-/** 
- *  @file _proportional_thumbnail.sass 
+/**
+ *  @file _proportional_thumbnail.sass
  *  @category 10_layout
  *  @component 00_core
- *  @description Creates a fixed container with aspect ratio. Overflow content is hidden Proportion defaults to square. 
+ *  @description Creates a fixed container with aspect ratio. Overflow content is hidden Proportion defaults to square.
  *
  *  Note: The element MUST have a defined width. Set to 'none' if the default is set elsewhere.
  */
@@ -10,16 +10,16 @@
 =proportional_height($width: 100%,$aspect_ratio: 1)
   overflow: hidden
   position: relative
-  
+
   @if width not none
     width: $width
-  
+
   &:before
     position: relative
     content: ''
     display: block
     padding-top: 100% * $aspect_ratio
-  
+
   > *
     display: block
     position: absolute
@@ -27,3 +27,22 @@
     right: 0
     bottom: 0
     left: 0
+
+=proportional_height_reset()
+  overflow: hidden
+  position: relative
+  width: initial
+
+  &:before
+    position: relative
+    content: none
+    display: none
+    padding-top: initial
+
+  > *
+    display: unset
+    position: initial
+    top: unset
+    right: unset
+    bottom: unset
+    left: unset

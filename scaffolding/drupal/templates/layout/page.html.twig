@@ -93,16 +93,15 @@
 {% endif %}
 
 {% set above_content_render = page.above_content|render %}
-{% if above_content_render|render|length %}
-  <section id="above-content" class='region' role="region">
-  <div class='no-sidebar'>
-    <div class='tier-container'>
-      {{ above_content_render }}
+{% if above_content_render|length > 0 %}
+  <section id="above-content" class='region full' role="region">
+    <div class='no-sidebar'>
+      <div class='tier-container'>
+        {{ above_content_render }}
+      </div>
     </div>
-  </div>
   </section>
 {% endif %}
-
 
 {% if page.content or page.messages or page.help or page.main_sidebar or page.page.main_sidebar_left %}
   <section id='primary-content' class='region' role="region">

@@ -1,63 +1,12 @@
-=gradient-overlay-dark()
-  position: relative
-
-  &:before
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    z-index: 3
-    pointer-events: none
-    background: linear-gradient(180deg, transparent 0%, rgba($black,0.8) 66%, rgba($black,1) 100%)
-    background-size: cover
-    background-position: bottom
-    mix-blend-mode: multiply
-    opacity: 1
-
-
-=gradient-overlay-slide()
-  +gradient-overlay-dark
-
-  &:before
-    background: linear-gradient(0deg, rgba($true_black,1) 0%, rgba($true_black,0.9) rv($mobile_edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
-
-    +bp($tablet)
-      background: linear-gradient(0deg, rgba($true_black,1) 0%, rgba($true_black,0.9) rv($edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
-
-
-=image-overlay($image_url:'../img/jpg/folder/some-image.jpg', $opacity: 0.4)
-  position: relative
-
-  &:after
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    z-index: 2
-    pointer-events: none
-    background: url(#{$image_url}) no-repeat
-    background-size: cover
-    background-position: bottom
-    mix-blend-mode: exclusion
-    opacity: $opacity
-
-
-=colour-wash($colour: 1,$opacity: 1)
-  position: relative
-
-  &:after
-    content: ''
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    z-index: 2
-    background-color: set-color($colour)
-    pointer-events: none
-    mix-blend-mode: color
-    opacity: $opacity
+/**
+ *  @file _patterns.sass
+ *  @category 10_colours_and_patterns
+ *  @theme LOCAL
+ *  @description Defines common patterns and visual effects
+ *   Note that many patterns have now been moved into a_components/10_colours_and_patterns/common_patterns
+ *   These include:
+ *     - gradient-overlay-dark()
+ *     - gradient-overlay-slide()
+ *     - image-overlay($image_url, $opacity)
+ *     - colour-wash($colour-integer-value, $opacity)
+ **/

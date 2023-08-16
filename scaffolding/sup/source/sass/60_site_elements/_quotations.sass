@@ -1,0 +1,62 @@
+/**
+ *  @file _quotations.sass
+ *  @theme LOCAL
+ *  @group 60_site_elements
+ *  @description  Loads SASS files for local theme. */
+
+#quotations
+  width: 100%
+  margin: 0 auto
+  position: relative
+  background-color: set-color-tint(1,40)
+
+  +bp($tablet)
+    width: calc(100% - (2 * #{rv($mobile_edge_padding_factor)}))
+
+
+  > *
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    opacity: 0
+    transition: opacity $very_slow
+
+  > *.current
+    opacity: 1
+
+  p
+    text-align: center
+    font-size: clamped(1,2,sml,xxlrg)
+    font-weight: $medium
+    padding: rv($mobile_edge_padding_factor)
+
+    margin-bottom: 0
+
+
+    span
+      display: block
+      font-weight: $normal
+      margin-top: rv(0)
+
+.pagination
+  +horizontal-list()
+  justify-content: center
+  height: auto
+  margin: rv(-1) rv(-1) rv(-1) auto
+  z-index: 1
+  transform: translateY(#{rv($edge_padding_factor) * -1})
+
+  li
+    height: rv(-1)
+    width: rv(-1)
+    border-radius: 50%
+    background-color: set-color-tint(2,40)
+    cursor: pointer
+    margin-right: rv(0)
+
+    &:hover,&.active
+      background-color: set-color(2)
+
+    &:last-child
+      margin-right: 0

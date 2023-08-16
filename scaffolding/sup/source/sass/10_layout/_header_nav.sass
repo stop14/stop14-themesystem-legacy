@@ -1,0 +1,36 @@
+/**
+ *  @file _header_nav.sass
+ *  @theme LOCAL
+ *  @group 60_site_elements
+ *  @description  Loads SASS files for local theme. */
+
+
+body
+  > header
+    position: absolute
+    z-index: 5
+    box-sizing: border-box
+    right: rv($mobile_edge_padding_factor)
+    top: rv($mobile_edge_padding_factor)
+    width: fit-content
+    background: transparent
+    color: $black
+    padding: 0
+    +font-size(1)
+
+    +bp($tablet)
+      right: initial
+      left: rv($mobile_edge_padding_factor)
+
+    +bp($desktop)
+      left: initial
+      right: rv($edge_padding_factor)
+      top: rv($edge_padding_factor)
+
+    > nav
+      +horizontal-list()
+      justify-content: flex-end
+      text-transform: uppercase
+
+      a
+        font-weight: $bold

@@ -1,0 +1,29 @@
+
+
+.btn
+  display: flex
+  justify-content: center
+  align-items: center
+  height: $ui_minheight
+  width: $btn_minwidth
+  max-height: $ui_maxheight
+  border-radius: $ui_border_radius
+  padding: $ui_padding
+  font-size: clamped(2,3)
+  font-weight: $bold
+  font-family: $basefont
+  font-style: normal
+  text-transform: uppercase
+  text-decoration: none
+  color: $white
+  background-color: $black
+  position: relative
+  border-bottom: 0
+
+  span
+    transform: translateY(2px)
+
+
+  &.active, &:hover
+    background: $impact
+    color: $white

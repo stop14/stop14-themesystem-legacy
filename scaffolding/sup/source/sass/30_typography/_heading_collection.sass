@@ -1,0 +1,36 @@
+/**
+ *  @file _heading_collection.sass
+ *  @theme LOCAL
+ *  @group 30_typography
+ *  @description  Loads SASS files for local theme. */
+
+h1, h2, h3, h4, h5, h6
+  color: inherit
+  text-transform: initial
+
+h1
+  font-family: $headingfont
+  font-weight: $bold
+
+h2
+  font-weight: $normal
+
+h3
+  font-weight: $semibold
+  margin-bottom: rv(-1)
+
+  + h4
+    margin-top: 0
+
+h4
+  font-weight: $normal
+  margin-bottom: rv(-2) !important
+
+h5
+  text-transform: capitalize
+  font-style: normal
+  font-weight: $semibold
+
+  &:first-child()
+    margin-top: 0
+

@@ -138,17 +138,23 @@ ui_maxheight: 60px
 ui_compactheight: 40px
 ui_largeheight: 80px
 ui_border_radius: 8px
+ui_border_width: 1px
 ui_border_color: neutral(40)
 ui_hover_border_color: $impact
 ui_checkbox_height: 20px
+ui_element_font_size: rv(0)
+ui_checkbox_label_font_size: rv(-1)
 
 # mobile ui controls
 
 mobile_overlay_spacing: rv(2)
-mobile_filter_height: rv(5)
+ui_mobile_app_controls_footer_height: $masthead_height
+ui_mobile_app_controls_breakpoint: $tablet
+ui_display_controls_icon_size: "$ui_mobile_app_controls_footer_height * 0.5"
 
 # legacy
 border_radius: $ui_border_radius
+mobile_filter_height: rv(5)
 
 #Buttons
 btn_padding: "5px $ui_padding"
@@ -159,7 +165,7 @@ btn_width: 280px
 btn_compactwidth: 180px
 btn_largewidth: 280px
 btn_max_width: 375px
-btn_icon_size: rv(-2)
+btn_icon_size: 15px
 
 btn_fontsize: "clamped(0,1)"
 btn_compact_fontsize: "clamped(-1,0)"

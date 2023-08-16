@@ -1,0 +1,25 @@
+/**
+ *  @file _colophon.sass
+ *  @theme LOCAL
+ *  @group 60_site_elements
+ *  @description  Loads SASS files for local theme. */
+
+
+#colophon
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  height: 100%
+  padding: 0
+  background: url('../img/svg/marks/stanford_up_logo_rev.svg') no-repeat
+  background-size: contain
+  background-position: right
+  font-size: clamped(0,2)
+
+  +bp($tablet)
+    flex-direction: row
+
+  > div:last-child
+    padding-right: rv(2) // Clearance for logo

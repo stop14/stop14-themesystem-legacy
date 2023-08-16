@@ -1,0 +1,56 @@
+/**
+ *  @file _general_typography.sass
+ *  @theme LOCAL
+ *  @group 30_typography
+ *  @description  Loads SASS files for local theme. */
+
+
+html
+  font-weight: $light
+  color: $black
+
+#title
+  color: $black
+
+a
+  border: none
+  text-decoration: underline
+
+  &:hover, &:focus
+    border: none
+    color: $impact
+
+p, li
+  > a
+    border: none
+
+    &:hover, &:focus, &:active
+      color: $impact
+
+main
+  p
+    font-size: inherit
+
+    +bp($desktop)
+      font-size: clamped(map-get($min-sizefactors,'base'),map-get($sizefactors,'base'))
+
+.byline
+  +font-size(1)
+  font-weight: $bold
+  text-transform: uppercase
+  margin-bottom: rv(-1)
+
+blockquote:first-child()
+  margin-top: 0
+
+.attribution
+  font-style: italic
+
+.press-attribution
+  padding-bottom: rv(1)
+  border-bottom: 1px solid neutral(80)
+  margin: rv(3) 0 rv(1) 0
+
+  p
+    text-transform: uppercase
+    font-weight: $semibold

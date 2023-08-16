@@ -13,6 +13,8 @@
   "author": "Agile Humanities Agency",
   "license": "MIT",
   "dependencies": {
-    "stop14-themesystem-legacy": "^1.2.2"
+    "masonry": "^0.0.2",
+    "stop14-themesystem-legacy": "^1.2.2",
+    "superfish": "^1.7.10"
   }
 }

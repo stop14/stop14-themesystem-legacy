@@ -1,0 +1,56 @@
+/**
+ *  @file _effects.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Definitions / mixins for various special effects.
+ *
+ **/
+
+// This mixin takes a colour integer or a colour value
+=glow($colour: 1, $glow_radius: 25px)
+  border-color: transparent
+
+  @if is-integer($colour)
+    background-color: set-color($colour)
+    box-shadow: 0 0 $glow-radius 0 set-color($colour)
+  @else
+    background-color: $colour
+    box-shadow: 0 0 $glow-radius 0 $colour
+
+
+%glow
+  +glow(1)
+
+%glow-white
+  +glow(1)
+
+
+%glow-hover
+  position: relative
+
+  &:before
+    content: ''
+    z-index: -1
+    position: absolute
+    display: block
+    width: 100%
+    height: 100%
+    +glow(3)
+
+
+
+%glow-hover-circle
+  position: relative
+
+  &:before
+    content: ''
+    position: absolute
+    display: block
+    width: 35px // measurements of pagination circle
+    height: 35px
+    z-index: -1
+    border-radius: $ui_minheight * 0.5
+    @extend %glow
+
+    +bp($desktop)
+      border-radius: $ui_maxheight * 0.5

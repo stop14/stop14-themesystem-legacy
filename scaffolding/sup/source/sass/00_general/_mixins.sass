@@ -1,0 +1,27 @@
+/**
+ *  @file _mixins.sass
+ *  @category 00_general
+ *  @description Supporting mixins for the SUP Transmedia site.
+ */
+
+=blur-background($blur: rv(0), $opacity: 0.9)
+  position: relative
+
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: $black
+    filter: blur(#{$blur})
+    mix-blend-mode: multiply
+    opacity: $opacity
+    -webkit-transform-style: preserve-3d // attempting to reduce flickering in Safari
+    -webkit-backface-visibility: hidden // attempting to reduce flickering in Safari
+
+=poster-background
+  background: url(../img/jpg/covers/transmedia-cover-art-rockwell-enhanced.jpg) no-repeat
+  background-size: cover
+  background-position: bottom

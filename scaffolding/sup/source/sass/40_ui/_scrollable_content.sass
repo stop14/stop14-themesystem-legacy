@@ -1,0 +1,76 @@
+.scrollable-content
+  outline: none
+  box-sizing: border-box
+  position: relative
+
+  +bp($desktop)
+    height: $scrollable_content_height // see layout configuration
+    overflow-x: hidden
+    overflow-y: scroll
+    min-height: 150px
+    max-height: fit-content
+
+    +bp($ultrawide)
+      height: $scrollable_content_height + 10vh
+
+    // The UP fade effect is not sitting correctly inside its container.
+    // Not sure why – perhaps it has to compensate for the scrolltop of the element
+    // in the js. Turned off for now.
+
+    &.up:before
+      display: none
+      content: ''
+      pointer-events: none
+      position: absolute
+      top: 0
+      right: 0
+      left: 0
+      z-index: 2
+      height: $intro_btn_height
+      background: linear-gradient(180deg, rgba($text_bg,1) 0%, rgba($text_bg,0.3) 75%, rgba($text_bg,0) 100%)
+
+    &.down:after
+      content: ''
+      pointer-events: none
+      position: absolute
+      bottom: 0
+      right: 0
+      left: 0
+      z-index: 2
+      height: $intro_btn_height
+      background: linear-gradient(0deg, rgba($text_bg,1) 0%, rgba($text_bg,0.3) 75%, rgba($text_bg,0) 100%)
+
+#introduction-ui-top, #introduction-ui-bottom
+  height: $intro_btn_height
+  flex-shrink: 0
+  display: none
+  margin: 0 !important
+
+  a
+    border: 0 !important
+    &:hover
+      border: 0 !important
+
+  +bp($desktop)
+    display: block
+
+.down-arrow
+  background: url(../img/svg/icons/down-arrow-black.svg) no-repeat
+  width: 100%
+  height: rv(2)
+  background-size: rv(2)
+  display: block
+  background-position: bottom center
+  &:hover
+    opacity: 0.5
+
+.up-arrow
+  background: url(../img/svg/icons/down-arrow-black.svg) no-repeat
+  transform: rotate(180deg)
+  width: 100%
+  height: rv(2)
+  background-size: rv(2)
+  display: block
+  background-position: top center
+  &:hover
+    opacity: 0.5

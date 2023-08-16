@@ -1,0 +1,36 @@
+/**
+ *  @file _tou_structure.sass
+ *  @theme LOCAL
+ *  @component sup-terms-of-service-layout
+ *  @description  A simple layout structure for SUP terms of service page */
+
+#tou
+  +bp($desktop)
+    overflow: unset
+
+  #title
+    height: auto
+    text-align: left
+
+  #primary-content
+    min-height: unset
+
+  main
+    +bp($desktop)
+      max-height: unset
+      height: unset
+
+    > *
+      position: relative
+
+    > div
+      +bp($desktop)
+        columns: 2
+        column-gap: rv($edge_padding_factor)
+
+  #colophon
+    +bp($desktop)
+      width: 100%
+
+    span
+      white-space: nowrap
