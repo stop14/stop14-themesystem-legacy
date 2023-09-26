@@ -7,7 +7,7 @@ then
   let $1='default'
 fi
 
-if [ $1 == 'default' ] || [ $1 == 'omeka' ] || [ $1 == 'drupal' ] 
+if [ $1 == 'default' ] || [ $1 == 'omeka' ] || [ $1 == 'drupal' ] || [ $1 == 'sup' ] 
 then
   if [ $# -eq 2 ] && [ $2 == "rebuild" ]
     then
