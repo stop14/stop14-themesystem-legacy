@@ -1,3 +1,16 @@
+/**
+ *   @file _anchor.sass
+ *   @description  Sets a base for anchors across the site. NOTE: The default setting is to have no hover/active state
+ *     changes, eg. a text-decoration: underline or a border-bottom . This is because anchors tend to be used in menus
+ *     and other contexts where underscores are visually unwarranted. To get around this problem there were two
+ *     mixins that can be applied to anchors and/or their hover states: +link-underline() and +inline-link-text().
+ *     By default any anchors subordinate to the Paragraphs in the <main> section are considered inline links and
+ *     assigned the mixin.
+ *
+ *     Themes should make their assignments as required by the design.
+ */
+
+
 a
   color: $link_colour
   cursor: pointer
@@ -5,8 +18,10 @@ a
   display: inline
   +transition(all,-6)
 
-  &:hover, &:active
-    +link-underline()
+  &:hover, &:active, &:visited
+    border-bottom: 0
+    text-decoration: none
+    color: mix($link_colour,$black,20%)
 
 // Default for links in body paragraphs.
 
