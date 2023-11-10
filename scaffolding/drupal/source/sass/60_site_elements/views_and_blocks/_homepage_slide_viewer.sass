@@ -1,0 +1,42 @@
+/**
+ *  @file _homepage_slide_viewer.sass
+ *  @category 60_site_elements
+ *  @group views_and_blocks
+ *  @theme LOCAL
+ *  @description Defines the views-generated Slide Viewer block.
+ *    Also see 60_site_elements/content/_slide.sass for general slide styles.
+ **/
+
+$nyhs_mark_width: 10vw
+
+
+#block-views-block-homepage-slide-viewer-block-1
+  position: relative
+
+  // @todo: refactor slide viewer module with similar values
+
+  slide-viewer
+    min-height: unset
+    max-height: calc(100vh - #{$masthead_height})
+    --slide-nav-bottom: 0
+
+  &:after
+    content: ''
+    position: absolute
+    top: rv($mobile_edge_padding_factor)
+    left: rv($mobile_edge_padding_factor)
+    height: 20vw
+    width: 20vw
+    background: url(get_svg_url('marks/nyhs-mark-rev')) no-repeat
+    background-size: contain
+    pointer-events: none
+    opacity: 0.8
+
+    +bp($tablet)
+      top: rv($edge_padding_factor)
+      left: rv($edge_padding_factor)
+      height: $nyhs_mark_width
+      width: $nyhs_mark_width
+
+  .more
+    margin-top: rv(-2)

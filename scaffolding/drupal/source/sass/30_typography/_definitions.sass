@@ -41,45 +41,108 @@ $ribbon_padding_factor: -3
 
 %deck
   font-family: $basefont
-  font-size: clamped(0, 2, 'xsml', 'xlrg')
-  font-weight: $heavy
+  font-size: clamped(1, 2, 'xsml', 'xlrg')
+  font-weight: $normal
   +line-height(1.5)
 
   +reversed
     color: $white
 
 %value
-  font-family: $headingfont
-  font-weight: $light
   color: $black
-  +font-size(0)
-  line-height: 1.25
+  word-break: break-word
 
   +reversed
     color: $white
 
 %value-label
-  font-family: $headingfont
+  font-family: $basefont
   font-weight: $medium
   color: $black
-  +font-size(0)
   line-height: 1.25
+  margin-bottom: rv(-4)
 
   +reversed
     color: $white
 
 %h2-display
-  font-family: $altfont
-  font-size: clamped(4,6)
+  padding-bottom: rv(-1)
+  margin-bottom: rv(-1)
+  position: relative
+
+  &:after
+    content: ''
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 50%
+    height: 1px
+    background: set-colour(2)
+
+%h3-display
+  font-family: $headingfont
+  font-weight: $normal
+  font-size: clamped(4,5) // in between h2 and h3
+
+// h4 display emulated h3. Used in situations where h4 is required
+// in place of h3 for proper document structure.
+
+%h4-display
+  font-family: $basefont
+  font-weight: $bold
+  font-size: clamped(map-get($min_sizefactors,'h3'),map-get($sizefactors,h3))
 
 %details-grid
   +separated_row(2,$mobile_edge_padding_factor)
-  
+
   +bp($tablet)
     +separated_row(4,$mobile_edge_padding_factor)
-  
+
   +bp($desktop)
     +separated_row(5,$edge_padding_factor)
-    
+
   +bp($ultrawide)
     +separated_row(6,$edge_padding_factor)
+
+%tag
+  display: inline-flex
+  background: neutral(80)
+  color: $white
+  +font-size(-1)
+  justify-content: flex-start
+  flex-wrap: wrap
+  align-items: center
+  padding: 3px
+  border: 0
+  height: 100%
+
+  &:hover
+    border: 0
+
+
+  label, .facet-item--label
+    font-size: inherit
+    color: neutral(20)
+    margin-right: rv(-2)
+
+%more
+  +font-size(0)
+  color: $black
+  font-weight: $medium
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: flex-start
+  border-bottom: 0
+
+  &:hover
+    border-bottom: 0
+    color: $impact
+
+  &:after
+    content: ''
+    margin-left: rv(0) * 0.25
+    height: rv(0) * 0.5
+    width: rv(0) * 0.5
+    background: no-repeat url(get_svg_url('icons/right-arrow-black'))
+    background-size: contain
