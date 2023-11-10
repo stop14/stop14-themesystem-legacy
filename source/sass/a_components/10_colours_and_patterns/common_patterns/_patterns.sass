@@ -4,7 +4,7 @@
  *  @component _common_patterns.
  *  @description Adds some useful pattern mixins */
 
-=gradient-overlay-dark()
+=gradient-overlay-dark($angle: 180deg, $stop: 66%), $colour: $black)
   position: relative
 
   &:before
@@ -16,21 +16,25 @@
     bottom: 0
     z-index: 3
     pointer-events: none
-    background: linear-gradient(180deg, transparent 0%, rgba($black,0.8) 66%, rgba($black,1) 100%)
+    background: linear-gradient($angle, transparent 0%, rgba($colour,0.8) $stop, rgba($colour,1) 100%)
     background-size: cover
     background-position: bottom
     mix-blend-mode: multiply
     opacity: 1
 
+// legacy alias
 
-=gradient-overlay-slide()
+=overlay-dark($angle: 180deg, $stop: 66%), $colour: $black)
+  +gradient-overlay-dark($angle,$stop,$colour)
+
+=gradient-overlay-slide($angle: 0deg,$colour: $true_black)
   +gradient-overlay-dark
 
   &:before
-    background: linear-gradient(0deg, rgba($true_black,1) 0%, rgba($true_black,0.9) rv($mobile_edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
+    background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($mobile_edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
 
     +bp($tablet)
-      background: linear-gradient(0deg, rgba($true_black,1) 0%, rgba($true_black,0.9) rv($edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
+      background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
 
 
 =image-overlay($image_url:'../img/jpg/folder/some-image.jpg', $opacity: 0.4)
