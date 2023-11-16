@@ -1,6 +1,19 @@
-## Stop14 Media Theme System
+# Stop14 Theme System Legacy
 
-The Stop14 Theme System is a SASS-based set of components for building web themes. It also includes scaffolding for various Content Management Systems (including Drupal) to help kickstart theme development. 
+#NOTE
+This theme includes build files (final CSS, Javascript, and Image files) for portability. Any changes to the theme should be done through the source files, which requires node.js, npm, and Gulp be installed.
+  
 
-Documentation is still in development.
+#REQUIREMENTS FOR THEME DEVELOPERS
+* node.js 10+
+* npm 6+
+* gulp 4 (installed globally, though package is included)
 
+#INSTALLATION FOR THEME DEVELOPERS
+* Run npm install to load vendor packages
+
+#USAGE FOR THEME DEVELOPERS
+* gulp build:  Builds entire asset folder (sass, scripts, etc.)
+* gulp watch:  Watches for changes in source directory and builds automatically
+* gulp js: Builds scripts only
+* gulp sass: Builds SASS files only

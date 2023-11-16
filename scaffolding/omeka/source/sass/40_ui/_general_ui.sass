@@ -2,23 +2,12 @@
  *  @file _general_ui.sass
  *  @category 40_ui
  *  @theme LOCAL
- *  @description Define various user interface elements. Buttons definitions are located in _ui_definitions.
- *    This file applies them to various elements and classes and defines special ui elements. Also see
- *    _form_ui.sass in this group.
+ *  @description Define various user interface elements.
+ *  @seealso  stop14-themesystem/source/sass/a_components/40_ui/ui_element_base  for core definitions and
+ *  preset styling. Also see 00_Main_Configuration
  *
  **/
 
-// Focus
-
-/** @todo: too broad. Also: should not be here. */
-// *:focus-visible, *:focus
-//  outline: 3px solid $impact
-//  outline-offset: 2px
-//  -moz-outline-radius: 0
-
-.reversed, .reverse
-  *:focus-visible, *:focus
-    outline-color: $white
 
 /* =======================
  * UI ICONS
@@ -35,82 +24,9 @@
     margin-left: rv(0)
 
 .ui-icon
-  height: 20px
+  height: $ui_compactheight
   width: auto
 
 .clear-filters
-  @extend %s-normal-k-70
   display: inline-block
   margin-left: rv(0)
-
-
-/* =======================
- * BUTTONS: APPLY DEFINITIONS
- * ======================= */
-
-button,
-.btn
-  @extend %button
-
-  &.outlined
-    @extend %btn-outlined
-
-  &.solid
-    @extend %btn-solid
-
-  &.cta
-    @extend %btn-cta
-
-  &.ghost
-    @extend %btn-ghost
-
-  &.reversed
-    @extend %btn-reversed
-  &.outlined,
-  &.solid,
-  &.ghost
-    &.deemphasized
-      opacity: 0.6
-
-.reversed
-  button,
-  .btn
-    @extend %btn-reversed
-
-
-/* =======================
- * DOWNLOAD ICONS
- * ======================= */
-
-.download-icons
-  display: flex
-  align-items: flex-start
-  margin-bottom: rv(1)
-
-  .icon-ui
-    text-decoration: none
-
-  +bp($desktop)
-    justify-content: space-between
-
-  .download-link
-    display: flex
-    align-items: flex-end
-    .download-icon
-      width: rv(2)
-      height: rv(2)
-      margin-left: rv(-1)
-
-.metadata-label
-  text-transform: uppercase
-
-  .value
-    display: -webkit-box
-    -webkit-line-clamp: 4
-    -webkit-box-orient: vertical
-    overflow: hidden
-
-
-.download-img
-  height: rv(0)
-  width: rv(0)

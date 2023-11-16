@@ -7,14 +7,17 @@
 
 .title-block
 
-  > div
-    +standard-edge-padding
+  +reversed
+    > div
+      +standard-edge-padding
 
   h1
     margin-top: 0
+    color: $black
 
-  h1, .deck, p, h2, h3
-    color: $white
+  +reversed
+    h1, .deck, p, h2, h3
+      color: $white
 
   *:last-child
     margin-bottom: 0

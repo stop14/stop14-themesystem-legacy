@@ -1,4 +1,4 @@
-/* 
+/*
    @file _section_list_cards.sass
    @category 60_site_elements
    @theme LOCAL
@@ -7,7 +7,7 @@
 
 .section-list-cards
   .card-container
-    @extend %card-browser-container
+    @extend %browser-container
 
   .cards
     @extend %card-grid
@@ -16,12 +16,12 @@
 .site-links
   max-width: 100%
   +bp($tablet)
-    display: flex 
+    display: flex
     flex-wrap: wrap
   +bp($desktop)
     display: flex
     justify-content: center
-    
+
   .site-links-intro
     display: block
     padding: rv(1)
@@ -32,16 +32,16 @@
       width: rv(10)
       height: rv(10)
       margin: 0 auto
-    
+
     +bp($tablet)
       padding: rv(1)
       width: 100%
       flex-shrink: 0
-    
+
     +bp($desktop)
       padding: 0 rv(3)
       max-width: rv(11)
-     
+
 
 .link-card
   padding: rv(1)
@@ -50,17 +50,17 @@
     max-width: 50%
     min-width: 33%
     padding: rv(1)
-  
+
   +bp($desktop)
     padding: 0 rv(3)
     max-width: rv(11)
-  
+
     img
       object-fit: cover
-    
+
   .link-card-info
     text-decoration: none
-      
+
     h3
       margin-bottom: rv(0)
       text-transform: initial
@@ -84,4 +84,4 @@
       text-decoration: underline
       color: $black
       display: inline-block
-    
+

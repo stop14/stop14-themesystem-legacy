@@ -10,7 +10,7 @@ $searchConfig = $this->api()->searchOne('search_configs', ['id' => $searchMainPa
 switch ($searchType) {
     case 'cross-site':
         $searchAction = $this->url('site/cross-site-search', ['action' => 'results'], true);
-        // break; // only site search supported
+    // break; // only site search supported
     case 'browser':
     case 'sitewide':
     default:
@@ -23,8 +23,8 @@ switch ($searchType) {
 <!-- BEGIN SEARCH FORM TEMPLATE  common/search-form.phtml -->
 <form action="<?= $searchAction ?>" id="search-form">
     <input type="text" name="<?= $name ?>" value="<?php echo $searchValue; ?>"
-        placeholder="<?php echo $translate('Search'); ?>"
-        aria-label="<?php echo $translate('Search'); ?>">
-    <button aria-label="<?php echo $translate('Submit search'); ?>" type="submit" tabindex="0"></button>
+           placeholder="<?php echo $translate('Search'); ?>"
+           aria-label="<?php echo $translate('Search'); ?>">
+    <button class='search-submit' aria-label="<?php echo $translate('Submit search'); ?>" type="submit" tabindex="0"></button>
 </form>
 <!-- END SEARCH FORM TEMPLATE -->
