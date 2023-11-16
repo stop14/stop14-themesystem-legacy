@@ -4,7 +4,7 @@
  *  @component _common_patterns.
  *  @description Adds some useful pattern mixins */
 
-=gradient-overlay-dark($angle: 180deg, $stop: 66%), $colour: $black)
+=gradient-overlay-dark($angle: 180deg, $stop: 66%, $colour: $black)
   position: relative
 
   &:before
@@ -24,7 +24,7 @@
 
 // legacy alias
 
-=overlay-dark($angle: 180deg, $stop: 66%), $colour: $black)
+=overlay-dark($angle: 180deg, $stop: 66%, $colour: $black)
   +gradient-overlay-dark($angle,$stop,$colour)
 
 =gradient-overlay-slide($angle: 0deg,$colour: $true_black)
