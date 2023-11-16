@@ -1,0 +1,42 @@
+
+/* =======================
+ * General UI and Button Definitions
+ * ======================= */
+
+
+// Note: applying styles to <button> elements often create problems with third-party modules and admin interfaces.
+// It is advised that you add a button class to button elements to avoid conflicts
+
+.button
+  @extend %button
+
+  &.compact
+    @extend %button-compact
+
+  &.large
+    @extend %button-large
+
+  &.standard
+    @extend %button-standard
+
+  &.link
+    @extend %button-link
+
+  &.outline
+    @extend %button-outline
+
+  &.cta
+    @extend %button-cta
+
+  &.feature-cta
+    @extend %button-feature-cta
+
+  &.more
+    @extend %button-more
+
+  &.search-submit,&[type='submit'].search-submit
+    @extend %button-search-submit
+
+button
+  &.search-submit,&[type='submit'].search-submit
+    @extend %button-search-submit
