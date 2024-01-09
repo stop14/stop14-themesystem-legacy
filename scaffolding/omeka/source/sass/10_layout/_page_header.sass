@@ -30,75 +30,20 @@ body > header
     height: 100%
     width: auto
 
+    // Portrait ratio logos are sub-optimal, tending to shrink to illegibility.
+    // This expands the logos to the full height of the masthead, then shifts it
+    // up into the padded area. This way developers can use the masthead height to find
+    // the optimal sizing for their identity.
 
-.desktop-nav
-  display: none
+    &.img-portrait
+      position: absolute
+      height: $masthead_height
+      width: auto
+      top: -0.5 * rv($mobile_edge_padding_factor)
 
-  +bp($desktop)
-    display: flex
+      +bp($tablet)
+        top: -0.5 * rv($edge_padding_factor)
 
-  > ul
-    +horizontal_list()
-    list-style-type: none
-    font-weight: $bold
-
-    > li
-      list-style-type: none
-      padding-right: rv(1)
-
-      &.active > a
-        color: $cta
-        border-bottom: 1px solid $cta
-
-      > a:hover, > a:focus
-        color: $impact
-        border-bottom: 1px solid $impact
-
-.has-sub-menu
-  position: relative
-  > a
-
-    &:after
-      content: ''
-      position: relative
-      display: inline-flex
-      justify-content: center
-      background: url(get_svg_url('icons-black/down-arrow-black')) no-repeat center
-      background-size: contain
-      background-position: top 2px // cheat
-      margin-left: rv(-3)
-      height: rv(-1)
-      width: rv(-1)
-
-
-  > ul
-    display: none
-    position: absolute
-    font-weight: $normal
-    text-transform: capitalize
-    list-style-type: none
-    top: 15px
-    font-size: rv(-1)
-    text-align: center
-    padding: rv(-2)
-    z-index: 1
-    background-color: $white
-    border: solid #c0c0bf 1px
-
-    > li
-      +line-height(1.25)
-      background-color: $white
-
-
-      > a
-        text-decoration: none
-        color: $black
-
-
-        &:hover,
-        &:focus
-          border-bottom: none
-          color: $clr2
 
 // MOBILE NAVIGATION //
 

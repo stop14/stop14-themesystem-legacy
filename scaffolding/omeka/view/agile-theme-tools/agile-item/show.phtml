@@ -2,19 +2,25 @@
 $translate = $this->plugin("translate");
 $escape = $this->plugin("escapeHtml");
 $partial = $this->plugin('partial');
-$mirador = $this->plugin('mirador');
 $dateHandler = $this->plugin('dateHandler');
 $this->htmlElement("body")->appendAttribute("class", "item resource show");
 $embedMedia = $this->siteSetting("item_media_embed", false);
 $itemMedia = $item->media();
 
+$mirador = null;
 $uv = null;
+
 // Check if UV plugin exists
 try {
   $uv = $this->plugin('universalViewer');
-
 } catch (Exception $exception) {
   $uv = null;
+}
+
+try {
+  $mirador = $this->plugin('mirador');
+} catch (Exception $exception) {
+  $mirador = null;
 }
 
 $oEmbed = $itemMedia && $itemMedia[0]->renderer() === 'oembed';
@@ -31,10 +37,20 @@ $temporal = $item->value('dcterms:temporal');
 $year = $temporal ? $dateHandler->render($temporal->value(),'Y') : null;
 $dateHandler->isDate($temporal);
 
-/** @var \Omeka\Api\Representation\ResourceClassRepresentation $resourceClass */
-$resourceClass = $item->resourceClass();
-$resourceClassLabel = $resourceClass->label();
-$label = $resourceClassLabel . ($year ? " {$year}" : '');
+$resourceClass = '';
+$label = 'Item';
+
+if (method_exists($item,'resourceClass') && $item->resourceClass() !== null) {
+  /** @var \Omeka\Api\Representation\ResourceClassRepresentation $resourceClass */
+  $resourceClass = $item->resourceClass();
+  $resourceClassLabel = $resourceClass->label();
+  $label = $resourceClassLabel . ($year ? " {$year}" : '');
+}
+
+// Terms to use in main description area. Format: $keyTerms = ['dcterms:termname'=>'Label to Use']
+
+$keyTerms = ['dcterms:creator'=>'Creator','dcterms:date'=>'Date','dcterms:source'=>'Source','dcterms:format'=>'Format'];
+
 
 // Determine which viewer to use. Note that the UV and Mirador viewers are displayed via the blocks disposition module,
 // which does not give contextual control over which viewer to display. Viewer handling is now done via css
@@ -47,7 +63,7 @@ $uv_media = [
   'moving image' // Use UV for video right now because current Mirador 3 implementation is crap
 ];
 
-if ($uv && in_array(strtolower($resourceClass->label()),$uv_media)) {
+if ($uv && in_array(strtolower($label),$uv_media)) {
   $viewer = 'viewer-uv';
 } elseif ($mirador) {
   $viewer = 'viewer-mirador';
@@ -133,7 +149,6 @@ foreach(array_intersect_key($item->values(),array_flip($relatedProperties)) as $
               <div class='metadata-list metadata-list-top'>
                 <?php
                 // Display key terms
-                $keyTerms = ['dcterms:creator'=>'Creator','dcterms:date'=>'Date','dcterms:source'=>'Source','dcterms:format'=>'Format'];
                   foreach(array_intersect_key($item->values(),$keyTerms) as $term => $value):
                     if (!empty($value['values'][0])):
                       printf("<div class='property' data-term='%s'>\n",$term);

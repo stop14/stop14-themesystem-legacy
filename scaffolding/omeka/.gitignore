@@ -1,0 +1,9 @@
+# Ignore build files
+
+/asset
+/node_modules
+
+# Ignore Mac file system
+
+.DS_Store
+/.DS_Store
