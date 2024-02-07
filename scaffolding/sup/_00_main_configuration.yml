@@ -115,7 +115,6 @@ sizefactors: "(base: 0, h1: 6, h2: 5, h3: 3, h4: 2, h5: 0, h6: 0)"
 line_heights: "(base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)"
 typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
 paragraph_spacing: "clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
-typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
 
 # Fonts
 basefont: "Roboto, Tahoma, Arial, sans-serif"
@@ -149,8 +148,8 @@ ui_border_width: 1px
 ui_border_color: neutral(40)
 ui_hover_border_color: $impact
 ui_checkbox_height: 20px
-ui_element_font_size: rv(0)
-ui_checkbox_label_font_size: rv(-1)
+ui_element_font_size: clamped(-1,0)
+ui_checkbox_label_font_size: clamped(-1,0)
 # mobile ui controls
 
 mobile_overlay_spacing: rv(2)

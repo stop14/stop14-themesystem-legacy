@@ -28,7 +28,7 @@ $filter_icon_reverse: no-repeat url(get_svg_url('icons/filter-icon-reverse'))
 
 // Button Icons
 
-$submit_arrow: no-repeat url(get_svg_url('icons/right-arrow-black'))
+$submit_arrow: no-repeat url(get_svg_url('icons/right-arrow-white'))
 $submit_arrow_hover: no-repeat url(get_svg_url('icons/right-arrow-white'))
 $search_icon: no-repeat url(get_svg_url('icons/search-black'))
 $search_icon_hover: no-repeat url(get_svg_url('icons/search-black'))
@@ -107,7 +107,7 @@ $close_icon: no-repeat url(get_svg_url('icons/close-black'))
 
 =background-icon ($background: $black, $size: $btn_icon_size)
   background: $background
-  background-position: right 0 center
+  background-position: right $ui_padding center
   background-size: $size
 
 // Alias for backwards compatibility

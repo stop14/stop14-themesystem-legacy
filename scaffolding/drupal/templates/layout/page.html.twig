@@ -55,13 +55,14 @@
 
 
 <header>
-  <section id="main-nav" class='full'>
-    <a class="hamburger-menu" title="Hamburger Menu" href="#"><img class="hamburger-menu-img" alt="Hamburger Menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
-    <div class="logo-div"><a class="nav-logo" title="Home" href="{{ url('<front>') }}">{{ logo }}</a></div>
-    <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user-login" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-active.svg"></a>
-    {{ page.navigation }}
+  <section id="page-header" class='full'>
+    {{ page.header }}
+    <nav class="toolbar-menu">
+      <a class="search" title="Search this site" href="{{ base_path}}search"><img class="toolbar-search" alt="Search the site" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-active.svg"></a>
+      <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user-login" alt="User page / Login" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-active.svg"></a>
+      <a class="menu-button"><img class="menu-image" alt="Show menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/menu.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/menu-active.svg"></a>
+    </nav>
   </section>
-
 </header>
 
 
@@ -218,7 +219,7 @@
 {% endif %}
 
 {% if page.overlay or page.overlay %}
-<section id="modal-overlay" class='full' role="region">
+<section id="overlay" class='full' role="region">
     <img class="nav-close-mobile" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-white.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
 
   <div class='tier-container'>

@@ -18,24 +18,41 @@
 
   @at-root #{$splash-section-selector}  #{$container-selector}
     width: 100%
-    height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance_mobile})
-    
+    @if $splash_height_mobile == 'auto'
+      height: auto
+    @else
+      height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance_mobile})
+
     +bp($tablet)
-      height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance_mobile})
+      @if $splash_height_tablet == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance_mobile})
 
     +bp($desktop)
-      height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$masthead_clearance})
+      @if $splash_height_desktop == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$masthead_clearance})
       min-height: 750px
 
   @at-root #{$admin-toolbar-selector} #{$splash-section-selector} #{$container-selector}
-    height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
-    
-    +bp($tablet)
-      height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
+    @if $splash_height_mobile == 'auto'
+      height: auto
+    @else
+      height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
 
+    +bp($tablet)
+      @if $splash_height_tablet == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$masthead_clearance} - #{$admin_bar_height})
 
     +bp($desktop)
-      height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$admin_bar_tray} - #{$admin_bar_height} - #{$masthead_clearance})
+      @if $splash_height_desktop == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$admin_bar_tray} - #{$admin_bar_height} - #{$masthead_clearance})
 
 
 /**

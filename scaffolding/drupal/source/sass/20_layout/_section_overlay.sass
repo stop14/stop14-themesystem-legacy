@@ -1,0 +1,96 @@
+/**
+ *  @file _section_overlay.sass
+ *  @category 10_layout
+ *  @theme LOCAL
+ *  @description Defines mega menu. */
+
+#overlay
+  position: fixed
+  width: 100%
+  height: 100%
+  background: transparent
+  z-index: 10
+  top: 0
+  display: none
+
+
+  .tier-container
+    position: relative
+    display: flex
+    justify-content: flex-start
+    background-color: set-color(1,10)
+    margin: $masthead_height rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor)
+
+    +bp($tablet)
+      margin: $masthead_height rv($edge_padding_factor) rv($edge_padding_factor) rv($edge_padding_factor)
+
+    // Drupal admin bars
+
+    @at-root .toolbar-horizontal
+      #overlay .tier-container
+        margin-top: calc(#{$masthead_height} + #{$admin_bar_height})
+
+    @at-root .toolbar-horizontal.toolbar-tray-open
+      #overlay .tier-container
+        margin-top: calc(#{$masthead_height} + #{$admin_bar_height} + #{$admin_bar_tray})
+
+
+
+    // Drop shadow
+
+    &:after
+      content: ''
+      position: absolute
+      bottom: rv($edge_padding_factor) * -1
+      width: 100%
+      height: rv($edge_padding_factor)
+      background: linear-gradient(180deg, rgba(255,255,255,0.7) 10%, rgba(255,255,255,0) 100%)
+
+
+    > div
+
+      nav
+        padding: rv(-1)
+
+        +bp($tablet)
+          padding: rv(1)
+
+        h2
+          display: initial
+          padding: rv($mobile_edge_padding_factor)
+          background-color: $clr3
+          margin-bottom: rv(0)
+
+        ul
+          padding: 0
+
+          li
+            margin-bottom: 10px
+            +bp($tablet)
+              margin-bottom: .960925rem
+              list-style-type: none
+
+  .nav-close,
+  .nav-close-mobile
+    position: absolute
+    right: rv($mobile_edge_padding_factor)
+    top: rv($mobile_edge_padding_factor)
+    height: $ui_element_height
+    width: $ui_element_height
+
+    +bp($tablet)
+      right: rv($edge_padding_factor)
+      top: rv($edge_padding_factor)
+
+
+  .nav-close
+    display: none
+
+    +bp($tablet)
+      display: block
+
+  .nav-close-mobile
+    display: block
+
+    +bp($tablet)
+      display: none

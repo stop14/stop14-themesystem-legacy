@@ -31,13 +31,15 @@
   *
   */
 
-%link
+%underscore
   text-decoration: underline
+
+%link
+  @extend %underscore
   border: 0
 
   &:hover
     color: set-color(4)
-    border: 0
 
 
 %button-base
