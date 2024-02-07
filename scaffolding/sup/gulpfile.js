@@ -77,8 +77,8 @@ var paths = {
  * Copy third-party scripts and styles.
  */
 
-var vendor_scripts = ['node_modules/ev-emitter/ev-emitter.js','node_modules/imagesloaded/imagesloaded.js','node_modules/jquery-reflow-table/dist/js/reflow-table.js','node_modules/in-view/dist/in-view.min.js','node_modules/select2/dist/js/select2.min.js'];
-var vendor_styles = ['node_modules/jquery-reflow-table/dist/css/reflow-table.css','node_modules/select2/dist/css/select2.min.css'];
+var vendor_scripts = ['node_modules/tablesort/dist/tablesort.min.js','node_modules/tablesort/dist/sorts/tablesort.number.min.js', 'node_modules/jquery/dist/jquery.js','node_modules/superfish/dist/js/hoverIntent.js','node_modules/superfish/dist/js/superfish.js','node_modules/ev-emitter/ev-emitter.js','node_modules/imagesloaded/imagesloaded.js','node_modules/jquery-reflow-table/dist/js/reflow-table.js','node_modules/in-view/dist/in-view.min.js','node_modules/select2/dist/js/select2.min.js', 'node_modules/masonry-layout/dist/masonry.pkgd.js'];
+var vendor_styles = ['node_modules/superfish/dist/css/superfish.css','node_modules/jquery-reflow-table/dist/css/reflow-table.css','node_modules/select2/dist/css/select2.min.css'];
 
 
 /**
@@ -157,7 +157,8 @@ var uglify = require('gulp-terser');
 var modernizr = require('gulp-modernizr');
 
 // Styles
-var sass = require('gulp-dart-sass');
+//var sass = require('gulp-dart-sass');
+var sass = require('gulp-sass')(require('sass'));
 var sourcemaps = require("gulp-sourcemaps");
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
@@ -297,12 +298,12 @@ var buildVendorScripts = function(done) {
   if (!settings.scripts) return done();
 
   return src(vendor_scripts)
-    .pipe(concat(paths.scripts.vfilename + '.js'))
-    .pipe(header(banner.full, {package: package}))
-    .pipe(dest(paths.scripts.output))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(dest(paths.scripts.output));
+        .pipe(concat(paths.scripts.vfilename + '.js'))
+        .pipe(header(banner.full, {package: package}))
+        .pipe(dest(paths.scripts.output))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+        .pipe(dest(paths.scripts.output));
 }
 
 // Lint scripts
