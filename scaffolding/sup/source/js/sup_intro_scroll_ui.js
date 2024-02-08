@@ -1,13 +1,28 @@
 $(document).ready(function() {
 
-  let intro = document.getElementById("introduction");
+
+  // For fixed height designs give the body class a mode='fixed-height' attribute OR set the second term here to true
+
+  const smoothScrollActive = $('body').attr('mode') === 'fixed-height' || false;
+  const intro = document.getElementById("introduction");
+
   if (typeof intro === "object" && intro !== null) {
+    if (smoothScrollActive) {
+      setIntroUI();
+    } else {
+      function hideIntroUI() {
+        $('#introduction-ui-top, #introduction-ui-bottom').hide();
+        $(intro).removeClass('scrollable-content');
+      }
 
-    setIntroUI();
+      hideIntroUI();
 
-}
+    }
+  }
 
 });
+
+
 
 
 function setIntroUI() {
