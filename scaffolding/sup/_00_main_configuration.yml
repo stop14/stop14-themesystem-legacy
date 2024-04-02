@@ -145,6 +145,7 @@ ui_compactheight: 40px
 ui_largeheight: 80px
 ui_border_radius: 8px
 ui_border_width: 1px
+ui_form_text_color: neutral(90)
 ui_border_color: neutral(40)
 ui_hover_border_color: $impact
 ui_checkbox_height: 20px
@@ -204,6 +205,13 @@ btn_search_hover_border_color: "mix($black,$cta,10%)"
 btn_search_hover_bg_color: "mix($black,$cta,10%)"
 btn_search_hover_border_color: "mix($black,$cta,10%)"
 
+btn_reset_color: neutral(90)
+btn_reset_bg_color: neutral(30)
+btn_reset_border_width: 0
+btn_reset_border_color: neutral(90)
+btn_reset_hover_color: neutral(10)
+btn_reset_hover_bg_color: neutral(90)
+btn_reset_hover_border_color: neutral(90)
 
 outline_btn_color: $mid_neutral
 outline_btn_hover_color: $ui_hover_border_color
@@ -326,3 +334,13 @@ slide_item_caption_bottom: auto
 
 #SUP
 intro_btn_height: 40px
+ui_mobile_app_controls_breakpoint: $desktop
+ui_display_controls_icon_size: $ui_mobile_app_controls_footer_height * 0.6
+ui_mobile_app_controls_footer_height: $masthead_height
+
+#mirador
+mirador_height_mobile: 60vh
+mirador_height_tablet: 50vh
+mirador_height_desktop: 60vh
+mirador_min_height: 400px
+

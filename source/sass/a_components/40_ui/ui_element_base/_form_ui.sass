@@ -13,11 +13,12 @@ textarea
   display: block
   height: $ui_element_height
   padding: $ui_padding
-  border: 1px solid neutral(40)
+  border: 1px solid $ui_border_color
   font-family: $basefont
   font-size: $ui_element_font_size
+  color: $ui_form_text_color
 
-input,
+input:not([type='image']),
 textarea
   border-radius: $ui_border_radius
 
@@ -132,8 +133,14 @@ fieldset, details
 
   legend, summary
     font-size: $ui_checkbox_label_font_size
-    width: 100%
+
+  summary
+    list-style-type: none
+
+fieldset.accordion, details.accordion
+  legend, summary
     position: relative
+    width: 100%
 
     // General and closed accordion styles
     &::after
@@ -142,6 +149,3 @@ fieldset, details
       width: 8px
       right: 0
       transition: transform 0.3s ease-in-out
-
-  summary
-    list-style-type: none
