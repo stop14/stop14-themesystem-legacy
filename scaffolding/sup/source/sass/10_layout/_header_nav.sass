@@ -12,11 +12,15 @@ body
     box-sizing: border-box
     right: rv($mobile_edge_padding_factor)
     top: rv($mobile_edge_padding_factor)
+    height: fit-content
     width: fit-content
-    background: transparent
-    color: $black
-    padding: 0
-    +font-size(1)
+    background: $black
+    color: $white
+    font-size: clamped(-1,0)
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: flex-end
 
     +bp($tablet)
       right: initial
@@ -30,7 +34,37 @@ body
     > nav
       +horizontal-list()
       justify-content: flex-end
-      text-transform: uppercase
+      padding: rv(-4)
 
       a
-        font-weight: $bold
+        color: inherit
+        font-weight: $normal
+
+        &:visited
+          color: inherit
+          text-decoration: underline
+
+          &:hover
+            text-decoration: underline
+
+
+#sup-ornament
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 30px
+  width: 30px
+  background-color: $black
+  border-radius: 25%
+  margin: 0 rv($mobile_edge_padding_factor)
+
+  a
+    display: block
+
+  img
+    height: 100%
+    width: 100%
+    object-fit: cover
+
+    &:hover
+      filter: brightness(0.9)

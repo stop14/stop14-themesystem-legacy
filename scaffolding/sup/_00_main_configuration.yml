@@ -234,7 +234,7 @@ very_slow: $heartbeat * 16
 sluggish: $heartbeat * 32
 
 # Slide Timing
-slide_transition: $slow
+slide_transition: $sluggish
 
 
 ## 06 SITE ELEMENTS

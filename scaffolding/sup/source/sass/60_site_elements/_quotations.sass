@@ -29,8 +29,7 @@
     text-align: center
     font-size: clamped(1,2,sml,xxlrg)
     font-weight: $medium
-    padding: rv($mobile_edge_padding_factor)
-
+    padding: rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) 0 rv($mobile_edge_padding_factor)
     margin-bottom: 0
 
 
@@ -45,13 +44,13 @@
   height: auto
   margin: rv(-1) rv(-1) rv(-1) auto
   z-index: 1
-  transform: translateY(#{rv($edge_padding_factor) * -1})
+  transform: scale(0.5)
 
   li
     height: rv(-1)
     width: rv(-1)
     border-radius: 50%
-    background-color: set-color-tint(2,40)
+    background-color: set-color(1,50)
     cursor: pointer
     margin-right: rv(0)
 

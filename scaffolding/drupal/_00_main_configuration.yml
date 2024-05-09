@@ -54,17 +54,17 @@ base_line_height: 1.5
 blh: $basesize * $base_line_height
 scale: 1.33
 max_width: 1400px
-legible_inset_width: 750px
+legible_inset_width: 720px
 
 # Structure
-masthead_height: 60px
+masthead_height: 50px
 footer_height: 100px
 admin_bar_height: 40px
 admin_bar_tray: 40px // Second-tier admin bar
 masthead_clearance: rv(0)
 masthead_clearance_mobile: rv(-1)
-splash_height_mobile: 50vh
-splash_height_tablet: 50vh
+splash_height_mobile: auto
+splash_height_tablet: auto
 splash_height_desktop: 100vh
 min_splash_height: 700px
 proportional_width_unit: "math.div(100% - math.div(100,$scale),2)"
@@ -72,14 +72,17 @@ standard_sidebar_width: $proportional_width_unit
 right_sidebar_width: "$standard_sidebar_width * 2"
 left_sidebar_width: $standard_sidebar_width
 
+footer_branding_width: 150px
+footer_badge_width: $footer_branding_width * 1.5
+
 # Spacing
 
 mobile_grid_gap_factor: -1
 grid_gap_factor: 0
 block_spacing: 2
 mobile_block_spacing: -2
-edge_padding_factor: 1
-mobile_edge_padding_factor: 0
+edge_padding_factor: 0
+mobile_edge_padding_factor: -1
 
 
 # Breakpoints
@@ -104,9 +107,9 @@ font_path: "'../fonts'"
 basetypesize: 1rem
 default-min-bp: sml
 default-max-bp: xlrg
-min_sizefactors: "(base: -1, h1: 4, h2: 3, h3: 2, h4: 0, h5: -1, h6: -1)"
-sizefactors: "(base: 0, h1: 6, h2: 5, h3: 3, h4: 2, h5: 0, h6: 0)"
-line_heights: "(base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)"
+min_sizefactors: "(base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)"
+sizefactors: "(base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)"
+line_heights: "(base: $base_line_height, h1: 1.1, h2: 1.25, h3: 1.25, h4: $base_line_height, h5: $base_line_height, h6: $base_line_height)"
 typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
 paragraph_spacing: "clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
 
