@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 41.34 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #00171a;
+        stroke-width: 0px;
+      }
+    </style>
+    <symbol id="Checkmark" viewBox="0 0 41.34 30">
+      <path class="cls-1" d="M3.28,12.16l-3.28,3.36,14.57,14.48L41.34,3.36l-3.36-3.36L14.61,23.36,3.28,12.2v-.04Z"/>
+    </symbol>
+  </defs>
+  <use width="41.34" height="30" xlink:href="#Checkmark"/>
+</svg>

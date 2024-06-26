@@ -155,6 +155,7 @@ ui_element_font_size: clamped(-1,0)
 ui_checkbox_label_font_size: clamped(-1,0)
 ui_icon_height: $ui_minheight * 0.4
 ui_select_indicator_size: $ui_icon_height
+ui_form_text_color: neutral(50)
 
 # mobile ui controls
 
