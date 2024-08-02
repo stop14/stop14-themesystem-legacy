@@ -6,21 +6,25 @@
 
 
 #block-views-block-feature-title-default-block
-  +standard_edge_padding_horizontal()
   height: 100%
   position: relative
-  
+  +standard_edge_padding_horizontal()
+
   .views-row
     position: relative
   .title-group
-    +splash-feature-inset() // see 60_site_elements/12_mixins/splash_feature
-    +inset-text()
     text-align: left
+  // Repetition here is a workaround for sass deprecation:  https://sass-lang.com/d/mixed-decls
+  .title-group
+    +splash-feature-inset() // see 60_site_elements/12_mixins/splash_feature
+  .title-group
     +standard_edge_padding
-    
+  .title-group
+    +inset-text()
+
   .cta-link, .cta-area
     display: none
-    
+
     +bp($desktop)
       display: block
 
@@ -40,9 +44,11 @@
       margin-bottom: rv(1)
 
   figure
-    +splash-image-support()
     +gradient-overlay-dark()
-    
+  figure
+    +splash-image-support()
+
+
   .deck
     width: 100%
 

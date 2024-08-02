@@ -41,14 +41,13 @@
 
 =callout-side($direction: 'left',$shift: $callout_shift, $callout_width: $callout_width, $inset: $callout_inset, $breakpoint: $callout_breakpoint)
   --callout-width: #{$callout_width}
-
+  width: 50%
   $shiftval: rv($shift)
 
   @if $inset == null
     padding: 0 rv($shift)
     margin: 0 // set locally
 
-  width: 50%
   @if $direction == 'left'
     float: left
     padding-right: rv($mobile_edge_padding_factor)
@@ -63,14 +62,6 @@
 
     @if $inset != null
       margin: 0 0 rv($inset) 0
-
-    > *:first-child
-      margin-top: 0
-      padding-top: 0
-
-    > *:last-child
-      margin-bottom: 0
-      padding-bottom: 0
 
     @if $direction == 'left'
       float: left
@@ -94,3 +85,11 @@
         padding-left: rv($inset)
         left: calc(#{$shiftval} + (var(--callout-width)/2))
         margin-left: calc((#{$shiftval} + (var(--callout-width)/2)) * -1)
+
+  > *:first-child
+    margin-top: 0
+    padding-top: 0
+
+  > *:last-child
+    margin-bottom: 0
+    padding-bottom: 0
