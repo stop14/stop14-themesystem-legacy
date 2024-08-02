@@ -5,13 +5,30 @@ subdir_icons: "'/icons'"
 subdir_marks: "'/marks'"
 logo_path: "map-get($asset_dirs,'svg') + $subdir_marks + '/logo.svg'"
 
-## 00 VISIBILITY CONTROL
-visibility_stack: "('main > div','#secondary-content','#tertiary-content','#quaternary-content','.block-facets-block','#block-responses-profile-feature')"
-remove_visibility_class: true
-visibility_offset: 50
-visibility_threshold: 0.2
-visibility_stack_animation_speed: 0
-visibility_stack_animation_delay: null
+# KEY VALUES
+rootsize: 100%  // Size applied to the HTML object. 100% = 1em = 16px
+base_line_height: 1.5 // Text baseline spacing
+scale: 1.33
+max_width: 1900px
+legible_inset_width: 720px
+
+# Fonts
+# Note that fonts must be loaded to make them available.
+# Font-loading can be configured in ./source/sass/00_configuration/_04_typography_fonts.sass
+basefont: "Roboto, Tahoma, Arial, sans-serif"
+headingfont: "Roboto, Tahoma, Arial, sans-serif"
+altfont: "Georgia, serif"
+codefont: "'IBM Plex Mono', Monaco, Courier New, monospace"
+
+# Font sizing / Fluid type
+basetypesize: 1rem
+default-min-bp: sml
+default-max-bp: xlrg
+min_sizefactors: "(base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)"
+sizefactors: "(base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)"
+line_heights: "(base: $base_line_height, h1: 1.1, h2: 1.25, h3: 1.25, h4: $base_line_height, h5: $base_line_height, h6: $base_line_height)"
+typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
+paragraph_spacing: "clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
 
 ## 01 COLOUR AND PATTERNS
 clr1: #00BDD4
@@ -25,8 +42,23 @@ clr8: #00171A
 clr9: #000000
 black: $clr8
 white: white
+true_black: #000000
+
+# Background
+bgcolor: $white
+footer_bg: $black
+
+# Colour Aliases
+impact: $clr2
+cta: $clr1
+de_emphasized: neutral(40)
+de_activated: neutral(30)
+link_colour: $black
+
 
 # Neutral aliases
+# NOTE: These values are deprecated and left backwards-compatibility. Use neutral() directly or make
+# more meaningful aliases.
 lightest_neutral: neutral(5)
 lighter_neutral: neutral(30)
 light_neutral: neutral(40)
@@ -36,25 +68,10 @@ dark_neutral: neutral(70)
 darker_neutral: neutral(80)
 darkest_neutral: neutral(90)
 
-# Background
-bgcolor: $white
-footer_bg: $black
-
-# Colour Aliases
-impact: $clr2
-cta: $clr1
-de_emphasized: $light_neutral
-de_activated: $lighter_neutral
-link_colour: $black
 
 ## 02 LAYOUT
-rootsize: 100%
 basesize: 1rem
-base_line_height: 1.5
 blh: $basesize * $base_line_height
-scale: 1.33
-max_width: 1400px
-legible_inset_width: 720px
 
 # Structure
 masthead_height: 50px
@@ -102,22 +119,6 @@ ultrawide: $ultrawide_breakpoint
 # Example: +load_font('IBMPlexMono','ibmplexmono',($normal,$bold),(normal,italic))
 
 font_path: "'../fonts'"
-
-# Font sizing / Fluid type
-basetypesize: 1rem
-default-min-bp: sml
-default-max-bp: xlrg
-min_sizefactors: "(base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)"
-sizefactors: "(base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)"
-line_heights: "(base: $base_line_height, h1: 1.1, h2: 1.25, h3: 1.25, h4: $base_line_height, h5: $base_line_height, h6: $base_line_height)"
-typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
-paragraph_spacing: "clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
-
-# Fonts
-basefont: "Roboto, Tahoma, Arial, sans-serif"
-headingfont: "Roboto, Tahoma, Arial, sans-serif"
-altfont: "Georgia, serif"
-codefont: "'IBM Plex Mono', Monaco, Courier New, monospace"
 
 # Tables
 row_header_bg: neutral(10)
@@ -219,6 +220,17 @@ ui_select_max_width: 100%
 heartbeat: 0.2s
 standard_properties: "translate3d scale opacity background-color"
 base_delay: null
+
+## 00 VISIBILITY CONTROL
+# Elements in the visibility stack are invisible (opacity: 0) by default. A “visible” class is added when the element
+# scrolls into the viewport, allowing for build animations to be triggered.
+
+visibility_stack: "('main > div','#secondary-content','#tertiary-content','#quaternary-content')"
+remove_visibility_class: true
+visibility_offset: 50
+visibility_threshold: 0.2
+visibility_stack_animation_speed: 0
+visibility_stack_animation_delay: null
 
 # Aliases
 very_fast: $heartbeat
