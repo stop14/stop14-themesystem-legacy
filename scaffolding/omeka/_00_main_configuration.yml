@@ -50,21 +50,21 @@ link_colour: $black
 ## 02 LAYOUT
 rootsize: 100%
 basesize: 1rem
-base_line_height: 1.5
+base_line_height: 1.4
 blh: $basesize * $base_line_height
 scale: 1.33
-max_width: 1400px
-legible_inset_width: 720px
+max_width: 1900px
+legible_inset_width: 750px
 
 # Structure
-masthead_height: 50px
+masthead_height: 60px
 footer_height: 100px
 admin_bar_height: 40px
 admin_bar_tray: 40px // Second-tier admin bar
 masthead_clearance: rv(0)
 masthead_clearance_mobile: rv(-1)
-splash_height_mobile: auto
-splash_height_tablet: auto
+splash_height_mobile: 50vh
+splash_height_tablet: 50vh
 splash_height_desktop: 100vh
 min_splash_height: 700px
 proportional_width_unit: "math.div(100% - math.div(100,$scale),2)"
@@ -72,17 +72,13 @@ standard_sidebar_width: $proportional_width_unit
 right_sidebar_width: "$standard_sidebar_width * 2"
 left_sidebar_width: $standard_sidebar_width
 
-footer_branding_width: 150px
-footer_badge_width: $footer_branding_width * 1.5
-
 # Spacing
-
 mobile_grid_gap_factor: -1
 grid_gap_factor: 0
 block_spacing: 2
 mobile_block_spacing: -2
-edge_padding_factor: 0
-mobile_edge_padding_factor: -1
+edge_padding_factor: 1
+mobile_edge_padding_factor: 0
 
 
 # Breakpoints
@@ -104,12 +100,12 @@ ultrawide: $ultrawide_breakpoint
 font_path: "'../fonts'"
 
 # Font sizing / Fluid type
-basetypesize: 1rem
+basetypesize: 0.9rem
 default-min-bp: sml
 default-max-bp: xlrg
 min_sizefactors: "(base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)"
 sizefactors: "(base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)"
-line_heights: "(base: $base_line_height, h1: 1.1, h2: 1.25, h3: 1.25, h4: $base_line_height, h5: $base_line_height, h6: $base_line_height)"
+line_heights: "(base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)"
 typescale: "(base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)"
 paragraph_spacing: "clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))"
 
@@ -151,11 +147,10 @@ ui_border_width: 1px
 ui_border_color: neutral(40)
 ui_hover_border_color: $impact
 ui_checkbox_height: 20px
-ui_element_font_size: clamped(-1,0)
-ui_checkbox_label_font_size: clamped(-1,0)
+ui_element_font_size: rv(0)
+ui_checkbox_label_font_size: rv(-2)
 ui_icon_height: $ui_minheight * 0.4
 ui_select_indicator_size: $ui_icon_height
-ui_form_text_color: neutral(50)
 
 # mobile ui controls
 
@@ -250,7 +245,7 @@ card_border_radius: $border-radius
 default_next_btn: "'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJhIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNi4yNCAzMCI+PGRlZnM+PHN0eWxlPi5ie2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImIiIGQ9Ik0xNi4yNCwxNWMwLC4zMi0uMTIsLjYzLS4zNiwuODdMMi4xMSwyOS42NGMtLjQ4LC40OC0xLjI3LC40OC0xLjc1LDAtLjQ4LS40OC0uNDgtMS4yNywwLTEuNzVMMTMuMjUsMTUsLjM2LDIuMTFDLS4xMiwxLjYzLS4xMiwuODQsLjM2LC4zNiwuODQtLjEyLDEuNjMtLjEyLDIuMTEsLjM2TDE1Ljg3LDE0LjEzYy4yNCwuMjQsLjM2LC41NiwuMzYsLjg3WiIvPjwvc3ZnPg=='"
 default_prev_btn: "'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJhIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNi4yNCAzMCI+PGRlZnM+PHN0eWxlPi5ie2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImIiIGQ9Ik0wLDE1YzAtLjMyLC4xMi0uNjMsLjM2LS44N0wxNC4xMywuMzZjLjQ4LS40OCwxLjI3LS40OCwxLjc1LDAsLjQ4LC40OCwuNDgsMS4yNywwLDEuNzVMMi45OSwxNWwxMi44OSwxMi44OWMuNDgsLjQ4LC40OCwxLjI3LDAsMS43NS0uNDgsLjQ4LTEuMjcsLjQ4LTEuNzUsMEwuMzYsMTUuODdDLjEyLDE1LjYzLDAsMTUuMzIsMCwxNVoiLz48L3N2Zz4='"
 default_slide_item_template: 1
-default_slide_viewer_template: 1
+default_slide_viewer_template: 2
 slide_viewer_padding: rv(0)
 slide_viewer_marker_size: 10px
 slide_viewer_ui_spacing: rv(-1)
@@ -307,10 +302,11 @@ page_marker_margin: 0 $slide_viewer_ui_spacing 0 0
 
 # Sequential Slider Nav (next/previous)
 
-sequential_nav_top: 0
-sequential_nav_bottom: 0
-sequential_nav_left: $slide_viewer_padding
-sequential_nav_right: $slide_viewer_padding
+sequential_nav_top: initial
+sequential_nav_bottom: rv($mobile_edge_padding_factor)
+sequential_nav_left: 50%
+sequential_nav_right: auto
+sequential_nav_transform: translateX(-50%)
 sequential_nav_justify_content: space-between
 sequential_nav_align_items: center
 sequential_control_spacing: $slide_viewer_ui_spacing
@@ -336,4 +332,3 @@ slide_item_caption_padding: 0 $slide_viewer_padding
 slide_item_caption_height: auto
 slide_item_caption_position: absolute
 slide_item_caption_bottom: 0
-

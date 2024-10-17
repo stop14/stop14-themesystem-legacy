@@ -429,8 +429,8 @@ var buildPNGs = function (done) {
   // Make sure this feature is activated before running
   if (!settings.pngs) return done();
 
-  // Optimize SVG files
-  return src(paths.pngs.input)
+  // Optimize PNG files
+  return src(paths.pngs.input, {encoding: false})
     .pipe(imagemin())
     .pipe(dest(paths.pngs.output));
 };
