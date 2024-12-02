@@ -56,9 +56,7 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
   cursor: pointer
-  @extend %underscore
 
   &:hover
     color: $btn_hover_color
@@ -99,7 +97,6 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
   @extend %underscore
 
   &:hover
@@ -115,8 +112,6 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
-  @extend %underscore
 
   &:hover
     background: $black
@@ -132,9 +127,7 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
   border: none
-  @extend %underscore
 
 %button-standard
   @extend %button
@@ -235,23 +228,27 @@
     border-color: $btn_submit_hover_border_color
 
 %button-search
-  @extend %button
+  @extend %button-ghost
+  @extend %icon-label // not working?
   +search-icon
-  border-width: $btn_search_border_width
-  border-color: $btn_search_border_color
-  font-style: normal
+  font-size: clamped(-3,-2)
   background-color: $btn_search_bg_color
   color: $btn_search_color
+  padding-right: calc(#{$ui_minheight} + 5px)
   min-width: $ui_minheight !important
   height: $ui_minheight !important
   text-decoration: none
   justify-content: flex-start
+  align-items: center
 
   &:hover
     +search-icon-hover
     color: $btn_search_hover_color
-    background-color: $btn_search_hover_color
-    border-color: $btn_search_hover_border_color
+    background-color: $btn_search_hover_bg_color
+
+%button-search-clear
+  @extend %button-search
+  +clear-icon
 
 %input-text
   font-family: $basefont
@@ -262,6 +259,10 @@
   border-radius: $ui_border_radius
   border: 1px solid $ui_border_color
   max-width: 500px
+  background-color: $white
+
+  +reversed
+    background-color: $white
 
   &:hover
     border-color: $ui_hover_border_color

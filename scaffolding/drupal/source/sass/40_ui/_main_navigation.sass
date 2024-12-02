@@ -1,0 +1,39 @@
+/**
+ *  @file _toolbar_menu.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Manages the icon menu.
+ *  @seealso 20_layout/_section_header, _toobar_menu, _component_superfish_navigation.
+ */
+
+// Drupal’s nav is a block with a site-specific id. These styles need to be applied to navs in the page header only.
+// @at-root declaration made to keep the nav componentization intact.
+
+nav
+  @at-root #page-header &
+
+    *
+      color: inherit
+
+    > ul
+      +horizontal-list(0)
+
+      li
+        line-height: 1
+        text-align: center
+      a
+        color: $black
+        display: inline-flex
+        flex-direction: row
+        align-items: center
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        max-width: 200px
+        border: 0px
+        text-transform: uppercase
+        text-decoration: none
+
+        &:hover
+          color: neutral(60)
+          border: 0

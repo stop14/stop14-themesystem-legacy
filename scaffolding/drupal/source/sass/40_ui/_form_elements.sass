@@ -53,7 +53,7 @@ input[type="search"]::-webkit-search-cancel-button
   width: 20px
   height: 20px
   margin-left: 10px
-  background: url(get_svg_url('icons/close-grey')) no-repeat center
+  background: url(get_svg_url('icons/close-neutral')) no-repeat center
   +close-icon-hover
 
 input[type="checkbox"],
@@ -76,15 +76,13 @@ input[type="checkbox"]
   &:hover
     border-color: $ui_hover_border_color
 
-  &:checked
-    background-color: $impact
-
   & + label
     display: block
     vertical-align: middle
     padding: calc((#{$ui_checkbox_height} - #{rv(0)}) * 0.5) 0 0 calc(#{$ui_checkbox_height} + #{rv(0)}) // Align to to middle of checkbox, left to width of checkbox plus a gap. Top calculates the height of the checkboxes, less the size of the label, divided by two
     line-height: $ui_checkbox_height
     font-weight: $normal
+    margin: 0
 
 input[type="radio"]
   appearance: none
@@ -108,9 +106,12 @@ select
   width: $ui_select_width
   min-width: $ui_select_min_width
   max-width: $ui_select_max_width
+  background-image: url(get_svg_url('icons/accordion-expand-default'))
+  background-size: auto $ui_element_height * 0.3
+  padding-right: calc(#{$ui_padding} + (#{$ui_element_height * 0.3} * 2))
 
-label + input
-  margin-top: rv(-3)
+  &:hover
+    background-image: url(get_svg_url('icons/accordion-expand-default'))
 
 fieldset
   border: 1px solid neutral(20)
@@ -123,22 +124,15 @@ legend
 
 label
   @extend %value-label
+  margin-bottom: rv(-4)
 
-label.option
-  font-family: $basefont
-  font-weight: $normal
+  &.option
+    font-family: $basefont
+    font-weight: $normal
 
 input.js-form-type-search + input.js-form-submit
   display: inline-flex
   margin-left: rv(0)
-
-// This also seems too broad. What in particular are we trying to make a column? Buttons?
-
-.form-item:not(fieldset, .js-form-type-checkbox, .js-form-type-search, .js-form-item-rendered-item)
-  padding-bottom: rv(1)
-  display: flex
-  flex-direction: column
-
 
 .webform-element-description
   +font-size(-1)

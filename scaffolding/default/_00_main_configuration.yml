@@ -138,7 +138,7 @@ h6fontsize: "map-get($sizefactors,'h6')"
 
 
 ## 04 UI | Needs an overhaul
-ui_padding: rv(-1)
+ui_padding: 10px
 ui_element_height: 50px
 ui_minheight: $ui_element_height
 ui_maxheight: 60px

@@ -1,4 +1,4 @@
-(function($) {  
+(function($) {
   $(document).ready(function() {
     const desktopNav = $('.desktop-nav');
 
@@ -21,28 +21,28 @@
           // on click of the nav links
           $(this).click(function(event) {
             const subMenu = $(this).siblings('ul');
-            const downArrow = $('.desktop-nav .navigation').first().children('li.show-down-arrow');
-            
+            const downArrow = $('.desktop-nav .navigation').first().children('li.show-accordion');
+
             // check if it has a sub menu
             if (subMenu.length && isOpen === false) {
-              
+
               event.preventDefault();
               // add 'open-sub-menu' class to open sub menu
               subMenuContainer.addClass('open-sub-menu');
               // hide the down arrow of a link if another sub menu is open
-              downArrow.removeClass('show-down-arrow');
+              downArrow.removeClass('show-accordion');
               // add 'open-sub-menu' class on the parent of the clicked link to show down arrow
-              $(this).parent().addClass('show-down-arrow');
-              
+              $(this).parent().addClass('show-accordion');
+
               title = $(this).text().toUpperCase();
-              
+
               isOpen = true;
 
             } else {
 
               if (title.toUpperCase() === $(this).text().toUpperCase()) {
-                
-                downArrow.removeClass('show-down-arrow');
+
+                downArrow.removeClass('show-accordion');
                 subMenuContainer.removeClass('open-sub-menu')
                 isOpen = false;
                 title = '';
@@ -51,26 +51,26 @@
 
               if (title.toUpperCase() !== $(this).text().toUpperCase()) {
 
-                downArrow.removeClass('show-down-arrow');
-                $(this).parent().addClass('show-down-arrow');
+                downArrow.removeClass('show-accordion');
+                $(this).parent().addClass('show-accordion');
                 title = $(this).text().toUpperCase();
 
               }
             }
-          
+
           });
         });
-        
+
         // click event listener on the sub menu close button
         closeBtn.click(function() {
-          const downArrow = $('.desktop-nav .navigation').first().children('li.show-down-arrow');
+          const downArrow = $('.desktop-nav .navigation').first().children('li.show-accordion');
           // hide the down arrow
-          downArrow.removeClass('show-down-arrow');
+          downArrow.removeClass('show-accordion');
           // and close the sub menu
           subMenuContainer.removeClass('open-sub-menu');
 
           isOpen = false;
-          
+
           title = '';
 
         });
@@ -85,6 +85,6 @@
 
       toggleSubMenu();
     }
-        
-  });  
+
+  });
 })(jQuery);

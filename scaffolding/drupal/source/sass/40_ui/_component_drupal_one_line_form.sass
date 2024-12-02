@@ -1,0 +1,29 @@
+/**
+ *  @file _component_drupal_one_line_form.sass
+ *  @description  Use for standard drupal forms intended to be displayed on a single line (at desktop).
+ *
+ **/
+
+
+%drupal-one-line-form
+  display: flex
+  flex-direction: column
+
+  +bp($tablet)
+    flex-direction: row
+
+  > *
+    margin-bottom: rv($mobile_edge_padding_factor)
+
+    +bp($tablet)
+      margin-bottom: 0
+      margin-right: rv($mobile_edge_padding_factor)
+
+      &:last-child
+        margin-right: 0
+
+
+
+  #edit-actions
+    display: flex
+    align-items: center

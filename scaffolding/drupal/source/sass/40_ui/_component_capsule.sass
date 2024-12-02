@@ -1,0 +1,50 @@
+/**
+ *  @file _component_capsule.sass
+ *  @description  Common styles for all capsule elements.
+ *
+ **/
+
+
+.capsule
+  border: 1px solid neutral(20)
+  +standard_edge_padding
+  position: relative
+
+  &:hover
+    border-color: $impact
+
+  > footer
+    display: flex
+    align-items: flex-end
+    justify-content: flex-end
+
+    > *
+      margin-left: 3px
+
+      &:first-child
+        margin-left: 0
+
+  a
+    display: block
+    text-decoration: none
+    border: 0px
+
+    &:hover
+      text-decoration: none
+      border: 0
+
+  h3
+    margin-top: 0
+
+  > header
+
+    +bp($tablet)
+      position: absolute
+      display: flex
+      align-items: flex-start
+      justify-content: flex-end
+      width: 50%
+      max-width: 50%
+      top: rv($edge_padding_factor)
+      right: rv($edge_padding_factor)
+

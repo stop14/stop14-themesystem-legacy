@@ -69,6 +69,7 @@
   align-items: center
   justify-content: center
   cursor: pointer
+  @extend %underscore
 
   &:hover
     color: $btn_hover_color
@@ -110,7 +111,7 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
+  @extend %underscore
 
   &:hover
     color: $clr4
@@ -125,7 +126,7 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
+  @extend %underscore
 
   &:hover
     background: $black
@@ -141,8 +142,8 @@
   flex-direction: row
   align-items: center
   justify-content: center
-  margin: rv(-1) 0
   border: none
+  @extend %underscore
 
 %button-standard
   @extend %button
@@ -157,6 +158,7 @@
 %button-link
   @extend %button
   color: $white
+
 
 %button-outline
   @extend %button

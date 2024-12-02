@@ -58,14 +58,12 @@
   <section id="page-header" class='full'>
     {{ page.header }}
     <nav class="toolbar-menu">
-      <a class="search" title="Search this site" href="{{ base_path}}search"><img class="toolbar-search" alt="Search the site" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-active.svg"></a>
-      <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user-login" alt="User page / Login" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-login-active.svg"></a>
-      <a class="menu-button"><img class="menu-image" alt="Show menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-black.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
+      <a class="search" title="Search this site" href="{{ base_path}}search"><img class="search" alt="Search the site" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-active.svg"></a>
+      <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user" alt="User page / Login" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-active.svg"></a>
+      <a class="menu-button"><img class="menu-image" alt="Show menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
     </nav>
   </section>
 </header>
-
-
 
 {% if page.splash  %}
   <section id="splash" class='full' role="region">
@@ -220,12 +218,12 @@
 
 {% if page.overlay or page.overlay %}
 <section id="overlay" class='full' role="region">
-    <img class="nav-close-mobile" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-white.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
+    <img class="nav-close-mobile" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-reversed.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
 
   <div class='tier-container'>
 
     {{ page.overlay }}
-    <img class="nav-close" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-white.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
+    <img class="nav-close" alt="User login icon" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-reversed.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/close-active.svg">
   </div>
 
 </section>

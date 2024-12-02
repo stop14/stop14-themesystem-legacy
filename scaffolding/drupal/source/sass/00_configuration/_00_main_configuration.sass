@@ -11,22 +11,63 @@ $subdir_icons: '/icons'
 $subdir_marks: '/marks'
 $logo_path: map-get($asset_dirs,'svg') + $subdir_marks + '/logo.svg'
 $visibility_stack: ('main > div','#secondary-content','#tertiary-content','#quaternary-content','.block-facets-block','#block-responses-profile-feature')
-$remove_visibility_class: true
-$visibility_offset: 50
-$visibility_threshold: 0.2
-$visibility_stack_animation_speed: 0
-$visibility_stack_animation_delay: null
-$clr1: #A86343 // Burnished copper
-$clr2: #BB2113 // Scarlet
-$clr3: #00171A // Steel
-$clr4: #273C5A // Cobalt
-$clr5: #F1EFE2 // Cotton
-$clr6: #DB9F40 // Gold
-$clr7: #86BFA6 // Oxidized Copper
-$clr8: #197E8C // Bronze Patina
-$clr9: #36393D
-$black: #36393D // Coal black
+$clr1: #F07F3C // IISD Orange
+$clr2: #083266 // IISD Blue
+$clr3: #29C3EC // IISD Light blue
+$clr4: #DDDDDD // Unused
+$clr5: #DDDDDD
+$clr6: #DDDDDD
+$clr7: #E5336D
+$clr8: #DDDDDD
+$clr9: #DDDDDD
+$black: #020C19
 $white: white
+$bgcolor: $white
+$footer_bg: $black
+$impact: $clr2
+$cta: $clr1
+$de_emphasized: neutral(50)
+$de_activated: neutral(30)
+$link_colour: $black
+$rootsize: 100%
+$basesize: 1rem
+$base_line_height: 1.5
+$blh: $basesize * $base_line_height
+$scale: 1.33
+$max_width: 1400px
+$legible_inset_width: 720px
+$mobile_grid_gap_factor: -1
+$grid_gap_factor: 0
+$block_spacing: 2
+$mobile_block_spacing: -2
+$edge_padding_factor: 0
+$mobile_edge_padding_factor: -1
+$masthead_height: 50px
+$footer_height: 100px
+$admin_bar_height: 40px
+$admin_bar_tray: 40px // Second-tier admin bar
+$masthead_clearance: rv(0)
+$masthead_clearance_mobile: rv(-1)
+$splash_height_mobile: auto
+$splash_height_tablet: auto
+$splash_height_desktop: 100vh
+$min_splash_height: 700px
+$proportional_width_unit: math.div(100% - math.div(100,$scale),2)
+$standard_sidebar_width: $proportional_width_unit
+$right_sidebar_width: $standard_sidebar_width * 2
+$left_sidebar_width: $standard_sidebar_width
+$footer_branding_width: 150px
+$footer_badge_width: $footer_branding_width * 1.5
+$basetypesize: 1rem
+$min_sizefactors: (base: -1, h1: 3, h2: 2, h3: 1, h4: 0, h5: -1, h6: -1)
+$sizefactors: (base: 0, h1: 4, h2: 3, h3: 2, h4: 1, h5: 0, h6: 0)
+$line_heights: (base: $base_line_height, h1: 1.1, h2: 1.25, h3: 1.25, h4: $base_line_height, h5: $base_line_height, h6: $base_line_height)
+$typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
+$paragraph_spacing: clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))
+$basefont: Roboto, Tahoma, Arial, sans-serif
+$headingfont: Roboto, Tahoma, Arial, sans-serif
+$altfont: Georgia, serif
+$codefont: 'IBM Plex Mono', Monaco, Courier New, monospace
 $lightest_neutral: neutral(5)
 $lighter_neutral: neutral(30)
 $light_neutral: neutral(40)
@@ -35,40 +76,6 @@ $mid_neutral: neutral(60)
 $dark_neutral: neutral(70)
 $darker_neutral: neutral(80)
 $darkest_neutral: neutral(90)
-$bgcolor: $white
-$footer_bg: $black
-$impact: $clr2
-$cta: $clr1
-$de_emphasized: $light_neutral
-$de_activated: $lighter_neutral
-$link_colour: $black
-$rootsize: 100%
-$basesize: 1rem
-$base_line_height: 1.5
-$blh: $basesize * $base_line_height
-$scale: 1.33
-$max_width: 1400px
-$legible_inset_width: 750px
-$masthead_height: 60px
-$footer_height: 100px
-$admin_bar_height: 40px
-$admin_bar_tray: 40px // Second-tier admin bar
-$masthead_clearance: rv(0)
-$masthead_clearance_mobile: rv(-1)
-$splash_height_mobile: 50vh
-$splash_height_tablet: 50vh
-$splash_height_desktop: 100vh
-$min_splash_height: 700px
-$proportional_width_unit: math.div(100% - math.div(100,$scale),2)
-$standard_sidebar_width: $proportional_width_unit
-$right_sidebar_width: $standard_sidebar_width * 2
-$left_sidebar_width: $standard_sidebar_width
-$mobile_grid_gap_factor: -1
-$grid_gap_factor: 0
-$block_spacing: 2
-$mobile_block_spacing: -2
-$edge_padding_factor: 1
-$mobile_edge_padding_factor: 0
 $breakpoints: (xsml: 21em, sml: 30em, med: 46.25em, lrg: 75em, xlrg: 112.5em, xxlrg: 130em)
 $stack_breakpoint: med
 $tablet_breakpoint: med
@@ -79,17 +86,6 @@ $tablet: $tablet_breakpoint
 $desktop: $desktop_breakpoint
 $ultrawide: $ultrawide_breakpoint
 $font_path: '../fonts'
-$basetypesize: 1rem
-$min_sizefactors: (base: -1, h1: 4, h2: 3, h3: 2, h4: 0, h5: -1, h6: -1)
-$sizefactors: (base: 0, h1: 6, h2: 5, h3: 3, h4: 2, h5: 0, h6: 0)
-$line_heights: (base: $base_line_height, h1: 1, h2: 1.2, h3: 1.2, h4: 1.2, h5: 1.2, h6: 1.2)
-$typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
-$paragraph_spacing: clamped(map-get($min_sizefactors,'base'),map-get($sizefactors,'base'),$default-min-bp,$default-max-bp,map-get($line_heights,base))
-$typescale: (base: 1, xsml: 1, sml: 1, med:1, lrg: 1, xlrg: 1, xxlrg: 1)
-$basefont: Noto Sans, Tahoma, Arial, sans-serif
-$headingfont: Noto Sans Condensed, Tahoma, Arial, sans-serif
-$altfont: Orpheus, Georgia, serif
-$codefont: monospace
 $row_header_bg: neutral(10)
 $row_border_color: neutral(10)
 $row_zebra_stripe_color: neutral(3)
@@ -110,13 +106,11 @@ $ui_border_width: 1px
 $ui_border_color: neutral(40)
 $ui_hover_border_color: $impact
 $ui_checkbox_height: 20px
-$ui_element_font_size: rv(0)
-$ui_checkbox_label_font_size: rv(-1)
+$ui_element_font_size: clamped(-1,0)
+$ui_checkbox_label_font_size: clamped(-1,0)
+$ui_form_text_color: neutral(90)
 $mobile_overlay_spacing: rv(2)
 $mobile_filter_height: rv(5)
-$ui_mobile_app_controls_footer_height: $masthead_height
-$ui_mobile_app_controls_breakpoint: $tablet
-$ui_display_controls_icon_size: $ui_mobile_app_controls_footer_height * 0.5
 $border_radius: $ui_border_radius
 $btn_padding: 5px $ui_padding
 $btn_border_width: 0
@@ -145,15 +139,13 @@ $btn_submit_border_color: $impact
 $btn_submit_hover_color: $white
 $btn_submit_hover_border_color: mix($white,$impact,10%)
 $btn_submit_hover_bg_color: mix($white,$impact,10%)
-$btn_submit_hover_border_color: $impact
-$btn_search_color: $white
-$btn_search_bg_color: $cta
-$btn_search_border_width: 0
-$btn_search_border_color: $cta
+$btn_search_color: neutral(60)
+$btn_search_bg_color: $white
+$btn_search_border_width: $ui_border_width
+$btn_search_border_color: $ui_border_color
 $btn_search_hover_color: $white
-$btn_search_hover_border_color: mix($black,$cta,10%)
-$btn_search_hover_bg_color: mix($black,$cta,10%)
-$btn_search_hover_border_color: mix($black,$cta,10%)
+$btn_search_hover_border_color: $impact
+$btn_search_hover_bg_color: $white
 $btn_reset_color: neutral(90)
 $btn_reset_bg_color: neutral(30)
 $btn_reset_border_width: 0
@@ -169,6 +161,11 @@ $ui_select_max_width: 100%
 $heartbeat: 0.2s
 $standard_properties: translate3d scale opacity background-color
 $base_delay: null
+$remove_visibility_class: true
+$visibility_offset: 50
+$visibility_threshold: 0.2
+$visibility_stack_animation_speed: 0
+$visibility_stack_animation_delay: null
 $very_fast: $heartbeat
 $fast: $heartbeat * 2
 $slow: $heartbeat * 4
@@ -241,7 +238,7 @@ $slide_item_caption_position: relative
 $slide_item_caption_bottom: auto
 $exposed_facet_desktop_width: 350px
 $ui_mobile_app_controls_breakpoint: $desktop
-$ui_display_controls_icon_size: 30px
+$ui_display_controls_icon_size: $ui_mobile_app_controls_footer_height * 0.6
 $ui_mobile_app_controls_footer_height: $masthead_height
 $mirador_height_mobile: 60vh
 $mirador_height_tablet: 50vh

@@ -14,29 +14,38 @@ $menu_icon: no-repeat url(get_svg_url('icons/menu-transparent'))
 
 // Browser control icons
 
-$card_icon: no-repeat url(get_svg_url('icons/grid-view-icon'))
+$card_icon: no-repeat url(get_svg_url('icons/grid-view-icon-default'))
 $card_icon_active: no-repeat url(get_svg_url('icons/grid-view-icon-active'))
-$masonry_icon: no-repeat url(get_svg_url('icons/masonry-view-icon'))
+$masonry_icon: no-repeat url(get_svg_url('icons/masonry-view-icon-default'))
 $masonry_icon_active: no-repeat url(get_svg_url('icons/masonry-view-icon-active'))
-$grid_icon: no-repeat url(get_svg_url('icons/grid-view-icon'))
+$grid_icon: no-repeat url(get_svg_url('icons/grid-view-icon-default'))
 $grid_icon_active: no-repeat url(get_svg_url('icons/grid-view-icon-active'))
-$list_icon: no-repeat url(get_svg_url('icons/list-view-icon'))
+$list_icon: no-repeat url(get_svg_url('icons/list-view-icon-default'))
 $list_icon_active: no-repeat url(get_svg_url('icons/list-view-icon-active'))
-$filter_icon: no-repeat url(get_svg_url('icons/filter-icon'))
+$filter_icon: no-repeat url(get_svg_url('icons/filter-icon-default'))
 $filter_icon_active: no-repeat url(get_svg_url('icons/filter-icon-active'))
 $filter_icon_reverse: no-repeat url(get_svg_url('icons/filter-icon-reverse'))
 
 // Button Icons
 
-$submit_arrow: no-repeat url(get_svg_url('icons/right-arrow-white'))
-$submit_arrow_hover: no-repeat url(get_svg_url('icons/right-arrow-white'))
-$search_icon: no-repeat url(get_svg_url('icons/search-black'))
-$search_icon_hover: no-repeat url(get_svg_url('icons/search-black'))
-$more_arrow: no-repeat url(get_svg_url('icons/right-arrow-black'))
-$more_arrow_hover: no-repeat url(get_svg_url('icons/right-arrow-active'))
+$submit_arrow: no-repeat url(get_svg_url('icons/arrow-reversed'))
+$submit_arrow_hover: no-repeat url(get_svg_url('icons/arrow-reversed'))
+$search_icon: no-repeat url(get_svg_url('icons/search-default'))
+$search_icon_hover: no-repeat url(get_svg_url('icons/search-default'))
+$more_arrow: no-repeat url(get_svg_url('icons/arrow-default'))
+$more_arrow_hover: no-repeat url(get_svg_url('icons/arrow-active'))
 // Form Icons
-$close_icon: no-repeat url(get_svg_url('icons/close-icon'))
+$close_icon: no-repeat url(get_svg_url('icons/close-default'))
+$close_icon_hover: no-repeat url(get_svg_url('icons/close-active'))
 
+$clear_icon: $close_icon
+$clear_icon_hover: $close_icon_hover
+
+=icon ($background: $black, $size: rv(0))
+  display: block
+  background: $background
+  height: $size
+  width: $size
 
 // Icon Mixins
 
@@ -72,6 +81,12 @@ $close_icon: no-repeat url(get_svg_url('icons/close-icon'))
     +background-icon($filter_icon,$size)
 
 
+=clear-icon
+  +background-icon($clear_icon)
+
+  &:hover
+    +background-icon($clear_icon)
+
 =close-icon-hover
   +form-close($close_icon)
 
@@ -102,7 +117,7 @@ $close_icon: no-repeat url(get_svg_url('icons/close-icon'))
   background-size: $btn_icon_size
 
   > *
-    transform: translateX(#{$ui_padding * -0.5 + ($btn_icon_size * 0.5)})
+    transform: translateX(calc(#{$ui_padding * -0.5} + #{($btn_icon_size * 0.5)}))
 
 
 =background-icon ($background: $black, $size: $btn_icon_size)
@@ -118,13 +133,6 @@ $close_icon: no-repeat url(get_svg_url('icons/close-icon'))
   background: $background
   background-position: right $ui_padding center
   background-size: $size
-
-
-=icon ($background: $black, $size: rv(0))
-  display: block
-  background: $background
-  height: $size
-  width: $size
 
 =form-close($background: $black)
   &:hover

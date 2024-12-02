@@ -1,0 +1,42 @@
+/**
+ *  @file _toolbar_menu.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Manages the icon menu.
+ *  @seealso 20_layout/_section_header, _main_navigation, _component_superfish_navigation.
+ */
+
+
+#toolbar-menu
+  display: flex
+  align-items: flex-end
+  justify-self: flex-end
+  height: 100%
+  z-index: 1 // above the wordmark
+
+  > *
+    display: flex
+    height: 100%
+
+    padding-left: rv(-2)
+
+    &:first-child
+      padding-left: 0
+
+  img
+    display: block
+    object-fit: contain
+
+  // Used for a mega-menu style drop down in place of the main navigation.
+  // Remove style below for this kind of main navigation.
+
+  .menu-button
+    display: none
+
+  // Manages mobile menu
+
+  .search, .login
+    display: none
+
+    +bp($tablet)
+      display: flex
