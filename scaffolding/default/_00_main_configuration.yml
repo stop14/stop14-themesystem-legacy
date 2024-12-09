@@ -52,6 +52,7 @@ block_spacing: 2
 mobile_block_spacing: -2
 edge_padding_factor: 0
 mobile_edge_padding_factor: -1
+text_element_spacing: 3px
 
 
 # Structure

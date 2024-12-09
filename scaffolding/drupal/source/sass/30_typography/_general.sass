@@ -16,12 +16,12 @@ html
 .deck, .field_deck
   @extend %deck
 
+th
+  font-weight: $medium
+
 .content-label
-  font-family: $headingfont
-  +font-size(1)
   text-transform: uppercase
-  color: set-color(3)
-  font-weight: $bold
+  color: set-color(1)
   display: inline
 
   a
@@ -48,16 +48,27 @@ html
 
 .content-label-compact
   @extend .content-label
-  +font-size(0)
 
 .submission-info
-  +font-size(0)
+  font-size: clamped(-1,0)
   color: neutral(90)
   font-family: $headingfont
   font-weight: $light
 
 .label
   @extend %value-label
+
+.tag, .lozenge
+  @extend %tag
+
+  &.taxonomy--type-topic-class
+    background: set-color(3,50)
+    color: mix($clr3,$black,20%)
+
+// Hack to compensate for some table contexts that “inherit” values
+td div
+  &.tag, .tag, table .tag, .tag .field-values
+    +font-size(-2)
 
 .value
   @extend %value
@@ -73,11 +84,11 @@ html
   color: $black
   font-weight: $semibold
   text-transform: uppercase
-  background-color: set-colour(2)
+  background-color: set-colour(1,50)
   display: inline-flex
   justify-content: center
   align-items: center
-  padding: 0 rv(-5)
+  padding: 3px $ui_padding 0
 
   +reversed
     background-color: $white

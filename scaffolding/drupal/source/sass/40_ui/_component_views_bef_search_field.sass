@@ -8,32 +8,89 @@
 .views-exposed-form.bef-exposed-form
   form
     display: flex
+    flex-wrap: wrap
     align-items: center
     position: relative
     background-color: $white
-    height: $ui_largeheight
     padding: $ui_padding
     width: 100%
 
+    +bp($desktop)
+      flex-wrap: nowrap
+      height: $ui_largeheight
+
+  .form-item
+    flex-grow: 0
+    flex-shrink: 1
+    margin-bottom: $ui_padding
+
+    +bp($tablet)
+      margin-right: $ui_padding
+
+    +bp($desktop)
+      margin-bottom: 0
+
+
+    > *
+      width: 100%
+
   .form-actions
-    position: absolute
-    right: 0
+    margin-left: auto
 
   label
     display: none
 
-  .form-item-search-api-fulltext
-    flex-grow: 1
-    padding-right: 20%
 
-    input
-      width: 100%
+
+    &.form-item-search-api-fulltext
+      flex-grow: 1
+      flex-shrink: 0
+
+      input
+        width: 100%
 
   input
-    border: 0 !important
 
     &[type="submit"].form-submit
       @extend %button-search
 
     &[type="submit"][name="reset"].form-submit
       @extend %button-search-clear
+
+// Add ons in various contexts
+
+// Hides everything but the search field and remove the search border
+// Used for high-impact search displays
+
+=bef-exposed-form-search-ghost($search_input_selector: '.form-item-search-api-fulltext')
+  .form-item:not(#{$search_input_selector})
+    display: none
+
+  #{$search_input_selector}
+    width: auto
+    flex-grow: 1
+
+    input
+      max-width: unset
+      border: 0 !important
+
+// Hides the search bar. Used when the search input is rendered elsewhere, often by placing the BEF block twice.
+
+=bef-exposed-form-hide-search($search_input_selector: '.form-item-search-api-fulltext')
+
+  #{$search_input_selector}
+    display: none
+
+=bef-exposed-form-compact-right
+  form
+    justify-content: flex-end
+
+  .form-item
+    +bp($desktop)
+      width: auto
+
+  input, select
+    max-width: 250px
+
+  .form-actions
+    margin-left: 0

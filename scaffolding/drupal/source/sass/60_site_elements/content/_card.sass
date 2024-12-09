@@ -5,13 +5,19 @@
  *  @theme LOCAL
  *  @description Defines a basic content card view.
  *
+ *  USAGE NOTES:
+ *  This template uses the templates/content/node--card twig file
+ *  It expects that two optional field groups be set up through the admin UI:
+ *  - group_header, with an HTML element <header>
+ *  - group_footer, with an HTML element <footer>
+ *
+ *  The template will place anything in the header above the title, and anything
+ *  in the footer below the More link. This implementation expects basic metadata labels and values to be displayed
+ *  in the footer.
+ *
  **/
 
-.visible
-  .card
-    +fadeInUp($slow,$heartbeat * 3,$heartbeat*3)
-
-$card_footer_element_spacing: rv(-6)
+$card_footer_element_spacing: $text_element_spacing
 
 .card
   background-color: $white
@@ -20,6 +26,16 @@ $card_footer_element_spacing: rv(-6)
   padding: rv($mobile_edge_padding_factor)
   font-size: clamped(-1,0)
   max-width: 750px
+
+  @at-root .visible &
+    +fadeInUp($slow,$heartbeat * 3,$heartbeat*3)
+
+  header + .node--content
+    margin-top: rv($mobile_edge_padding_factor)
+
+  a
+    text-decoration: none
+    cursor: pointer !important // The whole card is linked, so subelements should not be able to supply a cursor.
 
   &:focus, &:hover
     background-color: set-color-tint(2,3)
@@ -44,8 +60,6 @@ $card_footer_element_spacing: rv(-6)
       border: 0
 
   .content-label, .content-label-compact
-    margin-top: rv($mobile_edge_padding_factor)
-
     & + h3
       margin-top: 2px
 
@@ -53,13 +67,13 @@ $card_footer_element_spacing: rv(-6)
     display: inline-flex
 
   .new
-    margin-left: rv(-2)
+    position: absolute
+    top: rv($mobile_edge_padding_factor)
+    right: rv($mobile_edge_padding_factor)
+    z-index: 2
 
     +dark
       color: $black
-
-  .node--content
-    padding: rv($mobile_edge_padding_factor)
 
   .media
     .image, .video, .remote-video
@@ -73,36 +87,26 @@ $card_footer_element_spacing: rv(-6)
         transition: all $heartbeat ease-in-out
 
   footer
+    margin-top: rv($mobile_edge_padding_factor)
     padding-top: rv($mobile_edge_padding_factor)
-    margin: 0  rv($mobile_edge_padding_factor)
     display: flex
     flex-direction: row
-    justify-content: space-between
+    justify-content: flex-start
     border-top: 1px solid neutral(5)
     box-sizing: border-box
 
     > *
-      margin-right: $card_footer_element_spacing * 2
+      margin-right: rv($mobile_edge_padding_factor)
 
       &:last-child
         margin-right: 0
-
-    .card-footer,
-    .card-footer > div > .field-values
-      display: flex
-      flex-direction: row
-      flex-wrap: wrap
-      justify-content: space-between
-
-      > *
-        margin: 0 $card_footer_element_spacing $card_footer_element_spacing 0
 
     .field-value
       @extend %value
 
     .label, .value, .field-value
       color: neutral(60)
-      text-align: center
+      font-size: clamped(-2,-1) !important
 
       a
         color: inherit
@@ -112,3 +116,18 @@ $card_footer_element_spacing: rv(-6)
       .field-value
         color: $white
 
+  .submission-info
+    display: flex
+    font-size: clamped(-2,-1)
+    margin-right: $text_element_spacing * 2
+    margin-bottom: $text_element_spacing
+
+    &:last-child
+      margin-right: 0
+
+    .label, .value
+      display: inline
+      color: neutral(50)
+
+    .label
+      margin-right: $text_element_spacing

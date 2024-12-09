@@ -85,14 +85,9 @@
 <article{{ attributes.addClass(classes) }}>
   <a href="{{ url }}">
   {{ title_prefix }}
-    <header>
-      {% if content.field_thumbnail %}
-        {{ content.field_thumbnail }}
-      {% endif %}
-      {% if content.field_representative_media %}
-        {{ content.field_representative_media|strip_anchors }}
-      {% endif %}
-    </header>
+    {% if content.group_header %}
+      {{ content.group_header }}
+    {% endif %}
     <div{{ content_attributes.addClass('node--content') }}>
       <div class='content-label-compact'>
         {% if node.hasField('field_type') %}
@@ -105,30 +100,12 @@
         {% endif %}
       </div>
     <h3{{ title_attributes }}>{{ label }}</h3>
-    {{ title_suffix }}
-      {{ content|without('field_thumbnail', 'field_representative_media', 'field_type','group_card_footer')|strip_anchors }}
+      {{ title_suffix }}
+      {{ content|without('field_type','group_header','group_footer')|strip_anchors }}
       <div class="read-more">More</div>
     </div>
   </a>
-  {% if content.group_card_footer %}
-    <footer>
-      {{ content.group_card_footer }}
-      <div class="date">
-        <div class="label">
-          Posted on
-        </div>
-        <div class="value"?>
-          {{ date }}
-        </div>
-      </div>
-      <div class="author">
-        <div class="label">
-          Posted by
-        </div>
-        <div class="value">
-          {{ author_name }}
-        </div>
-      </div>
-    </footer>
+  {% if content.group_footer %}
+    {{ content.group_footer }}
   {%  endif %}
 </article>

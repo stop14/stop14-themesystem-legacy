@@ -79,7 +79,7 @@ block_spacing: 2
 mobile_block_spacing: -2
 edge_padding_factor: 1
 mobile_edge_padding_factor: 0
-
+text_element_spacing: 3px
 
 # Breakpoints
 breakpoints: "(xsml: 21em, sml: 30em, med: 46.25em, lrg: 75em, xlrg: 112.5em, xxlrg: 130em)"
