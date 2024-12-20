@@ -1,0 +1,66 @@
+/**
+ *  @file _node_program.sass
+ *  @category 60_site_elements
+ *  @group content
+ *  @theme LOCAL
+ *  @description Styling for the profile cards (Our Team). See also 60_site_elements/views_and_blocks/our_team_block
+ *
+ **/
+
+article.profile-card
+  article.media
+    figure
+      border-radius: 50%
+      border: 5px solid $white
+      @extend %glow-white
+      overflow: hidden
+      +proportional-height(66%,1)
+      margin: 0 auto
+      
+      +bp($tablet)
+        +proportional-height(100%,1)
+
+
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+  .node--content
+    padding: rv(1) rv(1) 0 rv(1)
+
+  .field_role
+    @extend %small--normal--k-100--caps
+    text-align: center
+
+  h3
+    margin-bottom: rv(-3)
+    text-align: center
+
+  .field_role_container + h3
+    margin-top: 0
+
+  .field_affiliation_container
+    @extend %small--medium--k-100
+    line-height: 1.25
+    margin-bottom: rv($edge_padding_factor)
+    text-align: center
+
+  .body
+    @extend %small--normal--k-100
+    margin: rv(0) 0
+
+  .field_links_container
+    margin-top: rv(-1)
+
+    a
+      text-decoration: underline
+      background-image: url(get_svg_url('icons/link-chain.svg'))
+      background-repeat: no-repeat
+      padding-left: rv(1)
+      background-size: rv(0)
+      background-position: left
+      display: block
+
+      &:hover
+        border-bottom: none

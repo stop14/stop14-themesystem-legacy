@@ -13,12 +13,10 @@ body > header
   height: $masthead_height
   isolation: isolate
   display: flex
-  +standard-edge-padding()
+  padding: rv($mobile_edge_padding_factor) * 0.5 rv($mobile_edge_padding_factor)
 
   +bp($desktop)
-    padding-top: rv($edge_padding_factor) * 0.5
-    padding-bottom: rv($edge_padding_factor) * 0.5
-
+    padding: rv($edge_padding_factor) * 0.5 rv($edge_padding_factor)
 
   // horizontal rule
   &:after
@@ -29,7 +27,7 @@ body > header
     bottom: 0
     border-top: 1px solid $black
 
-    +bp($tablet)
+    +bp($desktop)
       left: rv($edge_padding_factor)
       right: rv($edge_padding_factor)
 
@@ -37,10 +35,17 @@ body > header
   > div
     display: flex
     position: relative
-    justify-content: space-between
+    justify-content: flex-end
     align-items: center
     height: 100%
     width: 100%
+
+  > *
+    +bp($tablet)
+      margin-left: $ui_padding * 2
+
+      &:first-child
+        margin-left: 0
 
   a
     height: 100%
@@ -75,6 +80,8 @@ body > header
       img
         height: 100% !important
 
+
+
   .wordmark
     position: absolute
     width: 100%
@@ -91,23 +98,17 @@ body > header
     z-index: 1 // above the wordmark
 
     > *
-      display: flex
       height: 100%
-
-      padding-left: rv(-2)
+      width: $ui_icon_size
+      margin-left: $ui_padding
+      display: inline-flex
 
       &:first-child
-        padding-left: 0
+        margin-left: 0
 
     img
       display: block
       object-fit: contain
-
-  .search, .login
-    display: none
-
-    +bp($tablet)
-      display: flex
 
   nav
     *
@@ -129,3 +130,14 @@ body > header
         &:hover
           background-color: neutral(50)
           border: 0
+
+  // Mobile
+
+  [id*=mainnavigation]
+    display: none
+    +bp($desktop)
+      display: flex
+
+  .toolbar--menu-button
+    +bp($desktop)
+      display: none

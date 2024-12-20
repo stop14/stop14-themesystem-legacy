@@ -16,6 +16,12 @@ $ribbon_padding_factor: -3
 %display-font
   font-family: $altfont
 
+%icon-label
+  font-size: clamped(-3,-2)
+  text-transform: uppercase
+  text-decoration: none
+  border-bottom: 0
+
 %ribbon-black
   padding: rv($ribbon_padding_factor)
   +font-size(1)
@@ -57,7 +63,7 @@ $ribbon_padding_factor: -3
 
 %value-label
   font-family: $basefont
-  font-weight: $medium
+  font-weight: $semibold
   color: $black
   line-height: 1.25
   margin-bottom: rv(-4)
@@ -128,7 +134,7 @@ $ribbon_padding_factor: -3
 %more
   +font-size(0)
   color: $black
-  font-weight: $medium
+  font-weight: $semibold
   display: flex
   flex-direction: row
   align-items: center

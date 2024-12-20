@@ -41,8 +41,8 @@ basesize: 1rem
 base_line_height: 1.5
 blh: $basesize * $base_line_height
 scale: 1.33
-max_width: 1400px
-legible_inset_width: 720px
+max_width: 1900px
+legible_inset_width: 920px
 
 ## Spacing
 
@@ -67,8 +67,8 @@ splash_height_desktop: 100vh
 min_splash_height: 700px
 proportional_width_unit: "math.div(100% - math.div(100,$scale),2)"
 standard_sidebar_width: $proportional_width_unit
-right_sidebar_width: "$standard_sidebar_width * 2"
-left_sidebar_width: $standard_sidebar_width
+right_sidebar_width: $standard_sidebar_width
+left_sidebar_width: $standard_sidebar_width * 2
 
 footer_branding_width: 150px
 footer_badge_width: $footer_branding_width * 1.5
@@ -152,6 +152,7 @@ ui_checkbox_height: 20px
 ui_element_font_size: clamped(-1,0)
 ui_checkbox_label_font_size: clamped(-1,0)
 ui_form_text_color: neutral(90)
+ui_icon_size: 25px
 
 # mobile ui controls
 
@@ -171,7 +172,7 @@ btn_width: 280px
 btn_compactwidth: 180px
 btn_largewidth: 280px
 btn_max_width: 375px
-btn_icon_size: rv(0)
+btn_icon_size: 25px
 
 btn_fontsize: "clamped(0,1)"
 btn_compact_fontsize: "clamped(-1,0)"

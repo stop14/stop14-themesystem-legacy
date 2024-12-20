@@ -1,5 +1,4 @@
 .block-superfish
-    background-color: neutral(20)
     display: none
 
 
@@ -17,33 +16,31 @@
     margin: 0
     list-style: none
 
+ul.sf-menu
+    li
+        position: relative
 
-.sf-menu li
-    position: relative
+    ul
+        position: absolute
+        display: none
+        top: 100%
+        left: 0
+        z-index: 99
 
-.sf-menu ul
-    position: absolute
-    display: none
-    top: 100%
-    left: 0
-    z-index: 99
+        ul
+            top: 0
+            left: 100%
 
-.sf-menu > li
-    float: left
+    > li
+        float: left
 
-.sf-menu li:hover > ul,
-.sf-menu li.sfHover > ul
-    display: block
+        &:hover > ul, &.sfHover > ul
+            display: block
+            top: $masthead_height
 
-
-.sf-menu a
-    display: block
-    position: relative
-
-.sf-menu ul ul
-    top: 0
-    left: 100%
-
+    a
+        display: block
+        position: relative
 
 
 /*** DEMO SKIN ***/
@@ -51,58 +48,44 @@
     float: left
     margin-bottom: 1em
 
-.sf-menu ul
-    box-shadow: 2px 2px 6px rgba(0,0,0,.2)
-    min-width: 100% /* allow long menu items to determine submenu width */
-    *width: 12em /* no auto sub width for IE7, see white-space comment below */
+    ul
+        box-shadow: 2px 2px 6px rgba(0,0,0,.2)
+        min-width: 100% /* allow long menu items to determine submenu width */
+        *width: 12em /* no auto sub width for IE7, see white-space comment below */
 
-.sf-menu a
-    /* padding: .75em 1em */
-    color: $white
-    text-transform: uppercase
-    white-space: normal
-    overflow: hidden
+    a, .nolink
+        text-decoration: none
+        text-transform: uppercase
+        white-space: normal
+        overflow: hidden
 
-.sf-menu a:hover
-    text-decoration: none
-    border-bottom: none
+    a:hover
+        text-decoration: none
+        border-bottom: none
 
+    > * .menuparent
+        +background-icon-base('accordion-expand')
+        background-position: right center
 
+    .sf-depth-1
+        li
+            white-space: nowrap /* no need for Supersubs plugin */
+            *white-space: normal /* ...unless you support IE7 (let it wrap) */
+            -webkit-transition: background $heartbeat
+            transition: background $heartbeat
+            background: neutral(10)
 
-.sf-menu li
-    background: $clr7
-    white-space: nowrap /* no need for Supersubs plugin */
-    *white-space: normal /* ...unless you support IE7 (let it wrap) */
-    -webkit-transition: background .2s
-    transition: background .2s
+            &:hover
+                background: mix($white,$impact,90%)
 
-
-.sf-menu li a:hover,
-.sf-menu li a.sfHover,
-.sf-menu li:hover > a
-    color: $true_black
-    transition: 0.1s color ease
-
-.sf-menu ul li
-    background: neutral(10)
-
-
-
-.sf-menu ul li a
-    color: $true_black
-    font-size: 0.875rem
-
-
-.sf-menu ul ul li
-    background: $clr9
-
-
-.sf-menu li:hover,
-.sf-menu li.sfHover
-    background: neutral(5)
-    -webkit-transition: none
-    transition: none
-
+            a, a:hover
+                color: $black
+    .sf-depth-2
+        &.li
+            background: neutral(50)
+        a
+            color: $black
+            +font-size(-1)
 
 
 
@@ -125,5 +108,3 @@
 /* superfish generated arrows */
 .sf-menu li .sf-sub-indicator
     display: none
-
-

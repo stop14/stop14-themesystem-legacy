@@ -1,0 +1,51 @@
+/**
+ *  @file _advanced_search_form.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Forms specific to the advanced search module. */
+
+$as_column_width_desktop: 15vw
+$as_spacing: rv($mobile_edge_padding_factor)
+$as_action_column_width: calc(#{$ui_element_height} * 2 + #{$as_spacing} * 3)
+
+#advanced-search-form
+  #advanced-search-ajax
+    > *[id^="edit-terms"]
+      display: grid !important
+      grid-template-columns: $as_column_width_desktop $as_column_width_desktop 1fr $as_action_column_width $as_column_width_desktop
+      grid-column-gap: $as_spacing
+      grid-row-gap: $as_spacing
+
+      > *
+        width: 100% !important
+
+        > *
+          margin: 0 $as_spacing 0 0
+
+          &:last-child
+            margin-right: 0
+
+      .js-form-type-checkbox
+        align-self: center
+
+      input[type='text']
+        +bp($desktop)
+          width: 100%
+          max-width: none
+
+    [id*="actions"]
+      display: flex
+      flex-wrap: nowrap
+      justify-content: flex-start
+
+      input
+        background-image: none
+        min-width: $ui_element_height
+        width: $ui_element_height
+
+.pager__link--is-active
+  border: 0
+  background-color: $impact
+
+input[type='submit'].advanced-search-form__reset
+  @extend %button-reset

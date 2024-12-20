@@ -35,7 +35,7 @@ select
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  background: url(../img/svg/icons/down-arrow-black.svg) no-repeat calc(100% - #{$ui_padding}) center
+  background: url(../img/svg/icons/accordion-expand-default.svg) no-repeat calc(100% - #{$ui_padding}) center
   background-size: auto rv(0)
   padding-right: calc(#{rv(0)} + (#{$ui_padding} * 3))
   font-weight: $bold
@@ -113,6 +113,10 @@ input[type="radio"]
     box-shadow: inset 0 0 0 3px white !important
     background-color: neutral(40)
 
+// Reset button
+button[type='reset']
+  @extend %button-reset
+
 // Submit Button
 
 button[type='submit']
@@ -131,7 +135,8 @@ fieldset, details
 
   &.open, &[open]
     legend::after, summary::after
-      content: url(get_svg_url(icons/accordion-collapse-icon))
+      content: url(get_svg_url(icons/accordion-expand-default))
+      transform: rotate(180deg)
 
   legend, summary
     font-size: $ui_checkbox_label_font_size
@@ -140,7 +145,7 @@ fieldset, details
 
     // General and closed accordion styles
     &::after
-      content: url(get_svg_url(icons/accordion-open-icon))
+      content: url(get_svg_url(icons/accordion-expand-default))
       position: absolute
       width: 8px
       right: 0

@@ -42,3 +42,18 @@ $ui_form_clearance: rv($edge_padding_factor)
 
   +bp($stack)
     max-width: calc(100vw - #{$ui_form_clearance} * 2)
+
+=background-icon-base($icon_name, $size: $btn_icon_size, $state: 'default', $active_state: 'active')
+  padding-right: calc(#{$size} + #{$ui_padding}) !important
+  background-image: url(get_svg_url('icons/#{$icon_name}-#{$state}'))
+  background-size: $size
+  background-position: right $ui_padding center
+  background-repeat: no-repeat
+
+  @if $active_state
+    &:hover, &.active
+      background-image: url(get_svg_url('icons/#{$icon_name}-#{$active_state}'))
+      color: $impact // Assumes that the corresponding icon is coloured $impact
+  @else
+    &:hover, &.active
+      filter: brightness(70)

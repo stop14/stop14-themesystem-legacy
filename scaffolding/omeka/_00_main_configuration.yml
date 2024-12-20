@@ -257,6 +257,7 @@ page_marker_background_hover: $clr2
 page_marker_background_active: $clr2
 page_marker_border_radius: 50%
 
+page_marker_transform: none
 page_marker_transform_hover: none
 page_marker_transform_active: none
 page_marker_width: $slide_viewer_marker_size
@@ -332,3 +333,4 @@ slide_item_caption_padding: 0 $slide_viewer_padding
 slide_item_caption_height: auto
 slide_item_caption_position: absolute
 slide_item_caption_bottom: 0
+

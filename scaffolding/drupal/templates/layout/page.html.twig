@@ -57,10 +57,11 @@
 <header>
   <section id="page-header" class='full'>
     {{ page.header }}
+    {{ page.navigation }}
     <nav class="toolbar-menu">
-      <a class="search" title="Search this site" href="{{ base_path}}search"><img class="search" alt="Search the site" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-active.svg"></a>
-      <a class="login" title="User login" href="{{ path('user.login') }}"><img class="user" alt="User page / Login" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-active.svg"></a>
-      <a class="menu-button"><img class="menu-image" alt="Show menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
+      <a class="toolbar--search" title="Search this site" href="{{ base_path}}search"><img class="search" alt="Search the site" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/search-active.svg"></a>
+      <a class="toolbar--login" title="User login" href="{{ path('user.login') }}"><img class="user" alt="User page / Login" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/user-active.svg"></a>
+      <a class="toolbar--menu-button"><img class="menu-image" alt="Show menu" src="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-default.svg" data-src-active="{{ base_path ~ active_theme_path() }}/assets/img/svg/icons/hamburger-menu-active.svg"></a>
     </nav>
   </section>
 </header>
@@ -78,7 +79,7 @@
 </section>
 {% endif %}
 {% if page.title or page.wayfinding|render|length %}
-  <section id="title">
+  <section id="title" class="region">
     {% if page.wayfinding|render|length  %}
       <div id="wayfinding"{% if logged_in  %} class='compact' {% endif %} role="navigation">
         {{ page.wayfinding }}
@@ -93,7 +94,7 @@
 
 {% set above_content_render = page.above_content|render %}
 {% if above_content_render|length > 0 %}
-  <section id="above-content" class='region full' role="region">
+  <section id="above-content" class='region full'>
     <div class='no-sidebar'>
       <div class='tier-container'>
         {{ above_content_render }}
@@ -103,7 +104,7 @@
 {% endif %}
 
 {% if page.content or page.messages or page.help or page.main_sidebar or page.page.main_sidebar_left %}
-  <section id='primary-content' class='region' role="region">
+  <section id='primary-content' class='region'>
     <div class='{% if not page.main_sidebar is empty or not page.main_sidebar_left is empty %}with-sidebar{% else %}no-sidebar{% endif %}'>
       {% if not page.main_sidebar_left is empty %}
         <aside role="complementary" class="left">

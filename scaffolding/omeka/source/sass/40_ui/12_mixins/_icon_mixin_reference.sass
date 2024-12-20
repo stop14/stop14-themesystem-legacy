@@ -7,50 +7,34 @@
  */
 
 
-// Social Media Icons
-
-$fb_icon: no-repeat url(get_svg_url('icons/facebook-black'))
-$insta_icon: no-repeat url(get_svg_url('icons/instagram-black'))
-$twitter_icon: no-repeat url(get_svg_url('icons/twitter-black'))
-
-
-// Overlay Menu Icons
-$project_icon: no-repeat url(get_svg_url('icons/projects-transparent'))
-$user_icon: no-repeat url(get_svg_url('icons/user-transparent'))
-$admin_icon: no-repeat url(get_svg_url('icons/admin-transparent'))
-$menu_icon: no-repeat url(get_svg_url('icons/menu-transparent'))
-
-
-// Browser control icons
-
-$card_icon: no-repeat url(get_svg_url('icons/grid-view-icon'))
-$card_icon_active: no-repeat url(get_svg_url('icons/grid-view-icon-active'))
-$masonry_icon: no-repeat url(get_svg_url('icons/masonry-view-icon'))
-$masonry_icon_active: no-repeat url(get_svg_url('icons/masonry-view-icon-active'))
-$grid_icon: no-repeat url(get_svg_url('icons/grid-view-icon'))
-$grid_icon_active: no-repeat url(get_svg_url('icons/grid-view-icon-active'))
-$list_icon: no-repeat url(get_svg_url('icons/list-view-icon'))
-$list_icon_active: no-repeat url(get_svg_url('icons/list-view-icon-active'))
-$filter_icon: no-repeat url(get_svg_url('icons/filter-icon'))
-$filter_icon_active: no-repeat url(get_svg_url('icons/filter-icon-active'))
-$filter_icon_reverse: no-repeat url(get_svg_url('icons/filter-icon-reverse'))
-
-$filter_arrow_icon: no-repeat url(get_svg_url('icons/filter-arrow-icon'))
-$filter_arrow_icon_active: no-repeat url(get_svg_url('icons/filter-arrow-icon-active'))
-// Button Icons
-
-$submit_arrow: no-repeat url(get_svg_url('icons/right-arrow-black'))
-$submit_arrow_reversed: no-repeat url(get_svg_url('icons/right-arrow-white'))
+$user_icon: no-repeat url(get_svg_url('icons/user-reversed'))
+$admin_icon: no-repeat url(get_svg_url('icons/cogs-reversed'))
+$menu_icon: no-repeat url(get_svg_url('icons/menu-reversed'))
+$card_icon: no-repeat url(get_svg_url('icons/grid-default'))
+$card_icon_active: no-repeat url(get_svg_url('icons/grid-active'))
+$masonry_icon: no-repeat url(get_svg_url('icons/masonry-default'))
+$masonry_icon_active: no-repeat url(get_svg_url('icons/masonry-active'))
+$grid_icon: no-repeat url(get_svg_url('icons/grid-default'))
+$grid_icon_active: no-repeat url(get_svg_url('icons/grid-active'))
+$list_icon: no-repeat url(get_svg_url('icons/list-default'))
+$list_icon_active: no-repeat url(get_svg_url('icons/list-active'))
+$filter_icon: no-repeat url(get_svg_url('icons/filter-default'))
+$filter_icon_active: no-repeat url(get_svg_url('icons/filter-active'))
+$filter_icon_reverse: no-repeat url(get_svg_url('icons/filter-reversed'))
+$filter_arrow_icon: no-repeat url(get_svg_url('icons/accordion-expand-default'))
+$filter_arrow_icon_active: no-repeat url(get_svg_url('icons/accordion-expand-active'))
+$submit_arrow: no-repeat url(get_svg_url('icons/arrow-default'))
+$submit_arrow_reversed: no-repeat url(get_svg_url('icons/arrow-reversed'))
 $submit_arrow_hover: $submit_arrow_reversed
-$search_icon: no-repeat url(get_svg_url('icons/search-black'))
-$search_icon_hover: no-repeat url(get_svg_url('icons/search-black'))
-$search_submit_icon: no-repeat url(get_svg_url('icons/search-white'))
-$search_submit_icon_hover: no-repeat url(get_svg_url('icons/search-white'))
+$search_icon: no-repeat url(get_svg_url('icons/search-default'))
+$search_icon_hover: no-repeat url(get_svg_url('icons/search-default'))
+$search_submit_icon: no-repeat url(get_svg_url('icons/search-reversed'))
+$search_submit_icon_hover: no-repeat url(get_svg_url('icons/search-reversed'))
 
-$more_arrow: no-repeat url(get_svg_url('icons/right-arrow-black'))
-$more_arrow_hover: no-repeat url(get_svg_url('icons/right-arrow-black'))
+$more_arrow: no-repeat url(get_svg_url('icons/arrow-default'))
+$more_arrow_hover: no-repeat url(get_svg_url('icons/arrow-default'))
 // Form Icons
-$close_icon: no-repeat url(get_svg_url('icons/close-icon'))
+$close_icon: no-repeat url(get_svg_url('icons/close-default'))
 
 
 // Icon Mixins
@@ -95,15 +79,6 @@ $close_icon: no-repeat url(get_svg_url('icons/close-icon'))
 
 =close-icon-hover
   +form-close($close_icon)
-
-=facebook-icon
-  +icon($fb_icon)
-
-=instagram-icon
-  +icon($insta_icon)
-
-=twitter-icon
-  +icon($twitter_icon)
 
 =submit-arrow($size: $btn_icon_size, $offset: rv(-2))
   +background-icon($submit_arrow_reversed, $size, right $offset center)
@@ -157,7 +132,7 @@ $close_icon: no-repeat url(get_svg_url('icons/close-icon'))
   height: $size
   width: $size
 
-=form-close($background: $black)
+=form-close ($background: $black)
   &:hover
     background: $background
     display: inline-block
