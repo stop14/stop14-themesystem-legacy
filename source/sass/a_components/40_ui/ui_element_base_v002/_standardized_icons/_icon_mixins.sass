@@ -73,10 +73,10 @@
 
 // Simplified Aliases
 
-=icon($icon_name, $icon_name: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
-  height: $btn_icon_size
-  width: $btn_icon_size
-  +background-icon-base($icon_name,$icon_name,$initial_state,$active_state)
+=icon($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
+  height: $size
+  width: $size
+  +background-icon-base($icon_name,$size,$initial_state,$active_state)
   background-position: center
 
   &.active, &:hover
@@ -86,7 +86,6 @@
   @extend %icon-label
 
   @if $position == 'left'
-    +background-icon-left($icon_name,$btn_icon_size,$initial_state,$active_state)
+    +background-icon-left($icon_name,$size,$initial_state,$active_state)
   @else
-    +background-icon-right($icon_name,$btn_icon_size,$initial_state,$active_state)
-
+    +background-icon-right($icon_name,$size,$initial_state,$active_state)

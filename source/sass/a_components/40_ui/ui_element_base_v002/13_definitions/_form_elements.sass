@@ -52,7 +52,6 @@
 
 %button
   @extend %button-base
-  text-decoration: underline
   display: inline-flex
   flex-direction: row
   align-items: center
@@ -191,7 +190,7 @@
   justify-content: center
   align-items: center
   height: 50px
-  +more-arrow
+  +background-icon-right('arrow')
 
   a
     color: inherit
@@ -241,7 +240,7 @@
   padding-right: calc(#{$ui_padding} + #{$btn_icon_size})
   min-width: $ui_minheight !important
   height: $ui_minheight !important
-  text-decoration: none
+  text-decoration: none !important
   justify-content: flex-start
   align-items: center
   +background-icon-base('search',$btn_icon_size,'neutral','default','right')
@@ -277,3 +276,18 @@
 
   &:hover
     border-color: $ui_hover_border_color
+
+%control-icon
+  display: inline-block
+  height: $ui_display_controls_icon_size
+  width: $ui_display_controls_icon_size
+  border: 0
+  transition: none
+
+  &:hover
+    border: 0
+
+%labels-controls
+  font-weight: $normal
+  margin: 0 rv(-3)
+  transform: translateY(-1px) // fudge to line up with element!
