@@ -1,0 +1,25 @@
+/**
+ *  @file _component_drupal_contextual_menu.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Additional styles for Drupal’s built-in contextual menu. */
+
+.contextual
+  top: 6px !important
+  right: 0 !important
+  bottom: initial !important
+  left: initial !important
+
+
+// Handles reversed situations
+
+.contextual-region .contextual .contextual-links
+  +reversed
+    background-color: $black
+
+    li
+      background-color: $black
+
+    a
+      color: $white
+      background-color: $black

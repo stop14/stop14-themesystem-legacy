@@ -144,6 +144,8 @@ ui_minheight: $ui_element_height
 ui_maxheight: 60px
 ui_compactheight: 40px
 ui_largeheight: 80px
+ui_max_text_width: 500px
+ui_element_spacing: "rv($mobile_edge_padding_factor)"
 ui_border_radius: 8px
 ui_border_width: 1px
 ui_border_color: neutral(40)

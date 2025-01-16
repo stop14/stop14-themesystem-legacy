@@ -1,0 +1,279 @@
+/**
+ *  @file _general_ui_elements.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Define various user interface elements.
+ *
+ **/
+
+/** HERE ARE SOME DEFINITIONS THAT MUST BE SUPPORTED
+  *
+  * TYPES:
+  * standard|Standard
+  * link|Internal Link
+  * outline|Outline
+  * outline.reversed|Reversed outline
+  * cta|Call to action
+  * feature-cta|Feature CTA
+  * ghost|Ghost
+  * emphatic-ghost|Emphatic ghost
+  * spooky|Spooky (inactive only)
+
+  *
+  * SIZING:
+  * compact|Size: compact
+  * large|Size: large
+  *
+  * OVERLAYS
+  * overlay-dark|Overlay: dark background
+  * overlay-light|Overlay: light background
+  * overlay-colour|Overlay: yellow background
+  *
+  */
+
+%button-base
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  font-size: $btn_fontsize
+  font-family: $headingfont
+  font-weight: $normal
+  padding: $btn_padding
+  height: $ui_minheight
+  min-width: $btn_minwidth
+  border: $btn_border_width solid $btn_border_color
+  border-radius: $ui_border_radius
+  text-align: center
+  text-transform: uppercase
+  width: fit-content
+  white-space: nowrap
+  background-color: $btn_bg_color
+  color: $btn_color
+
+%button
+  @extend %button-base
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  cursor: pointer
+
+  &:hover
+    color: $btn_hover_color
+    background-color: $btn_hover_bg_color
+    border-color: $btn_border_color
+
+  a
+    border: 0
+    display: block
+    height: fit-content
+    width: 100%
+
+    &:hover
+      border: 0
+
+%button-reverse
+  @extend %button
+  border: solid $white $btn_border_width
+
+
+%button-feature-cta
+  @extend %button
+  border: $btn_border_width solid $black
+  color: $black
+  background-color: transparent
+  position: relative
+
+  a
+    color: $black !important
+
+%button-ghost
+  @extend %button-base
+  color: $black
+  border: none
+  background-color: transparent
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  @extend %underscore
+
+  &:hover
+    color: $clr4
+
+
+%button-reset
+  @extend %button-base
+  border: none
+  background-color: neutral(60)
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+
+  &:hover
+    background-color: $black
+
+  &:active
+    background-color: neutral(80)
+
+
+%button-text
+  background-color: $black
+  text-decoration: underline
+  display: inline-flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  border: none
+
+%button-standard
+  @extend %button
+  color: $white
+  text-decoration: none
+
+  &:hover
+    color: $black
+    background-color: $clr2
+    border: 0
+
+%button-link
+  @extend %button
+  color: $white
+
+
+%button-outline
+  @extend %button
+  background-color: transparent
+  font-style: normal
+  text-decoration: none
+
+  &:hover
+    border: $btn_border_width solid $clr2
+
+%button-compact
+  height: $ui_compactheight
+  min-width: $btn_compactwidth !important
+  font-size: $btn_compact_fontsize
+
+%button-large
+  height: $ui_largeheight
+  min-width: $btn_largewidth
+
+%button-reset
+  @extend %button
+  border-width: $btn_reset_border_width
+  border-color: $btn_reset_border_color
+  font-style: normal
+  background-color: $btn_reset_bg_color
+  color: $btn_reset_color
+  min-width: $btn_compactwidth
+  text-decoration: none
+  justify-content: flex-start
+
+  &:hover
+    color: $btn_reset_hover_color
+    background-color: $btn_reset_hover_bg_color
+    border-color: $btn_reset_hover_border_color
+
+%button-more
+  color: $black
+  font-style: normal
+  text-decoration: none
+  border: 0
+  padding: 0 45px
+  min-width: 0 !important
+  display: inline-flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  height: 50px
+  +more-arrow
+
+  a
+    color: inherit
+    font-style: inherit
+    border-bottom: 2px solid $black
+    text-decoration: inherit
+
+    &:hover
+      border-bottom: 2px solid $black
+
+%button-submit
+  @extend %button
+  +background-icon-default-left('checkmark')
+  border-width: $btn_submit_border_width
+  border-color: $btn_submit_border_color
+  font-style: normal
+  background-color: $btn_submit_bg_color
+  color: $btn_submit_color
+  text-decoration: none
+
+  &:hover
+    color: $btn_submit_hover_color
+    background-color: $btn_submit_hover_bg_color
+    border-color: $btn_submit_hover_border_color
+    filter: saturate(120%)
+
+%button-cta
+  border-width: $btn_submit_border_width
+  border-color: $btn_submit_border_color
+  font-style: normal
+  background-color: $btn_submit_bg_color
+  color: $btn_submit_color
+  text-decoration: none
+  +background-icon-default-left('arrow')
+
+
+  &:hover
+    color: $btn_submit_hover_color
+    background-color: $btn_submit_hover_bg_color
+    border-color: $btn_submit_hover_border_color
+    filter: saturate(120%)
+
+%button-search
+  @extend %button-ghost
+  font-size: clamped(-3,-2)
+  color: $btn_search_color
+  padding-right: calc(#{$ui_padding} + #{$btn_icon_size})
+  min-width: $ui_minheight !important
+  height: $ui_minheight !important
+  text-decoration: none
+  justify-content: flex-start
+  align-items: center
+  +background-icon-base('search',$btn_icon_size,'neutral','default','right')
+  background-color: $btn_search_bg_color
+
+  &:hover
+    color: $btn_search_hover_color
+    +background-icon-active('search',$btn_icon_size,'neutral','default','right')
+    background-color: $btn_search_hover_bg_color
+
+%button-search-clear
+  @extend %button-search
+  +background-icon-base('reset',$btn_icon_size,'neutral','default','right')
+
+  &:hover
+    color: $btn_search_hover_color
+    +background-icon-active('reset',$btn_icon_size,'neutral','default','right')
+    background-color: $btn_search_hover_bg_color
+
+%input-text
+  font-family: $basefont
+  font-weight: $normal
+  font-size: $btn_fontsize
+  padding: 0 $ui_padding
+  height: $ui_minheight
+  border-radius: $ui_border_radius
+  border: 1px solid $ui_border_color
+  max-width: $ui_max_text_width
+  background-color: $white
+
+  +reversed
+    background-color: $white
+
+  &:hover
+    border-color: $ui_hover_border_color

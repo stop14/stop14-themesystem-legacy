@@ -1,0 +1,92 @@
+/*
+   @file 40_ui/_standardized_icons/_icon_mixins.sass
+   @theme LOCAL
+   @description  Mixins to support icon components. */
+
+
+=background-icon-base($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active',$position: 'left')
+  display: flex
+  align-items: center
+  background: unset
+  background-image: url(get_svg_url('icons/#{$icon_name}-#{$initial_state}'))
+  background-size: #{$size}
+  background-repeat: no-repeat
+  background-position: center #{$position}
+
+  @if $size != 'contain'
+    min-height: $size
+
+// Apply to add an active state. Separated because active state may be triggered
+// differently based on context.
+
+=background-icon-active($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active',$position: 'left')
+  background-size: #{$size} // repeated for hover state for legacy support
+  background-image: url(get_svg_url('icons/#{$icon_name}-#{$active_state}'))
+
+
+// Convenience functions to assign left and right background functions
+=background-icon-left($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
+  display: flex
+  align-content: center
+  min-height: $btn_icon_size
+
+  &:before
+    content: ''
+    height: $btn_icon_size
+    width: $btn_icon_size
+    margin-right: $ui_padding
+    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+    background-position: center left
+
+  &.active, &:hover
+    &:before
+      +background-icon-active($icon_name, 'contain', $initial_state, $active_state)
+      +fadeInLeft($heartbeat,$heartbeat)
+
+
+=background-icon-right($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
+  display: flex
+  align-content: center
+  min-height: $btn_icon_size
+
+  &:after
+    content: ''
+    height: $btn_icon_size
+    width: $btn_icon_size
+    padding-left: $ui_padding
+    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+    background-position: center right
+
+  &.active, &:hover
+    &:after
+      +background-icon-active($icon_name, 'contain', $initial_state, $active_state)
+      +fadeInLeft($heartbeat,$heartbeat)
+
+// Convenience functions to assign the default icon to the hover state
+
+=background-icon-default-left($icon_name, $size: $btn_icon_size)
+  +background-icon-left($icon_name,$btn_icon_size,'default','default')
+
+=background-icon-default-right($icon_name, $size: $btn_icon_size)
+  +background-icon-right($icon_name,$btn_icon_size,'default','default')
+
+
+// Simplified Aliases
+
+=icon($icon_name, $icon_name: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
+  height: $btn_icon_size
+  width: $btn_icon_size
+  +background-icon-base($icon_name,$icon_name,$initial_state,$active_state)
+  background-position: center
+
+  &.active, &:hover
+    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+
+=icon-with-label($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active', $position: 'left')
+  @extend %icon-label
+
+  @if $position == 'left'
+    +background-icon-left($icon_name,$btn_icon_size,$initial_state,$active_state)
+  @else
+    +background-icon-right($icon_name,$btn_icon_size,$initial_state,$active_state)
+

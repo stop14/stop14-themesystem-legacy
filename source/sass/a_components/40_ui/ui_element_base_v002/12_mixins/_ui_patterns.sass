@@ -1,0 +1,39 @@
+/*
+   @file 40_ui/_standardized_icons/_icon_mixins.sass
+   @theme LOCAL
+   @description  Mixins to support icon components. */
+
+
+$ui_form_mobile_clearance: rv($mobile_edge_padding_factor)
+$ui_form_clearance: rv($edge_padding_factor)
+
+=ui-element-width-control()
+  max-width: calc(100vw - #{$ui_form_mobile_clearance} * 2) // Form elements can only be as wide as the viewport less the edge padding.
+
+  +bp($stack)
+    max-width: calc(100vw - #{$ui_form_clearance} * 2)
+
+
+=ui-space-element()
+  margin-left: $ui_element_spacing
+
+  &:first-child
+    margin-left: 0
+
+=one-line-form($subgroup: '#edit_actions')
+  display: flex
+  flex-direction: column
+
+  +bp($tablet)
+    flex-direction: row
+
+  > *
+    margin-bottom: rv($mobile_edge_padding_factor)
+
+    +bp($tablet)
+      margin-bottom: 0
+      +ui-space-element()
+
+  #{$subgroup}
+    display: flex
+    align-items: center

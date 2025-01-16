@@ -1,0 +1,109 @@
+.block-superfish
+    display: none
+
+
+    +bp($tablet)
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+
+
+
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu *
+    padding: 0
+    margin: 0
+    list-style: none
+
+ul.sf-menu
+    li
+        position: relative
+
+    ul
+        position: absolute
+        display: none
+        top: 100%
+        left: 0
+        z-index: 99
+
+        ul
+            top: 0
+            left: 100%
+
+    > li
+        float: left
+
+        &:hover > ul, &.sfHover > ul
+            display: block
+            top: 100%
+
+    a
+        display: block
+        position: relative
+
+
+/*** DEMO SKIN ***/
+.sf-menu
+    float: left
+    margin-bottom: 1em
+
+    ul
+        box-shadow: 2px 2px 6px rgba(0,0,0,.2)
+        min-width: 100% /* allow long menu items to determine submenu width */
+        *width: 12em /* no auto sub width for IE7, see white-space comment below */
+
+    a, .nolink
+        text-decoration: none
+        white-space: normal
+        overflow: hidden
+
+    a:hover
+        text-decoration: none
+        border-bottom: none
+
+    > * .menuparent
+        +background-icon-base('accordion-expand',$btn_icon_size,'reversed')
+        background-position: right center
+
+    .sf-depth-1
+        li
+            white-space: nowrap /* no need for Supersubs plugin */
+            *white-space: normal /* ...unless you support IE7 (let it wrap) */
+            -webkit-transition: background $heartbeat
+            transition: background $heartbeat
+            background: neutral(10)
+
+            &:hover
+                background: $impact
+
+            a, a:hover
+                color: $black
+    .sf-depth-2
+        &.li
+            background: neutral(50)
+        a
+            color: $black
+            +font-size(-1)
+
+
+
+/* styling arrows */
+.sf-depth-1 .sf-with-ul:after
+    content: ''
+    background-size: contain
+    background-position: center
+    width: rv(-1)
+    height: rv(-4)
+    position: absolute
+    top: rv(0)
+    margin-left: rv(-1)
+    justify-content: center
+
+
+.sf-depth-2 .sf-with-ul:after
+    content: ''
+
+/* superfish generated arrows */
+.sf-menu li .sf-sub-indicator
+    display: none

@@ -1,0 +1,76 @@
+/*
+   @file 40_ui/_standardized_icons/_icon_mixins.sass
+   @theme LOCAL
+   @description  Definitions and classes to support icon creation.
+   @usage Add the “icon” class to a button or container to apply standardized
+    label styles. Add one of the following to apply a specific icon as per the
+    $icons list below:
+      .icon-[iconname] -- Positions icon to the right
+      .icon-left-[iconname] -- Positions icon to the left
+      .icon-reversed-[iconname] -- Uses reversed icon as default state
+      .icon-neutral-[iconname] -- Uses neutral icon as default state
+      .icon-left-reversed-[iconname] -- Left positioned version
+      .icon-left-neutral-[iconname] -- Left positioned version
+
+    @see _icon_mixins for more direct and flexible applications of icons
+
+   */
+
+/* Standardized icon list. Corresponds to svg files in source/img/svg/icons '
+ * folder using the naming convention [icon_name]-[state].svg
+ *
+ * Standardized states are "default","active","neutral","reversed"
+ */
+
+$icons: ('accordion-expand','accordion-horizontal','arrow','arrow-left','checkmark','close','copy','download','export','external-link','filter','full-screen','grid','hamburger-menu','home','link','list','location','locked','logout','minus','open-access','ordchid-id','orchid-id','plus','reset','search','sort','unlocked','upload','user-access','user','visible')
+
+
+%icon-label // Redefined from 30_typography/_definitions for portability. @todo: add definition to core.
+  font-size: $ui_element_font_size
+  text-transform: uppercase
+  text-decoration: none
+  border-bottom: 0
+  color: $black
+
+%icon
+  display: flex
+  align-items: center
+  cursor: pointer
+  @extend %icon-label
+
+  &:hover
+    color: $impact
+
+  +reversed
+    color: $white
+
+    &:hover
+      color: $impact
+
+button.icon
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  @extend %icon
+  border: 0
+  background-color: transparent
+  height: $btn_icon_size
+
+.icon
+  text-transform: uppercase
+  @extend %icon
+
+// Set standardized classes. Non-standard icon usage should use icons
+@each $name in $icons
+  .icon-#{$name}
+    +background-icon-right($name,$btn_icon_size,'default','active')
+  .icon-reversed-#{$name}
+    +background-icon-right($name,$btn_icon_size,'reversed','active')
+  .icon-neutral-#{$name}
+    +background-icon-right($name,$btn_icon_size,'neutral','default')
+  .icon-right#{$name}
+    +background-icon-left($name,$btn_icon_size,'default','active')
+  .icon-right-reversed-#{$name}
+    +background-icon-left($name,$btn_icon_size,'reversed','active')
+  .icon-right-neutral-#{$name}
+    +background-icon-left($name,$btn_icon_size,'neutral','default')

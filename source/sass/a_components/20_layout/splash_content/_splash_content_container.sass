@@ -34,7 +34,7 @@
         height: auto
       @else
         height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$masthead_clearance})
-      min-height: 750px
+      min-height: $min_splash_height
 
   @at-root #{$admin-toolbar-selector} #{$splash-section-selector} #{$container-selector}
     @if $splash_height_mobile == 'auto'
