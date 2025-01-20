@@ -20,19 +20,20 @@ $ui_form_clearance: rv($edge_padding_factor)
   &:first-child
     margin-left: 0
 
+=ui-form-spacing()
+  > *
+    margin-bottom: $ui_element_spacing
+
+    +bp($tablet)
+      +ui-space-element()
+
 =one-line-form($subgroup: '#edit_actions')
   display: flex
   flex-direction: column
+  +ui-form-spacing
 
   +bp($tablet)
     flex-direction: row
-
-  > *
-    margin-bottom: rv($mobile_edge_padding_factor)
-
-    +bp($tablet)
-      margin-bottom: 0
-      +ui-space-element()
 
   #{$subgroup}
     display: flex

@@ -11,6 +11,10 @@ li, td
 
 ul
   margin-bottom: $paragraph_spacing
+  padding-inline-start: rv($mobile_edge_padding_factor)
+
+  +bp($tablet)
+    padding-inline-start: rv($edge_padding_factor)
 
 blockquote
   box-sizing: border-box

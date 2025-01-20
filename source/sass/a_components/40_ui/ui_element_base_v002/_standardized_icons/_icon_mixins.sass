@@ -27,8 +27,9 @@
 // Convenience functions to assign left and right background functions
 =background-icon-left($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
   display: flex
-  align-content: center
+  align-items: center
   min-height: $btn_icon_size
+  cursor: pointer
 
   &:before
     content: ''
@@ -46,8 +47,9 @@
 
 =background-icon-right($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
   display: flex
-  align-content: center
+  align-items: center
   min-height: $btn_icon_size
+  cursor: pointer
 
   &:after
     content: ''
@@ -89,3 +91,10 @@
     +background-icon-left($icon_name,$size,$initial_state,$active_state)
   @else
     +background-icon-right($icon_name,$size,$initial_state,$active_state)
+
+  &:hover, &:active
+    color: $impact
+
+=icon-with-label-right($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active', $position: 'left')
+  @extend %icon-label
+  +background-icon-right($icon_name,$size,$initial_state,$active_state)

@@ -36,7 +36,6 @@
   -moz-appearance: none
   appearance: none
   font-size: $btn_fontsize
-  font-family: $headingfont
   font-weight: $normal
   padding: $btn_padding
   height: $ui_minheight
@@ -203,7 +202,7 @@
 
 %button-submit
   @extend %button
-  +background-icon-default-left('checkmark')
+  +background-icon-left('checkmark',$btn_icon_size,'reversed','default')
   border-width: $btn_submit_border_width
   border-color: $btn_submit_border_color
   font-style: normal
@@ -233,6 +232,9 @@
     border-color: $btn_submit_hover_border_color
     filter: saturate(120%)
 
+// Made for integrated search ui elements, where the text input and submit button are contained in the same border.
+// In many instances this will need to override the “submit” styling.
+
 %button-search
   @extend %button-ghost
   font-size: clamped(-3,-2)
@@ -243,12 +245,16 @@
   text-decoration: none !important
   justify-content: flex-start
   align-items: center
-  +background-icon-base('search',$btn_icon_size,'neutral','default','right')
+  +background-icon-right('search',$btn_icon_size,'neutral','default')
   background-color: $btn_search_bg_color
+
+  &:before
+    content: none
+    display: none
+    background: none !important
 
   &:hover
     color: $btn_search_hover_color
-    +background-icon-active('search',$btn_icon_size,'neutral','default','right')
     background-color: $btn_search_hover_bg_color
 
 %button-search-clear
