@@ -34,6 +34,7 @@ cta: $clr1
 de_emphasized: neutral(50)
 de_activated: neutral(30)
 link_colour: $black
+link_colour_active: $clr3
 
 ## 02 LAYOUT
 rootsize: 100%

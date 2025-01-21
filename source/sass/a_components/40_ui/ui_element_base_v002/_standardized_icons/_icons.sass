@@ -5,7 +5,8 @@
    @usage Add the “icon” class to a button or container to apply standardized
     label styles. Add one of the following to apply a specific icon as per the
     $icons list below:
-      .icon-[iconname] -- Positions icon to the right
+      .icon-[iconname] -- No positioning, must have container with definite height and width
+      .icon-right-[iconname] -- Positions icon to the right
       .icon-left-[iconname] -- Positions icon to the left
       .icon-reversed-[iconname] -- Uses reversed icon as default state
       .icon-neutral-[iconname] -- Uses neutral icon as default state
@@ -22,7 +23,7 @@
  * Standardized states are "default","active","neutral","reversed"
  */
 
-$icons: ('accordion-expand','accordion-horizontal','arrow','arrow-left','checkmark','close','copy','download','export','external-link','filter','full-screen','grid','hamburger-menu','home','link','list','location','locked','logout','minus','open-access','ordchid-id','orchid-id','plus','reset','search','sort','unlocked','upload','user-access','user','visible')
+$icons: ('accordion-expand','accordion-horizontal','arrow','arrow-left','checkmark','close','copy','download','export','external-link','filter','full-screen','grid','hamburger-menu','home','link','list','location','locked','logout','minus','metadata','open-access','ordchid-id','orchid-id','plus','reset','search','sort','unlocked','upload','user-access','user','visible')
 
 
 %icon-label // Redefined from 30_typography/_definitions for portability. @todo: add definition to core.
@@ -60,17 +61,29 @@ button.icon
   text-transform: uppercase
   @extend %icon
 
-// Set standardized classes. Non-standard icon usage should use icons
+// Set standardized classes.
 @each $name in $icons
   .icon-#{$name}
-    +background-icon-right($name,$btn_icon_size,'default','active')
+    +background-icon-base($name,'contain','default','active')
+    &:after,&.active
+      +background-icon-active($name,'contain','default','active')
   .icon-reversed-#{$name}
-    +background-icon-right($name,$btn_icon_size,'reversed','active')
+    +background-icon-base($name,'contain','reversed','active')
+    &:after,&.active
+      +background-icon-active($name,'contain','reversed','active')
   .icon-neutral-#{$name}
-    +background-icon-right($name,$btn_icon_size,'neutral','default')
+    +background-icon-base($name,'contain','neutral','default')
+    &:after,&.active
+      +background-icon-active($name,'contain','neutral','active')
   .icon-right#{$name}
-    +background-icon-left($name,$btn_icon_size,'default','active')
+    +background-icon-right($name,$btn_icon_size,'default','active')
   .icon-right-reversed-#{$name}
-    +background-icon-left($name,$btn_icon_size,'reversed','active')
+    +background-icon-right($name,$btn_icon_size,'reversed','active')
   .icon-right-neutral-#{$name}
+    +background-icon-right($name,$btn_icon_size,'neutral','default')
+  .icon-left-#{$name}
+    +background-icon-left($name,$btn_icon_size,'default','active')
+  .icon-left-reversed-#{$name}
+    +background-icon-left($name,$btn_icon_size,'reversed','active')
+  .icon-left-neutral-#{$name}
     +background-icon-left($name,$btn_icon_size,'neutral','default')

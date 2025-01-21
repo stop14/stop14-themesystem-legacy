@@ -48,6 +48,11 @@ input[type="submit"],
 button[type="submit"] //Button
   @extend %button-submit
 
+input[type="reset"],
+button[type="teset"] //Button
+  @extend %button-reset
+
+
 input[type="search"]::-webkit-search-cancel-button
   -webkit-appearance: none
   display: inline-block
@@ -72,6 +77,11 @@ input[type="checkbox"]
   vertical-align: middle
   float: left
   margin: 0
+
+  &:checked
+    +icon('checkmark')
+    background-size: 80%
+    background-position: center
 
   &:hover
     border-color: $ui_hover_border_color
