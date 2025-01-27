@@ -10,7 +10,7 @@
 @function set-colour($colour: 1,$intensity: 100, $mixer: white)
   @if is-int($intensity)
     // Variable interpolation e.g. $clr#{$colour}) doesn’t work in SASS functions. Use a map instead.
-    $colourmaps: (1: $clr1, 2: $clr2, 3: $clr3, 4: $clr4, 5: $clr5, 6: $clr6, 7: $clr7, 8: $clr8, 9: $clr9)
+    $colourmaps: (1: $clr1, 2: $clr2, 3: $clr3, 4: $clr4, 5: $clr5, 6: $clr6, 7: $clr7, 8: $clr8, 9: $clr9, 10: $clr10, 11: $clr11, 12: $clr12, 13: $clr13, 14: $clr14, 15: $clr15, 16: $clr16, 17: $clr17, 18: $clr18, 19: $clr19, 20: $clr20)
     @return mix(map-get($colourmaps,$colour),$mixer,$intensity * 1%)
   @else
     @return mix(set-colour-legacy($colour),$mixer,$intensity * 1%)

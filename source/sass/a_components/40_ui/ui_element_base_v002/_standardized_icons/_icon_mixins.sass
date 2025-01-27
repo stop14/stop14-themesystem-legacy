@@ -73,7 +73,6 @@
   +background-icon-right($icon_name,$btn_icon_size,'default','default')
 
 
-// Simplified Aliases
 
 =icon($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
   height: $size
@@ -82,7 +81,7 @@
   background-position: center
 
   &.active, &:hover
-    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+    +background-icon-base($icon_name,$size,$initial_state,$active_state)
 
 =icon-with-label($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active', $position: 'left')
   @extend %icon-label
@@ -98,3 +97,23 @@
 =icon-with-label-right($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active', $position: 'left')
   @extend %icon-label
   +background-icon-right($icon_name,$size,$initial_state,$active_state)
+
+
+// Input buttons can’t have pseudo-elements, so the background icon must be directly applied.
+// Experimental. Positioning the icon still needs thinking through to work in all situations
+
+
+=input-button-icon($icon_name, $size: $btn_icon_size, $btn_padding: $ui_padding, $initial_state: 'default', $active_state: 'active', $position: 'left')
+  +background-icon-base($icon_name,$size,$initial_state,$active_state)
+
+  @if $position == 'left'
+    background-position: left calc(#{$btn_padding} - #{$size * 2} ) center
+  @else
+    background-position: left calc(#{$btn_padding} + #{$size * 2} ) center
+
+
+=input-button-icon-left($icon_name, $size: $btn_icon_size, $btn_padding: $ui_padding, $initial_state: 'default', $active_state: 'active')
+  +input-button-icon($icon_name,$size,$btn_padding,$initial_state,$active_state,'left')
+
+=input-button-icon-right($icon_name, $size: $btn_icon_size, $btn_padding: $ui_padding, $initial_state: 'default', $active_state: 'active')
+  +input-button-icon($icon_name,$size,$btn_padding,$initial_state,$active_state,'right')

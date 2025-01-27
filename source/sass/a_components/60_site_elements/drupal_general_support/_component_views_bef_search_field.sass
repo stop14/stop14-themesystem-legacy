@@ -59,9 +59,115 @@
 
     &[type="submit"].form-submit
       @extend %button-search
+      +input-button-icon-right('search')
 
     &[type="submit"][name="reset"].form-submit
       @extend %button-search-clear
+      +input-button-icon-right('reset')
+
+// Add ons in various contexts
+
+// Hides everything but the search field and remove the search border
+// Used for high-impact search displays
+
+=bef-exposed-form-search-ghost($search_input_selector: '.form-item-search-api-fulltext')
+  .form-item:not(#{$search_input_selector})
+    display: none
+
+  #{$search_input_selector}
+    width: auto
+    flex-grow: 1
+
+    input
+      max-width: unset
+      border: 0 !important
+
+// Hides the search bar. Used when the search input is rendered elsewhere, often by placing the BEF block twice.
+
+=bef-exposed-form-hide-search($search_input_selector: '.form-item-search-api-fulltext')
+
+  #{$search_input_selector}
+    display: none
+
+=bef-exposed-form-compact-right
+  form
+    justify-content: flex-end
+
+  .form-item
+    +bp($desktop)
+      width: auto
+
+  input, select
+    max-width: 250px
+
+  .form-actions
+    margin-left: 0
+/**
+ *  @file _views_exposed_forms.sass
+ *  @category 40_ui
+ *  @theme LOCAL
+ *  @description Support for the exposed forms in Views. Also includes Better Exposed Forms (or will)
+ **/
+
+.views-exposed-form.bef-exposed-form
+  form
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    position: relative
+    background-color: $white
+    width: 100%
+
+    +bp($desktop)
+      flex-wrap: nowrap
+      height: $ui_largeheight
+
+  .form-item
+    flex-grow: 0
+    flex-shrink: 1
+    margin-bottom: $ui_padding
+
+    +bp($tablet)
+      margin-right: $ui_padding
+
+    +bp($desktop)
+      margin-bottom: 0
+
+
+    > *
+      width: 100%
+
+  .form-actions
+    margin-left: auto
+    display: flex
+
+    > *
+      margin-left: $ui_padding
+
+      &:first-child
+        margin-left: 0
+
+  label
+    display: none
+
+
+
+    &.form-item-search-api-fulltext
+      flex-grow: 1
+      flex-shrink: 0
+
+      input
+        width: 100%
+
+  input
+
+    &[type="submit"].form-submit
+      @extend %button-search
+      +input-button-icon-right('search')
+
+    &[type="submit"][name="reset"].form-submit
+      @extend %button-search-clear
+      +input-button-icon-right('reset')
 
 // Add ons in various contexts
 

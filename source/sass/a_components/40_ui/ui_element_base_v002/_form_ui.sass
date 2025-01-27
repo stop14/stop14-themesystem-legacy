@@ -41,15 +41,22 @@ input[type='email'],
 textarea#edit-message
   @extend %input-text
 
-input[type="search"] // Button
+// Important. Icons do NOT apply to input elements automatically because
+// they are not containers and can’t have :before and :after pseudo-elements.
+// In most contexts you should apply icons to the an input container.
+// Alternatively you can use the work-in-progress +input-button-icon() mixins
+// to see if you can achieve the desired results.
+
+input[type="search"]
+button[type="search"]
   @extend %button-search
 
 input[type="submit"],
-button[type="submit"] //Button
+button[type="submit"]
   @extend %button-submit
 
 input[type="reset"],
-button[type="teset"] //Button
+button[type="reset"]
   @extend %button-reset
 
 

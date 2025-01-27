@@ -24,17 +24,17 @@
 
 // legacy alias
 
-=overlay-dark($angle: 180deg, $stop: 66%, $colour: $black)
+=overlay-dark($colour: $black, $stop: 66%, $angle: 180deg)
   +gradient-overlay-dark($angle,$stop,$colour)
 
-=gradient-overlay-slide($angle: 0deg,$colour: $true_black)
+=gradient-overlay-slide($colour: $true_black, $stop: 40%, $angle: 0deg)
   +gradient-overlay-dark
 
   &:before
-    background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($mobile_edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
+    background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($mobile_edge_padding_factor) * 4, transparent $stop) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
 
     +bp($tablet)
-      background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($edge_padding_factor) * 4, transparent 40%) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
+      background: linear-gradient($angle, rgba($colour,1) 0%, rgba($colour,0.9) rv($edge_padding_factor) * 4, transparent $stop) // fudge second gradient stop to clear caption. See 60_site_elements/content/_slide.sass
 
 
 =image-overlay($image_url:'../img/jpg/folder/some-image.jpg', $opacity: 0.4)
