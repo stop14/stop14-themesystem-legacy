@@ -62,9 +62,40 @@ ul.sf-menu
         text-decoration: none
         border-bottom: none
 
-    > * .menuparent
-        +background-icon-base('accordion-expand',$btn_icon_size,'reversed')
-        background-position: right center
+    // Superfish uses “menuparent” to indicate that the link has a submenu
+    // It applies to both the list and child anchor tag so li is explicit here
+    // Superfish also uses “.sf-depth-[x]” to indicate nested menu depth
+    // .sf-depth-1 is the top-level.
+
+    // This logic uses a right-facing arrow for all menu items that are not the
+    // top level, which has a downward arrow.
+
+    // @todo Superfish may have collision detection here, with submenus appearing
+    // on the left or right depending on available viewport space. If so,
+    // this logic needs to expand.
+
+    li.menuparent
+        +background-icon-right('accordion-expand',$btn_icon_size)
+
+        &:after
+            transform: rotate(-90deg)
+
+        &.sf-depth-1
+
+            +reversed()
+                +background-icon-right('accordion-expand',$btn_icon_size,'reversed')
+
+            &:after
+                transform: unset
+
+        &:not(.sf-depth-1)
+            &:hover
+                &:after
+                    background-image: url(get_svg_url('icons/accordion-expand-default'))
+                    transform: rotate(-90deg)
+                    animation-name: unset // The animation overrides the transform in this context, so is unset here.
+
+
 
     .sf-depth-1
         li
@@ -72,37 +103,25 @@ ul.sf-menu
             *white-space: normal /* ...unless you support IE7 (let it wrap) */
             -webkit-transition: background $heartbeat
             transition: background $heartbeat
-            background: neutral(10)
+            background-color: neutral(10)
 
             &:hover
-                background: $impact
+                background-color: $impact
 
             a, a:hover
                 color: $black
+
     .sf-depth-2
         &.li
-            background: neutral(50)
+            background-color: neutral(50)
         a
             color: $black
-            +font-size(-1)
+            width: 75%
+            padding-right: 1.5em // conforms with superfish
 
 
 
 /* styling arrows */
-.sf-depth-1 .sf-with-ul:after
-    content: ''
-    background-size: contain
-    background-position: center
-    width: rv(-1)
-    height: rv(-4)
-    position: absolute
-    top: rv(0)
-    margin-left: rv(-1)
-    justify-content: center
-
-
-.sf-depth-2 .sf-with-ul:after
-    content: ''
 
 /* superfish generated arrows */
 .sf-menu li .sf-sub-indicator

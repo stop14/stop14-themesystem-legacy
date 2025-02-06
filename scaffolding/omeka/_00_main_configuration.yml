@@ -161,6 +161,7 @@ ui_mobile_app_controls_footer_height: $masthead_height
 ui_mobile_app_controls_breakpoint: $tablet
 ui_display_controls_icon_size: "$ui_mobile_app_controls_footer_height * 0.5"
 
+
 # legacy
 border_radius: $ui_border_radius
 mobile_filter_height: rv(5)
@@ -222,6 +223,12 @@ ui_select_width: fit-content
 ui_select_min_width: 200px
 ui_select_max_width: 100%
 
+#Callouts
+
+callout_shift: 0
+callout_width: 40%
+callout_inset: null
+callout_breakpoint: lrg
 
 # Animation
 heartbeat: 0.2s

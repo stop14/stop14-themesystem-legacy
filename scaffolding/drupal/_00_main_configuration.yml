@@ -222,6 +222,12 @@ ui_select_width: fit-content
 ui_select_min_width: $btn_width
 ui_select_max_width: 100%
 
+#Callouts
+
+callout_shift: 0
+callout_width: 40%
+callout_inset: null
+callout_breakpoint: lrg
 
 # Animation
 

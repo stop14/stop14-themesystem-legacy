@@ -33,8 +33,8 @@
 
   &:before
     content: ''
-    height: $btn_icon_size
-    width: $btn_icon_size
+    height: $size
+    width: $size
     margin-right: $ui_padding
     +background-icon-base($icon_name,'contain',$initial_state,$active_state)
     background-position: center left
@@ -48,13 +48,13 @@
 =background-icon-right($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
   display: flex
   align-items: center
-  min-height: $btn_icon_size
+  min-height: $size
   cursor: pointer
 
   &:after
     content: ''
-    height: $btn_icon_size
-    width: $btn_icon_size
+    height: $size
+    width: $size
     margin-left: $ui_padding
     +background-icon-base($icon_name,'contain',$initial_state,$active_state)
     background-position: center right

@@ -50,11 +50,11 @@
 
   @if $direction == 'left'
     float: left
-    padding-right: rv($mobile_edge_padding_factor)
+    padding-right: $paragraph_spacing
 
   @if $direction == 'right'
     float: right
-    padding-left: rv($mobile_edge_padding_factor)
+    padding-left: $paragraph_spacing
 
   +bp($breakpoint)
     position: relative
@@ -67,9 +67,8 @@
       float: left
       text-align: right
 
-      @if $inset == null
-        right: calc(#{$shiftval} + var(--callout-width))
-        margin-right: calc((#{$shiftval} + var(--callout-width)) * -1)
+      @if $inset == null or $inset == "null"
+        padding: 0 $paragraph_spacing $paragraph_spacing 0
       @else
         padding-right: rv($inset)
         right: calc(#{$shiftval} + (var(--callout-width)/2))
@@ -78,9 +77,8 @@
     @if $direction == 'right'
       float: right
 
-      @if $inset == null
-        left: calc(#{$shiftval} + var(--callout-width))
-        margin-left: calc((#{$shiftval} + var(--callout-width)) * -1)
+      @if $inset == null or $inset == "null"
+        padding: 0 0 $paragraph_spacing $paragraph_spacing
       @else
         padding-left: rv($inset)
         left: calc(#{$shiftval} + (var(--callout-width)/2))
