@@ -107,9 +107,9 @@
   +background-icon-base($icon_name,$size,$initial_state,$active_state)
 
   @if $position == 'left'
-    background-position: left calc(#{$btn_padding} - #{$size * 2} ) center
+    background-position: left #{$btn_padding} center
   @else
-    background-position: left calc(#{$btn_padding} + #{$size * 2} ) center
+    background-position: right #{$btn_padding} center
 
 
 =input-button-icon-left($icon_name, $size: $btn_icon_size, $btn_padding: $ui_padding, $initial_state: 'default', $active_state: 'active')

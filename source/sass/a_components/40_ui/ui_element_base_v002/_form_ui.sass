@@ -39,6 +39,7 @@ input:focus
 input[type='text'],
 input[type='email'],
 input[type='password'],
+input[type='search'],
 textarea#edit-message
   @extend %input-text
 
@@ -48,7 +49,6 @@ textarea#edit-message
 // Alternatively you can use the work-in-progress +input-button-icon() mixins
 // to see if you can achieve the desired results.
 
-input[type="search"],
 button[type="search"]
   @extend %button-search
 
@@ -61,7 +61,7 @@ button[type="reset"]
   @extend %button-reset
 
 
-input[type="search"]::-webkit-search-cancel-button
+button[type="search"]::-webkit-search-cancel-button
   -webkit-appearance: none
   display: inline-block
   width: 20px
