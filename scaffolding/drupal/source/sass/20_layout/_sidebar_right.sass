@@ -6,15 +6,11 @@
 
 aside.right
   padding: rv($mobile_edge_padding_factor)
-  +font-size(0)
+  font-size: clamped(0,1)
 
   +bp($desktop)
     padding: rv($edge_padding_factor)
 
-  *
-    color: inherit
-    font-size: inherit
-    
   .block > h2
     margin-bottom: rv($mobile_edge_padding_factor) !important
 

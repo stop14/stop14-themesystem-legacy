@@ -35,6 +35,8 @@ de_emphasized: neutral(50)
 de_activated: neutral(30)
 link_colour: $black
 link_colour_active: $clr3
+link_colour_reversed: $white
+link_colour_active_reversed: $white
 
 ## 02 LAYOUT
 rootsize: 100%

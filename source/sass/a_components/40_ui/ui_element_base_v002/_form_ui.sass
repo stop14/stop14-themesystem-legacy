@@ -85,11 +85,13 @@ input[type="checkbox"]
   vertical-align: middle
   float: left
   margin: 0
+  background-size: 80% !important // Compensates for values introduced in the +icon mixin below to maintain size in all states
+  background-position: center !important
 
   &:checked
-    +icon('checkmark')
-    background-size: 80%
-    background-position: center
+    +icon('checkmark',$ui_checkbox_height)
+    height: $ui_checkbox_height
+    width: $ui_checkbox_height
 
   &:hover
     border-color: $ui_hover_border_color
@@ -125,6 +127,7 @@ select
   min-width: $ui_select_min_width
   max-width: $ui_select_max_width
   +background-icon-right('accordion-expand')
+  background-repeat: no-repeat
 
   &:hover
     +background-icon-active('accordion-expand')
