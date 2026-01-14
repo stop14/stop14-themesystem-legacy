@@ -1,7 +1,7 @@
 {
-  "name": "stop14-themesystem-theme",
+  "name": "agile-generic-theme",
   "version": "1.0.0",
-  "description": "A theme based on the Stop14 Themesystem.",
+  "description": "Base Omeka theme and front-end development system.",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,9 +10,16 @@
     "type": "git",
     "url": "https://agile.git.beanstalkapp.com/ctc-19.git"
   },
-  "author": "Stop14 Media",
+  "author": "Agile Humanities Agency",
   "license": "MIT",
   "dependencies": {
-    "stop14-themesystem-legacy": "^1.6.5"
+    "fs": "^0.0.1-security",
+    "gulp-if": "^3.0.0",
+    "masonry-layout": "^4.2.2",
+    "path": "^0.12.7",
+    "pdfjs-dist": "^4.10",
+    "stop14-themesystem-legacy": "^2.0",
+    "superfish": "^1.7.10",
+    "yargs": "^16.2.0"
   }
 }

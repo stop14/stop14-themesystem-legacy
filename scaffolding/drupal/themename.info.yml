@@ -11,10 +11,9 @@ core: 8.x
 core_version_requirement: ^8 || ^9 || ^10
 libraries:
   - themename/global-styling
-libraries-extend:
-  - themename/authenticated
 logo: assets/img/svg/marks/logo.svg
 regions:
+  content: Content
   navigation: Main navigation
   header: Site header
   splash: Splash area
@@ -22,7 +21,6 @@ regions:
   tabs: Tabs
   wayfinding: Wayfinding
   title: Title area
-  content: Content
   main_sidebar: Main sidebar (right)
   main_sidebar_left: Main sidebar (left)
   main_alt: Main content (alternative)
