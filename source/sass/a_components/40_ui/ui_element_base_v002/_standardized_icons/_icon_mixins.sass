@@ -36,7 +36,7 @@
     height: $size
     width: $size
     margin-right: $ui_padding
-    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+    +background-icon-base($icon_name,$btn_icon_size,$initial_state,$active_state)
     background-position: center left
 
   &.active, &:hover
@@ -56,7 +56,7 @@
     height: $size
     width: $size
     margin-left: $ui_padding
-    +background-icon-base($icon_name,'contain',$initial_state,$active_state)
+    +background-icon-base($icon_name,$btn_icon_size,$initial_state,$active_state)
     background-position: center right
 
   &.active, &:hover
@@ -74,14 +74,13 @@
 
 
 
-=icon($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active')
+=icon($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active',$position: center)
   height: $size
   width: $size
-  +background-icon-base($icon_name,$size,$initial_state,$active_state)
-  background-position: center
+  +background-icon-base($icon_name,$size,$initial_state,$active_state,$position)
 
   &.active, &:hover
-    +background-icon-base($icon_name,$size,$initial_state,$active_state)
+    +background-icon-base($icon_name,$size,$initial_state,$active_state,$position)
 
 =icon-with-label($icon_name, $size: $btn_icon_size, $initial_state: 'default', $active_state: 'active', $position: 'left')
   @extend %icon-label

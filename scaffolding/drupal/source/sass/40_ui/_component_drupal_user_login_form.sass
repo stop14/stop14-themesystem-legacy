@@ -1,0 +1,21 @@
+#user-login-form
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+
+  +bp($desktop)
+    flex-direction: row
+    align-items: flex-end
+
+  > *
+    display: flex
+    flex-direction: column
+
+    margin-bottom: $ui_element_spacing
+
+    +bp($desktop)
+      margin-right: $ui_element_spacing
+
+    &:last-child
+      +bp($desktop)
+        margin-right: 0

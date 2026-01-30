@@ -51,7 +51,7 @@
 
 %button
   @extend %button-base
-  text-decoration: underline
+  text-decoration: none
   display: inline-flex
   flex-direction: row
   align-items: center
@@ -209,23 +209,26 @@
     &:hover
       border-bottom: 2px solid $black
 
+// !important flag needed because of specificity issues in Drupal implementations
+// @todo: look at the :not declarations in the core ui components to manage specificity better.
+
+
 %button-submit
   @extend %button
-  +submit-arrow
-  border-width: $btn_submit_border_width
-  border-color: $btn_submit_border_color
+  +input-button-icon('arrow',$btn_icon_size,$ui_padding,'reversed','reversed','right')
+  border-width: $btn_submit_border_width !important
+  border-color: $btn_submit_border_color !important
   font-style: normal
-  background-color: $btn_submit_bg_color
-  color: $btn_submit_color
+  background-color: $btn_submit_bg_color !important
+  color: $btn_submit_color !important
   min-width: $btn_compactwidth
   text-decoration: none
   justify-content: flex-start
 
   &:hover
-    +submit-arrow-hover
-    color: $btn_submit_hover_color
-    background-color: $btn_submit_hover_bg_color
-    border-color: $btn_submit_hover_border_color
+    color: $btn_submit_hover_color  !important
+    background-color: $btn_submit_hover_bg_color  !important
+    border-color: $btn_submit_hover_border_color  !important
 
 %button-search
   @extend %button-ghost

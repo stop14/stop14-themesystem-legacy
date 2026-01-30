@@ -7,7 +7,11 @@
 // Note: applying styles to <button> elements often create problems with third-party modules and admin interfaces.
 // It is advised that you add a button class to button elements to avoid conflicts
 
-.button:not(.trigger,.MuiButtonBase-root,.icon)
+//.button:not(.trigger,.MuiButtonBase-root,.icon) was originally called, but its specificity is too high
+// and it’s only applicable to specific platforms and situations where the standard button styling was interfering
+// with specifically styled applications. @todo: figure out another approach.
+
+.button, .btn
   @extend %button
 
   &.compact

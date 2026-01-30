@@ -1,25 +1,18 @@
 {
-  "name": "agile-generic-theme",
-  "version": "1.0.0",
-  "description": "Base Omeka theme and front-end development system.",
+  "name": "stop14-theme-scaffolding",
+  "version": "1.1.0",
+  "description": "Base Drupal theme and front-end development system.",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://agile.git.beanstalkapp.com/ctc-19.git"
+    "url": "https://agile.git.beanstalkapp.com/agile-d9-theme-scaffold.git"
   },
-  "author": "Agile Humanities Agency",
+  "author": "Stop14 Media",
   "license": "MIT",
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "gulp-if": "^3.0.0",
-    "masonry-layout": "^4.2.2",
-    "path": "^0.12.7",
-    "pdfjs-dist": "^4.10",
-    "stop14-themesystem-legacy": "^2.0",
-    "superfish": "^1.7.10",
-    "yargs": "^16.2.0"
+    "stop14-themesystem-legacy": "^2.1.0"
   }
 }

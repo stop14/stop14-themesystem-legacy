@@ -29,8 +29,13 @@
   *
   */
 // “trigger” class used by Drupal for its contextual menus. “MuiButtonBase used for Mirador.
-button:not(.trigger,.MuiButtonBase-root,.icon)
+//.trigger,.MuiButtonBase-root,.icon
+
+button
   @extend %button
+
+  &.icon, &.trigger, &.MuiButtonBase-root
+    all: unset
 
 input:focus
   outline: none !important

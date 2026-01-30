@@ -1,0 +1,16 @@
+#search-block-form, #search-block-form--2
+  display: flex
+  flex-direction: column
+
+  +bp($tablet)
+    flex-direction: row
+
+  > *
+    margin-bottom: $ui_element_spacing
+
+    +bp($tablet)
+      margin-right: $ui_element_spacing
+
+    &:last-child
+      +bp($tablet)
+        margin-right: 0

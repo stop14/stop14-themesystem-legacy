@@ -38,11 +38,10 @@ input:focus
 
 input[type='text'],
 input[type='email'],
+input[type="search"],
 textarea#edit-message
   @extend %input-text
-
-input[type="search"] // Button
-  @extend %button-search
+  min-width: 300px
 
 input[type="submit"] //Button
   @extend %button-submit
