@@ -5,29 +5,28 @@
  *  @description Styles for the paragraph quotation block.
  *
  **/
-  
-  
-  
+
+
+
 .paragraph--type--quotation.paragraph--view-mode--default
   padding: rv($mobile_block_spacing) * 3 0
   +bp($tablet)
     padding: rv($block_spacing) * 3 0
-  
+
   .field_quotation
     font-family: $basefont
-    font-weight: $light
+    font-weight: $normal
     text-align: center
-    font-size: clamped(2, 5, 'sml', 'xlrg')    
+    font-size: clamped(2, 5, 'sml', 'xlrg')
     line-height: 1.25
 
   .field_attribution_container
     text-align: center
-    padding-top: rv(0)
+    padding-top: rv($edge_padding_factor)
+
     .field_attribution
-      font-size: clamped(0, 1, 'sml', 'xlrg')   
+      font-size: clamped(0, 1, 'sml', 'xlrg')
       text-transform: uppercase
-      display: inline
-      padding-left: rv(-2)
       position: relative
-      @extend %trailing-rule-left
+      @extend %rule-top
 

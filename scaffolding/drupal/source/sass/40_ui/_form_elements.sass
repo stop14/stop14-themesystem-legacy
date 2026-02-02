@@ -28,9 +28,9 @@
   * overlay-colour|Overlay: yellow background
   *
   */
-// “trigger” class used by Drupal for its contextual menus. “MuiButtonBase used for Mirador.
-button:not(.trigger,.MuiButtonBase-root)
-  @extend %button
+// “trigger” class used by Drupal for its contextual menus. “MuiButtonBase used for Mirador. This now handled in core
+// button:not(.trigger,.MuiButtonBase-root)
+//   @extend %button
 
 input:focus
   outline: none !important
@@ -41,7 +41,7 @@ input[type='email'],
 input[type="search"],
 textarea#edit-message
   @extend %input-text
-  min-width: 300px
+  min-width: $ui_input_minwidth
 
 input[type="submit"] //Button
   @extend %button-submit

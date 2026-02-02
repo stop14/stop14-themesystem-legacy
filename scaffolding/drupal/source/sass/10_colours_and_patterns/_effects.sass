@@ -12,7 +12,7 @@ $glow_radius: 25px
 
 %feature-glow
   position: relative
-  
+
   &:before
     position: absolute
     content: ''
@@ -25,48 +25,48 @@ $glow_radius: 25px
     transform: scale(1.03) rotate(-2deg)
     filter: blur(4px)
     border-radius: $ui_border_radius
-    
+
   &:hover
     &:before
       background-color: set-colour-tint(2,90)
-      
-%rotation-glow
-      position: relative
-      
-      &:before
-        position: absolute
-        content: ''
-        z-index: -2
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        background-color: set-colour-tint(2,40)
-        transform: scale(1.03) rotate(-4deg)
-        filter: blur(5px)
-        border-radius: 0
-        mix-blend-mode: multiply
-        opacity: 0.7
-        
-      &:after
-        position: absolute
-        content: ''
-        z-index: -1
-        top: 0
-        left: 0
-        right: 0
-        bottom: 0
-        background-color: set-colour-tint(2,40)
-        transform: scale(1.03) rotate(4deg)
-        filter: blur(3px)
-        border-radius: 0
-        mix-blend-mode: multiply
-        opacity: 0.6
 
-        
-      &:hover
-        &:before, &:after
-          background-color: set-colour-tint(2,70)
+%rotation-glow
+  position: relative
+
+  &:before
+    position: absolute
+    content: ''
+    z-index: -2
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: set-colour-tint(2,40)
+    transform: scale(1.03) rotate(-4deg)
+    filter: blur(5px)
+    border-radius: 0
+    mix-blend-mode: multiply
+    opacity: 0.7
+
+  &:after
+    position: absolute
+    content: ''
+    z-index: -1
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-color: set-colour-tint(2,40)
+    transform: scale(1.03) rotate(4deg)
+    filter: blur(3px)
+    border-radius: 0
+    mix-blend-mode: multiply
+    opacity: 0.6
+
+
+  &:hover
+    &:before, &:after
+      background-color: set-colour-tint(2,70)
 
 %glow-hover
   position: relative
@@ -98,7 +98,7 @@ $glow_radius: 25px
     width: rv(4)
     +bp($tablet)
       width: rv(6)
-    
+
 
 %trailing-rule-right
   &:before
@@ -109,6 +109,19 @@ $glow_radius: 25px
     left: 100%
     margin-left: rv(-2)
     width: rv(4)
+
+    +bp($tablet)
+      width: rv(6)
+
+%rule-top
+  &:before
+    position: relative
+    content: ''
+    border-bottom: 4px solid $black
+    margin: rv($mobile_edge_padding_factor) auto
+    width: rv(4)
+    display: block
+
     +bp($tablet)
       width: rv(6)
 

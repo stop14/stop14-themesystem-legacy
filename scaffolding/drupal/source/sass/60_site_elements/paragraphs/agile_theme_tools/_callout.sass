@@ -1,32 +1,85 @@
-/**
+/*
  *  @file _callout.sass
- *  @category 60_site_elements
- *  @theme LOCAL
- *  @description Styles for the paragraph callout block.
+ *  @description defines the callout paragraph in the Content Builder suite
  *
- **/
+ *  $callout_shift is defined in the Main configuration
+ */
 
-.paragraph--type--callout
-  padding: rv($mobile_block_spacing) * 2 0
-  +bp($tablet)
-    padding: rv($block_spacing) * 2 0
+// Consider moving these into main config
 
-  .field_body_container
-    .field_body
-      p
-        color: black
+$callout_border_width: 10px
+$callout_border_colour: set-colour(2)
 
-  .field_callout_container
-    .field_callout
-      p
-        @extend %callout-center
+.callout, .paragraph--type--callout
+  min-height: 100px
 
-.callout-left
-  .field_callout
+  .callout-text, .field_callout_container
+    position: relative
+    width: 100%
+    padding: 0 rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor) rv($mobile_edge_padding_factor)
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    +bp($tablet)
+      display: block
+      max-width: 370px
+      padding: 0 rv($edge_padding_factor) rv($edge_padding_factor) rv($edge_padding_factor)
+      width: $callout_width
+      max-width: 370px
+
+    +bp($desktop)
+      max-width: 500px
+
+    // Sets the sizing of the callout
+
+    .field-value
+      font-size: $callout_text_size
+      font-weight: $bold
+
     p
-      @extend %callout-left
+      font-size: inherit
+      font-weight: inherit
+      margin-top: rv($mobile_edge_padding_factor)
+      margin-bottom: 0
+
+      +bp($tablet)
+        margin-top: 0
 
 .callout-right
-  .field_callout
-    p
-      @extend %callout-right
+  .callout-text, .field_callout_container
+    +bp($tablet)
+      float: right
+    +bp($desktop)
+      transform: translateX($callout_shift)
+      margin-left: $callout_shift * -1
+
+    .field_callout
+      border-bottom: $callout_border_width solid $callout_border_colour
+      padding-bottom: rv($mobile_edge_padding_factor)
+
+      +bp($tablet)
+        border-bottom: none
+        padding-bottom: 0
+        border-left: $callout_border_width solid $callout_border_colour
+        padding-left: rv($edge_padding_factor)
+
+.callout-left
+  .callout-text, .field_callout_container
+    +bp($tablet)
+      text-align: right
+      float: left
+    +bp($desktop)
+      transform: translateX($callout_shift * -1)
+      margin-right: $callout_shift * -1
+
+    .field_callout
+      border-bottom: $callout_border_width solid set-colour(2)
+      padding-bottom: rv($mobile_edge_padding_factor)
+
+      +bp($tablet)
+        border-bottom: none
+        padding-bottom: 0
+        border-right: $callout_border_width solid set-colour(2)
+        padding-right: rv($edge_padding_factor)
+

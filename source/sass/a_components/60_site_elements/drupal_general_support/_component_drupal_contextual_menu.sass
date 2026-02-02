@@ -10,6 +10,11 @@
   bottom: initial !important
   left: initial !important
 
+  // Handles certain contextual menu buttons, following base definitions overridden by UI core
+
+  button.trigger
+    clip: rect(1px, 1px, 1px, 1px)
+    min-width: initial
 
 // Handles reversed situations
 
@@ -23,3 +28,4 @@
     a
       color: $white
       background-color: $black
+
