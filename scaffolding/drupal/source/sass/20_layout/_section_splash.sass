@@ -7,9 +7,16 @@
  *  @seealso 60_site_elements/views_and_blocks/_welcome.sass
  **/
 
-+splash-content-container()
+// There are two slider options:
+// +splash-content-container which creates a full width slider
+// +splash-content-container-inset which insets the content by standard edge padding
+
++splash-content-container-inset()
 
 #splash
   position: relative
   .block
     +splash-drupal-views-support()
+
+  // This removes any default padding for the slide content container
+  --slide-item-content-padding: 0

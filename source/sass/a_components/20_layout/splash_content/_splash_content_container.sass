@@ -54,6 +54,48 @@
       @else
         height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$admin_bar_tray} - #{$admin_bar_height} - #{$masthead_clearance})
 
+=splash-content-container-inset($container-selector: ".block", $splash-section-selector: "#splash", $admin-toolbar-selector: ".has-admin-bar, .toolbar-tray-open")
+
+  @at-root #{$splash-section-selector}  #{$container-selector}
+    +standard_edge_padding()
+
+    width: 100%
+    @if $splash_height_mobile == 'auto'
+      height: auto
+    @else
+      height: calc(#{$splash_height_mobile} - #{$masthead_height})
+
+    +bp($tablet)
+      @if $splash_height_tablet == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_tablet} - #{$masthead_height})
+
+    +bp($desktop)
+      @if $splash_height_desktop == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_desktop}  - #{$masthead_height})
+      min-height: $min_splash_height
+
+  @at-root #{$admin-toolbar-selector} #{$splash-section-selector} #{$container-selector}
+    @if $splash_height_mobile == 'auto'
+      height: auto
+    @else
+      height: calc(#{$splash_height_mobile} - #{$masthead_height} - #{$admin_bar_height})
+
+    +bp($tablet)
+      @if $splash_height_tablet == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_tablet} - #{$masthead_height} - #{$admin_bar_height})
+
+    +bp($desktop)
+      @if $splash_height_desktop == 'auto'
+        height: auto
+      @else
+        height: calc(#{$splash_height_desktop}  - #{$masthead_height} - #{$admin_bar_tray} - #{$admin_bar_height})
+
 
 /**
  * Forces standard Views interior containers to 100% height. Apply to views block element.
