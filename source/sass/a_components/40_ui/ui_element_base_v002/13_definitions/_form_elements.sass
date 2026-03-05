@@ -35,19 +35,11 @@
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  font-size: $btn_fontsize
-  font-weight: $normal
-  padding: $btn_padding
-  height: $btn_height
-  min-width: $btn_minwidth
-  border: $btn_border_width solid $btn_border_color
-  border-radius: $ui_border_radius
+
   text-align: center
   text-transform: uppercase
   width: fit-content
   white-space: nowrap
-  background-color: $btn_bg_color
-  color: $btn_color
 
 %button
   @extend %button-base
@@ -56,6 +48,15 @@
   align-items: center
   justify-content: center
   cursor: pointer
+  font-size: $btn_fontsize
+  font-weight: $normal
+  padding: $btn_padding
+  height: $btn_height
+  min-width: $btn_minwidth
+  border: $btn_border_width solid $btn_border_color
+  border-radius: $ui_border_radius
+  background-color: $btn_bg_color
+  color: $btn_color
 
   &:hover
     color: $btn_hover_color
@@ -102,6 +103,7 @@
     color: $clr4
 
 %button-text
+  @extend %button-base
   background-color: $black
   text-decoration: underline
   display: inline-flex
@@ -123,7 +125,6 @@
 %button-link
   @extend %button
   color: $white
-
 
 %button-outline
   @extend %button
