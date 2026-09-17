@@ -36,12 +36,12 @@
     height: $size
     width: $size
     margin-right: $ui_padding
-    +background-icon-base($icon_name,$btn_icon_size,$initial_state,$active_state)
+    +background-icon-base($icon_name,contain,$initial_state,$active_state)
     background-position: center left
 
   &.active, &:hover
     &:before
-      +background-icon-active($icon_name, 'contain', $initial_state, $active_state)
+      +background-icon-active($icon_name,contain, $initial_state, $active_state)
       +fadeInLeft($heartbeat,$heartbeat)
 
 
@@ -56,12 +56,12 @@
     height: $size
     width: $size
     margin-left: $ui_padding
-    +background-icon-base($icon_name,$btn_icon_size,$initial_state,$active_state)
+    +background-icon-base($icon_name,contain,$initial_state,$active_state)
     background-position: center right
 
   &.active, &:hover
     &:after
-      +background-icon-active($icon_name, 'contain', $initial_state, $active_state)
+      +background-icon-active($icon_name, contain, $initial_state, $active_state)
       +fadeInLeft($heartbeat,$heartbeat)
 
 // Convenience functions to assign the default icon to the hover state

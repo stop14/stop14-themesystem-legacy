@@ -3,11 +3,12 @@
   Drupal.behaviors.overlayMenu = {
     attach: function (context, settings) {
 
-      const elements = once('menu-overlay','.menu-button',context);
+      const elements = once('menu-overlay','.toolbar--menu-button',context);
 
       elements.forEach(function (element) {
         const overlay = $('#overlay');
         const menuButton = $(element);
+
 
         if (overlay.length > 0) {
           menuButton.on('click',function(){
