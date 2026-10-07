@@ -17,3 +17,6 @@ This theme includes build files (final CSS, Javascript, and Image files) for por
 * gulp watch:  Watches for changes in source directory and builds automatically
 * gulp js: Builds scripts only
 * gulp sass: Builds SASS files only
+
+#COLOUR ROLES
+What each palette colour is for, WCAG contrast functions, derived legible variants and the build-time check: see COLOUR-ROLES.md.

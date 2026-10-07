@@ -35,21 +35,57 @@ $white: white
 $true_black: #000000
 
 
-// Color map examples
+// Colour maps (shade / primary / tint / fade / watermark of each slot) are no longer variables: they were computed here,
+// before a theme's configuration loaded, and so always held derivatives of the defaults above. Use colour-map(N) and
+// set-colour-legacy(N, 'shade') instead; both read the configured palette at the time they are called.
 
-$clr1_map: (shade: mix($black,$clr1,20%), primary: $clr1, tint: mix($white,$clr1,10%), fade: mix($white,$clr1,50%), watermark: mix($white,$clr1,80%))
-$clr2_map: (shade: mix($black,$clr2,20%), primary: $clr2, tint: mix($white,$clr2,10%), fade: mix($white,$clr2,50%), watermark: mix($white,$clr2,80%))
-$clr3_map: (shade: mix($black,$clr3,20%), primary: $clr3, tint: mix($white,$clr3,10%), fade: mix($white,$clr3,50%), watermark: mix($white,$clr3,80%))
-$clr4_map: (shade: mix($black,$clr4,20%), primary: $clr4, tint: mix($white,$clr4,10%), fade: mix($white,$clr4,50%), watermark: mix($white,$clr4,80%))
-$clr5_map: (shade: mix($black,$clr5,20%), primary: $clr5, tint: mix($white,$clr5,10%), fade: mix($white,$clr5,50%), watermark: mix($white,$clr5,80%))
-$clr6_map: (shade: mix($black,$clr6,20%), primary: $clr6, tint: mix($white,$clr6,10%), fade: mix($white,$clr6,50%), watermark: mix($white,$clr6,80%))
-$clr7_map: (shade: mix($black,$clr7,20%), primary: $clr7, tint: mix($white,$clr7,10%), fade: mix($white,$clr7,50%), watermark: mix($white,$clr7,80%))
-$clr8_map: (shade: mix($black,$clr8,20%), primary: $clr8, tint: mix($white,$clr8,10%), fade: mix($white,$clr8,50%), watermark: mix($white,$clr8,80%))
-$clr9_map: (shade: mix($black,$clr9,20%), primary: $clr9, tint: mix($white,$clr9,10%), fade: mix($white,$clr9,50%), watermark: mix($white,$clr9,80%))
+
+/* !COLOUR ROLES  What each colour is for. A theme's configuration sets these; the values here are the fallbacks.
+ *
+ * The canvas and the surfaces form a continuum of four steps:
+ *
+ *     $black  |  $surface-dark  |  $surface-light  |  $white
+ *
+ * $white is the page and $black its inverse: the blackpoint, a design value chosen to suit the palette (true black
+ * only when that is what the designer wants). $surface-dark and $surface-light are a small step in from each end:
+ * panels, bands and blocks that stand out from the page without having to contrast with it — a common design
+ * situation. A designer may set a surface equal to its end of the continuum.
+ *
+ * Text colours belong to a side, not to one step: $on-light is text and icons on the light side ($white and
+ * $surface-light), $on-dark on the dark side ($black and $surface-dark). Each must read on both steps of its side,
+ * and $black must read on both light steps, $white on both dark steps (colour_roles checks all eight pairs).
+ *   $surface-light / $on-light      $surface-dark / $on-dark
+ * Impact:
+ *   $visual-impact  buttons and calls to action  $on-impact  its text colour, picked automatically (on-colour)
+ * Brand colours, never enforced — tested against the four steps and reported (colour_roles component):
+ *   $brand-primary    the primary brand colour and default accent (slot 1)
+ *   $brand-secondary  the secondary brand colour (slot 2)
+ * Derived, text class (4.5:1): the brand colour itself when it reads on the surface, a variant mixed toward the
+ * opposite fixed point when it does not (ensure-contrast). Components that set text in a brand colour bind to these,
+ * never to the raw slot; the raw slot is for accents that carry no text.
+ *   $brand-primary-on-light / -on-dark, $brand-secondary-on-light / -on-dark
+ *
+ * Neutrals (neutral()) mix $black and $white; a tint of a surface colour is mix() with that colour.
+ *
+ * Derived values are computed when this file loads, from the fallbacks. A configuration that changes the palette
+ * must restate them so they are recomputed (the scaffolding configurations do); like the neutral aliases below. */
+
+$surface-light: $white
+$surface-dark: $black
+$on-light: $black
+$on-dark: $white
+$visual-impact: $clr5
+$brand-primary: $clr1
+$brand-secondary: $clr2
+$on-impact: on-colour($visual-impact)
+$brand-primary-on-light: ensure-contrast($brand-primary, $surface-light)
+$brand-primary-on-dark: ensure-contrast($brand-primary, $surface-dark)
+$brand-secondary-on-light: ensure-contrast($brand-secondary, $surface-light)
+$brand-secondary-on-dark: ensure-contrast($brand-secondary, $surface-dark)
 
 
 // Neutrals
-// neutral() function mixes blackpoint and whitepoint.
+// neutral() mixes the blackpoint and the whitepoint.
 
 $lightest_neutral: neutral(5)
 $lighter_neutral: neutral(30)

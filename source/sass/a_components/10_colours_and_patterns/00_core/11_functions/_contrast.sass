@@ -1,0 +1,87 @@
+/**
+ * @file _contrast.sass
+ * WCAG 2 contrast: measuring it, grading it, and deriving a legible variant of a colour for a given surface.
+ *
+ * These back the colour roles (see _01_configuration_colour_and_patterns.sass): a text-class role resolves to the
+ * raw colour when it reads on its surface and to a derived variant when it does not, and the build warns when a
+ * guaranteed pair fails (colour_roles component).
+ *
+ *   luminance($colour)                       relative luminance, 0 (black) to 1 (white)
+ *   contrast($a, $b)                         contrast ratio, 1 to 21
+ *   contrast-grade($ratio)                   'aaa' | 'aa' | 'aa-large' | 'fail'
+ *   passes-contrast($fg, $bg, $ratio: 4.5)   boolean
+ *   ensure-contrast($colour, $surface, $ratio: 4.5, $toward: null)
+ *                                            $colour if it reaches $ratio on $surface, otherwise $colour mixed
+ *                                            step by step toward $toward (default: $black on a light surface,
+ *                                            $white on a dark one — the fixed points, so a result always exists)
+ *                                            until it does
+ *   on-colour($surface, $light: $on-dark, $dark: $on-light, $ratio: 4.5)
+ *                                            the text colour for $surface: the side's text colour when it reaches
+ *                                            $ratio, else the other side's, else $black or $white (one of the two
+ *                                            always does), so the result is guaranteed legible
+ *
+ * Contrast classes used by the roles: text 4.5, large text and UI parts 3, accent (decoration) none.
+ */
+
+@use 'sass:math'
+@use 'sass:color'
+
+$contrast-text: 4.5
+$contrast-large: 3
+
+@function _s14-channel($colour, $channel)
+  @return color.channel($colour, $channel, $space: rgb)
+
+@function _s14-linear($value)
+  $v: math.div($value, 255)
+  @if $v <= 0.03928
+    @return math.div($v, 12.92)
+  @return math.pow(math.div($v + 0.055, 1.055), 2.4)
+
+@function luminance($colour)
+  @return 0.2126 * _s14-linear(_s14-channel($colour, 'red')) + 0.7152 * _s14-linear(_s14-channel($colour, 'green')) + 0.0722 * _s14-linear(_s14-channel($colour, 'blue'))
+
+@function contrast($a, $b)
+  $la: luminance($a)
+  $lb: luminance($b)
+  @return math.div(math.max($la, $lb) + 0.05, math.min($la, $lb) + 0.05)
+
+@function contrast-grade($ratio)
+  @if $ratio >= 7
+    @return 'aaa'
+  @if $ratio >= $contrast-text
+    @return 'aa'
+  @if $ratio >= $contrast-large
+    @return 'aa-large'
+  @return 'fail'
+
+@function passes-contrast($foreground, $background, $ratio: $contrast-text)
+  @return contrast($foreground, $background) >= $ratio
+
+@function is-light($colour)
+  @return luminance($colour) > 0.18
+
+@function ensure-contrast($colour, $surface, $ratio: $contrast-text, $toward: null)
+  @if contrast($colour, $surface) >= $ratio
+    @return $colour
+  @if $toward == null
+    $toward: if(is-light($surface), $black, $white)
+  @for $step from 1 through 50
+    $candidate: mix($toward, $colour, $step * 2%)
+    @if contrast($candidate, $surface) >= $ratio
+      @return $candidate
+  @return $toward
+
+@function on-colour($surface, $light: $on-dark, $dark: $on-light, $ratio: $contrast-text)
+  // The side's own text colour first, then the other side's, then the ends of the continuum: $black and $white are
+  // the extremes, so one of them always reaches the ratio on any surface and the result is guaranteed legible.
+  $candidates: if(is-light($surface), ($dark, $light, $black, $white), ($light, $dark, $white, $black))
+  @each $candidate in $candidates
+    @if contrast($candidate, $surface) >= $ratio
+      @return $candidate
+  @return if(contrast($black, $surface) >= contrast($white, $surface), $black, $white)
+
+// Rounded for messages
+@function contrast-label($a, $b)
+  $r: contrast($a, $b)
+  @return "#{math.div(math.round($r * 100), 100)}:1 (#{contrast-grade($r)})"

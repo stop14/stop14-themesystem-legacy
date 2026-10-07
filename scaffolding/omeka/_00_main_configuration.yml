@@ -14,15 +14,34 @@ visibility_stack: "('main > div','#secondary-content','#tertiary-content','#quat
 ## 01 COLOUR AND PATTERNS
 clr1: #00BDD4
 clr2: #BF609B
-clr3: #D98536
-clr4: #315FAA
-clr5: #7DBF60
-clr6: #E1BB0B
-clr7: #E5336D
-clr8: #00171A
-clr9: #000000
-black: $clr8
+clr3: #0E3A40
+clr4: #EAF3F4
+clr5: #D98536
+clr6: #315FAA
+clr7: #7DBF60
+clr8: #E1BB0B
+clr9: #E5336D
+black: #00171A
 white: white
+
+# Colour roles (what each colour is for; see the library's _01_configuration_colour_and_patterns.sass)
+#   clr1 primary brand colour (accent)   clr2 secondary brand colour (accent)
+#   clr3 dark surface: a step in from $black   clr4 light surface: a step in from $white
+#   (the continuum $black | $surface-dark | $surface-light | $white; surfaces stand out from the page without contrasting)
+#   clr5 visual impact: buttons and calls to action   clr6+ further accents
+surface_dark: $clr3
+surface_light: $clr4
+on_dark: $white
+on_light: $black
+visual_impact: $clr5
+brand_primary: $clr1
+brand_secondary: $clr2
+# Derived: restated here so they are computed from this palette (text class, 4.5:1; see ensure-contrast / on-colour)
+on_impact: on-colour($visual_impact)
+brand_primary_on_light: ensure-contrast($brand_primary, $surface_light)
+brand_primary_on_dark: ensure-contrast($brand_primary, $surface_dark)
+brand_secondary_on_light: ensure-contrast($brand_secondary, $surface_light)
+brand_secondary_on_dark: ensure-contrast($brand_secondary, $surface_dark)
 
 # Background
 bgcolor: $white
@@ -34,7 +53,7 @@ cta: $clr1
 de_emphasized: neutral(50)
 de_activated: neutral(30)
 link_colour: $black
-link_colour_active: $clr3
+link_colour_active: $clr5
 link_colour_reversed: $white
 link_colour_active_reversed: neutral(5)
 

@@ -16,10 +16,13 @@
     @return mix(set-colour-legacy($colour),$mixer,$intensity * 1%)
 
 
+// The shade / primary / tint / fade / watermark of a palette slot, from the palette as configured at call time.
+@function colour-map($colour: 1)
+  $base: set-colour($colour)
+  @return (shade: mix($black,$base,20%), primary: $base, tint: mix($white,$base,10%), fade: mix($white,$base,50%), watermark: mix($white,$base,80%))
+
 @function set-colour-legacy($colour: 1,$derivative: 'primary')
-  $colourmaps: (1: $clr1_map, 2: $clr2_map, 3: $clr3_map, 4: $clr4_map, 5: $clr5_map, 6: $clr6_map, 7: $clr7_map, 8: $clr8_map, 9: $clr9_map)
-  $map: map-get($colourmaps,$colour)
-  @return map-get($map,$derivative)
+  @return map-get(colour-map($colour),$derivative)
 
 @function set-colour-tint($colour: 1,$intensity:100,$mixer: white)
   @return mix(set-colour($colour),$mixer,$intensity * 1%)

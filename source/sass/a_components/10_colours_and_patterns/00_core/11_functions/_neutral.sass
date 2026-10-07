@@ -1,4 +1,6 @@
-/* Retrieves a neutral based on intensity. Higher intensities are darker. */
+/* Retrieves a neutral based on intensity. Higher intensities are darker.
+ * Neutrals mix the blackpoint and the whitepoint ($black, $white): a blackpoint chosen to suit the palette gives greys
+ * that suit it too. For a tint or shade of a surface colour use mix() with that colour. */
 
 /* Based on a preset neutral array. Must be a factor of 10 between 10 and 90. */
 
@@ -6,6 +8,6 @@
   @return  neutral_mix(($intensity * 1%),$dark,$light)
 
 /* Creates a neutral by mixing dark and light colours to the provided percentage. */
-  
+
 @function neutral_mix($intensity: 50%, $dark: $black,$light: $white)
   @return mix($dark,$light,$intensity)

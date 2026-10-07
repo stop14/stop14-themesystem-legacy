@@ -1,0 +1,54 @@
+/**
+ *  @file _colour_roles.sass
+ *  @category 10_colours_and_patterns
+ *  @component colour_roles
+ *  @description Checks the colour roles against their contrast obligations while the stylesheet builds, and reports.
+ *
+ *  Imported by the profiles after the configuration has loaded, so it sees the configured values. Three kinds of
+ *  message, all on the build's output (dart-sass prints @warn and @debug to stderr):
+ *
+ *    WARNING  a guaranteed pair fails — on the continuum $black | $surface-dark | $surface-light | $white, each
+ *             text colour of a side against both steps of its side (eight pairs), and on-impact on visual-impact.
+ *             The system owns both sides of these, so a failure is a configuration to fix.
+ *    DEBUG    the brand colours' grade on each of the four steps, as permitted uses: what the styling form shows.
+ *
+ *  $colour-roles-report: false silences the DEBUG lines; $colour-roles-check: false silences everything.
+ */
+
+$colour-roles-check: true !default
+$colour-roles-report: true !default
+
+=assert-contrast($foreground, $background, $ratio, $label)
+  @if contrast($foreground, $background) < $ratio
+    @warn "Colour roles: #{$label} — #{$foreground} on #{$background} is #{contrast-label($foreground, $background)}, needs #{$ratio}:1"
+
+@function _s14-permitted-use($colour, $surface)
+  $grade: contrast-grade(contrast($colour, $surface))
+  @if $grade == 'aaa' or $grade == 'aa'
+    @return 'body text'
+  @if $grade == 'aa-large'
+    @return 'large text and UI parts'
+  @return 'accent only'
+
+=report-colour-roles
+  @each $name, $colour in ('brand-primary': $brand-primary, 'brand-secondary': $brand-secondary)
+    @debug "Colour roles: #{$name} #{$colour} — on white #{$white}: #{_s14-permitted-use($colour, $white)} (#{contrast-label($colour, $white)}); on surface-light #{$surface-light}: #{_s14-permitted-use($colour, $surface-light)} (#{contrast-label($colour, $surface-light)}); on surface-dark #{$surface-dark}: #{_s14-permitted-use($colour, $surface-dark)} (#{contrast-label($colour, $surface-dark)}); on black #{$black}: #{_s14-permitted-use($colour, $black)} (#{contrast-label($colour, $black)})"
+  @debug "Colour roles: derived text variants — brand-primary-on-light #{$brand-primary-on-light}, brand-primary-on-dark #{$brand-primary-on-dark}, brand-secondary-on-light #{$brand-secondary-on-light}, brand-secondary-on-dark #{$brand-secondary-on-dark}, on-impact #{$on-impact}"
+
+// The continuum $black | $surface-dark | $surface-light | $white: every text colour of a side must read on both
+// steps of that side.
+=check-colour-roles
+  +assert-contrast($black, $white, $contrast-text, 'black on white (the blackpoint and whitepoint)')
+  +assert-contrast($black, $surface-light, $contrast-text, 'black on surface-light')
+  +assert-contrast($on-light, $white, $contrast-text, 'on-light on white')
+  +assert-contrast($on-light, $surface-light, $contrast-text, 'on-light on surface-light')
+  +assert-contrast($white, $black, $contrast-text, 'white on black')
+  +assert-contrast($white, $surface-dark, $contrast-text, 'white on surface-dark')
+  +assert-contrast($on-dark, $black, $contrast-text, 'on-dark on black')
+  +assert-contrast($on-dark, $surface-dark, $contrast-text, 'on-dark on surface-dark')
+  +assert-contrast($on-impact, $visual-impact, $contrast-text, 'on-impact on visual-impact')
+
+@if $colour-roles-check
+  +check-colour-roles
+  @if $colour-roles-report
+    +report-colour-roles
