@@ -74,22 +74,22 @@
 
 %button-reverse
   @extend %button
-  border: solid $white $btn_border_width
+  border: solid $on-dark $btn_border_width
 
 
 %button-feature-cta
   @extend %button
-  border: $btn_border_width solid $black
-  color: $black
+  border: $btn_border_width solid $on-light
+  color: $on-light
   background-color: transparent
   position: relative
 
   a
-    color: $black !important
+    color: $on-light !important
 
 %button-ghost
   @extend %button-base
-  color: $black
+  color: $on-light
   border: none
   background-color: transparent
   text-decoration: underline
@@ -100,7 +100,7 @@
   @extend %underscore
 
   &:hover
-    color: $clr4
+    color: $brand-primary-on-light
 
 %button-text
   @extend %button-base
@@ -114,17 +114,17 @@
 
 %button-standard
   @extend %button
-  color: $white
+  color: $on-dark
   text-decoration: none
 
   &:hover
-    color: $black
-    background-color: $clr2
+    color: $on-brand-secondary
+    background-color: $surface-brand-secondary
     border: 0
 
 %button-link
   @extend %button
-  color: $white
+  color: $on-dark
 
 %button-outline
   @extend %button
@@ -133,7 +133,7 @@
   text-decoration: none
 
   &:hover
-    border: $btn_border_width solid $clr2
+    border: $btn_border_width solid $brand-secondary
 
 %button-compact
   height: $ui_compactheight
@@ -162,7 +162,7 @@
     border-color: $btn_reset_hover_border_color
 
 %button-more
-  color: $black
+  color: $on-light
   font-style: normal
   text-decoration: none
   border: 0
@@ -178,11 +178,11 @@
   a
     color: inherit
     font-style: inherit
-    border-bottom: 2px solid $black
+    border-bottom: 2px solid $on-light
     text-decoration: inherit
 
     &:hover
-      border-bottom: 2px solid $black
+      border-bottom: 2px solid $on-light
 
 %button-submit
   @extend %button

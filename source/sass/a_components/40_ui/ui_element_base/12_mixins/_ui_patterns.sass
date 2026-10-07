@@ -23,7 +23,7 @@
   @if $active_state
     &:hover, &.active
       background-image: url(get_svg_url('icons/#{$icon_name}-#{$active_state}'))
-      color: $impact // Assumes that the corresponding icon is coloured $impact
+      color: $brand-secondary-on-light // Assumes that the corresponding icon is coloured $impact
   @else
     &:hover, &.active
       filter: brightness(70)
@@ -53,7 +53,7 @@ $ui_form_clearance: rv($edge_padding_factor)
   @if $active_state
     &:hover, &.active
       background-image: url(get_svg_url('icons/#{$icon_name}-#{$active_state}'))
-      color: $impact // Assumes that the corresponding icon is coloured $impact
+      color: $brand-secondary-on-light // Assumes that the corresponding icon is coloured $impact
   @else
     &:hover, &.active
       filter: brightness(70)

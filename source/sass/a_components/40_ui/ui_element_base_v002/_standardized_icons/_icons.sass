@@ -31,7 +31,7 @@ $icons: ('accordion-expand','accordion-horizontal','arrow','arrow-left','checkma
   text-transform: uppercase
   text-decoration: none
   border-bottom: 0
-  color: $black
+  color: $on-light
 
 %icon
   display: flex
@@ -40,13 +40,13 @@ $icons: ('accordion-expand','accordion-horizontal','arrow','arrow-left','checkma
   @extend %icon-label
 
   &:hover
-    color: $impact
+    color: $brand-secondary-on-dark
 
   +reversed
-    color: $white
+    color: $on-dark
 
     &:hover
-      color: $impact
+      color: $brand-secondary-on-dark
 
 button.icon
   -webkit-appearance: none

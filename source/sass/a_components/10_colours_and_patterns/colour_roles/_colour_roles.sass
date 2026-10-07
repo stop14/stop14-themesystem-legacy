@@ -47,6 +47,8 @@ $colour-roles-report: true !default
   +assert-contrast($on-dark, $black, $contrast-text, 'on-dark on black')
   +assert-contrast($on-dark, $surface-dark, $contrast-text, 'on-dark on surface-dark')
   +assert-contrast($on-impact, $visual-impact, $contrast-text, 'on-impact on visual-impact')
+  +assert-contrast($on-brand, $surface-brand, $contrast-text, 'on-brand on surface-brand')
+  +assert-contrast($on-brand-secondary, $surface-brand-secondary, $contrast-text, 'on-brand-secondary on surface-brand-secondary')
 
 @if $colour-roles-check
   +check-colour-roles

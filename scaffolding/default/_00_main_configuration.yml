@@ -42,6 +42,11 @@ brand_primary_on_light: ensure-contrast($brand_primary, $surface_light)
 brand_primary_on_dark: ensure-contrast($brand_primary, $surface_dark)
 brand_secondary_on_light: ensure-contrast($brand_secondary, $surface_light)
 brand_secondary_on_dark: ensure-contrast($brand_secondary, $surface_dark)
+# Brand colours as surfaces, with their text colour picked automatically
+surface_brand: $brand_primary
+on_brand: on-colour($surface_brand)
+surface_brand_secondary: $brand_secondary
+on_brand_secondary: on-colour($surface_brand_secondary)
 
 # Background
 bgcolor: $white

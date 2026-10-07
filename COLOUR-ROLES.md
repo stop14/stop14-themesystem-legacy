@@ -50,6 +50,14 @@ raw brand slot; they use a derived role:
 `ensure-contrast()` returns the colour itself when it reaches the ratio on the surface, otherwise the colour mixed
 step by step toward the opposite fixed point until it does. The raw slot stays available for accents.
 
+**Brand surfaces.** A brand colour used as a surface — a button, a menu hover, a band — is an explicit role with
+its text colour picked automatically, the same way as impact:
+
+| Role | Value |
+|---|---|
+| `$surface-brand` / `$on-brand` | `$brand-primary` / `on-colour($surface-brand)` |
+| `$surface-brand-secondary` / `$on-brand-secondary` | `$brand-secondary` / `on-colour($surface-brand-secondary)` |
+
 ## Configuration
 
 The roles are ordinary configuration variables. The core configuration file holds the fallbacks; a theme's
@@ -69,6 +77,10 @@ brand_primary_on_light: ensure-contrast($brand_primary, $surface_light)
 brand_primary_on_dark: ensure-contrast($brand_primary, $surface_dark)
 brand_secondary_on_light: ensure-contrast($brand_secondary, $surface_light)
 brand_secondary_on_dark: ensure-contrast($brand_secondary, $surface_dark)
+surface_brand: $brand_primary
+on_brand: on-colour($surface_brand)
+surface_brand_secondary: $brand_secondary
+on_brand_secondary: on-colour($surface_brand_secondary)
 ```
 
 The scaffolding configurations carry these lines, with the palette slots arranged to fit: 1 and 2 brand, 3 dark
@@ -90,7 +102,7 @@ surface, 4 light surface, 5 impact, 6 onward accents.
 ## The build-time check
 
 The `colour_roles` component (imported by the standard profile after the configuration) warns when a guaranteed
-pair fails — the eight continuum pairs and `on-impact` on `visual-impact` — and prints, as `@debug` lines, each
+pair fails — the eight continuum pairs, `on-impact` on `visual-impact` and the two brand surfaces with their text — and prints, as `@debug` lines, each
 brand colour's permitted use on each of the four steps and the derived variants. `$colour-roles-report: false` silences the report, `$colour-roles-check: false` all of
 it. The mixin `assert-contrast($fg, $bg, $ratio, $label)` is available to themes for their own pairs.
 
@@ -101,3 +113,6 @@ it. The mixin `assert-contrast($fg, $bg, $ratio, $label)` is available to themes
   `set-colour-legacy(N, 'shade')` give the same maps from the configured palette.
 - `root_colour_variables` no longer overwrites `$neutral` (its loop variables are now prefixed), and exports the
   roles as `--colour--surface-light`, `--colour--on-light`, … `--colour--brand-secondary-on-dark`.
+- The library's own components bind to the roles (2026-10-07): text and borders on a side use `$on-light` /
+  `$on-dark`, the old `$impact`/`$cta` and direct slot references in buttons, icons, menus and the dark mode use the
+  brand roles and brand surfaces. Canvas backgrounds keep `$black`/`$white`. With the defaults nothing changes.

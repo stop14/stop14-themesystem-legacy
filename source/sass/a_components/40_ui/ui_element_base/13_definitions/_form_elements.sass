@@ -86,24 +86,24 @@
       border: 0
 
 %button-reverse
-  border: solid $white $btn_border_width
+  border: solid $on-dark $btn_border_width
 
 %button-cta
   text-transform: uppercase
   font-weight: $bold
 
 %button-feature-cta
-  border: $btn_border_width solid $black
-  color: $black
+  border: $btn_border_width solid $on-light
+  color: $on-light
   background: transparent
   position: relative
 
   a
-    color: $black !important
+    color: $on-light !important
 
 %button-ghost
   @extend %button-base
-  color: $black
+  color: $on-light
   border: none
   background: transparent
   text-decoration: underline
@@ -147,17 +147,17 @@
 
 %button-standard
   @extend %button
-  color: $white
+  color: $on-dark
   text-decoration: none
 
   &:hover
-    color: $black
-    background: $clr2
+    color: $on-brand-secondary
+    background: $surface-brand-secondary
     border: 0
 
 %button-link
   @extend %button
-  color: $white
+  color: $on-dark
 
 
 %button-outline
@@ -167,12 +167,12 @@
   text-decoration: none
 
   &:hover
-    border: $btn_border_width solid $clr2
+    border: $btn_border_width solid $brand-secondary
 
 %button-cta
   @extend %button
   background: $clr3
-  color: $white
+  color: $on-impact
   border: 0
 
 %button-compact
@@ -203,7 +203,7 @@
     border-color: $btn_reset_hover_border_color
 
 %button-more
-  color: $black
+  color: $on-light
   font-style: normal
   text-decoration: none
   border: 0
@@ -219,11 +219,11 @@
   a
     color: inherit
     font-style: inherit
-    border-bottom: 2px solid $black
+    border-bottom: 2px solid $on-light
     text-decoration: inherit
 
     &:hover
-      border-bottom: 2px solid $black
+      border-bottom: 2px solid $on-light
 
 %button-submit
   @extend %button
@@ -333,7 +333,7 @@
   display: flex
   align-items: center
   z-index: 11
-  color: $white
+  color: $on-dark
 
   // Attachment tabs are fixed to the bottom on mobile
 
@@ -346,7 +346,7 @@
     height: $ui_display_controls_icon_size
 
   label
-    color: $white
+    color: $on-dark
 
     +bp($ui_mobile_app_controls_breakpoint)
       color: initial
@@ -421,7 +421,7 @@
 
     +reversed
       background: no-repeat url(get_svg_url('icons/content-icon-reverse'))
-      color: $white
+      color: $on-dark
 
 %search-input-with-icon
   padding-right: calc(#{$btn_submit_img_size} + #{$ui_padding})

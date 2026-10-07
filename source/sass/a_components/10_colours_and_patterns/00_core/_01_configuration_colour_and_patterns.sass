@@ -64,6 +64,8 @@ $true_black: #000000
  * opposite fixed point when it does not (ensure-contrast). Components that set text in a brand colour bind to these,
  * never to the raw slot; the raw slot is for accents that carry no text.
  *   $brand-primary-on-light / -on-dark, $brand-secondary-on-light / -on-dark
+ * Brand colours as surfaces (a button, a hover, a band), each with a text colour picked automatically:
+ *   $surface-brand / $on-brand, $surface-brand-secondary / $on-brand-secondary
  *
  * Neutrals (neutral()) mix $black and $white; a tint of a surface colour is mix() with that colour.
  *
@@ -82,6 +84,10 @@ $brand-primary-on-light: ensure-contrast($brand-primary, $surface-light)
 $brand-primary-on-dark: ensure-contrast($brand-primary, $surface-dark)
 $brand-secondary-on-light: ensure-contrast($brand-secondary, $surface-light)
 $brand-secondary-on-dark: ensure-contrast($brand-secondary, $surface-dark)
+$surface-brand: $brand-primary
+$on-brand: on-colour($surface-brand)
+$surface-brand-secondary: $brand-secondary
+$on-brand-secondary: on-colour($surface-brand-secondary)
 
 
 // Neutrals

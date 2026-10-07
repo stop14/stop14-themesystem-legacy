@@ -1,11 +1,11 @@
 body
   &.dark
     background: $black
-    color: $white
+    color: $on-dark
     h1, h2, h3, h4, h5, h6
-      color: $white
+      color: $on-dark
     h1>a, h2>a, h3>a, h4>a, h5>a, h6>a 
-      color: $white
+      color: $on-dark
     #secondary-content
       background: neutral(85)
     .site-guide-cont i
@@ -14,7 +14,7 @@ body
       filter: unset
     select
       background: none
-      color: $white
+      color: $on-dark
     .cards
       background-color: neutral(5)
     main 
@@ -27,29 +27,29 @@ body
       figure
         filter: drop-shadow(rv(-2) rv(-2) rv(-2) neutral(50))
     .btn
-      color: $white
-      border-color: $white
+      color: $on-dark
+      border-color: $on-dark
       &:hover
         background-color: $black
     .browse-controls 
       .advanced-search
-        color: $white
+        color: $on-dark
     a
-      color: $white
+      color: $on-dark
     #homepage-splash 
       .resource.introduction 
         .introductory-text
           background-color: $black
     option
-      color: $black
+      color: $on-light
       
     #advanced-search
       .value 
         input
           background: inherit
-          color: $white
+          color: $on-dark
     .remove-value
-      color: $white
+      color: $on-dark
       &:hover
         background: unset
         
@@ -63,7 +63,7 @@ body
     #homepage-splash 
       .down-arrow 
         span
-          color: $white
+          color: $on-dark
   
 .dark-switch 
   position: relative
@@ -99,10 +99,10 @@ body
   transition: .4s
 
 input:checked + .slider 
-  background-color: $clr1
+  background-color: $surface-brand
 
 input:focus + .slider 
-  box-shadow: 0 0 1px $clr1
+  box-shadow: 0 0 1px $brand-primary
 
 input:checked + .slider:before 
   -webkit-transform: translateX(16px)
@@ -115,12 +115,12 @@ input:checked + .slider:before
   background-color: $black!important
 .tl-timeaxis-background
   background: neutral(90)!important
-  border-color: $black!important
+  border-color: $on-light!important
 .tl-timeaxis-tick
   &:before
-    border-color: $white!important
+    border-color: $on-dark!important
 .tl-timeaxis-tick-text
-  color: $white!important
+  color: $on-dark!important
 .tl-slide 
   &.tl-slide-titleslide
     background: $white
