@@ -28,14 +28,12 @@
   * overlay-colour|Overlay: yellow background
   *
   */
-// “trigger” class used by Drupal for its contextual menus. “MuiButtonBase used for Mirador.
-//.trigger,.MuiButtonBase-root,.icon
+// The bare <button> gets the reset only (3.0.0). Design — including submit, reset and search buttons — is applied
+// through the class vocabulary (_general_ui.sass) or by a form stylesheet to its own buttons, never by element type:
+// third-party markup (Omeka core, Mirador, Drupal contextual menus) keeps its own look without escape hatches.
 
 button
   @extend %button-base
-
-  &.icon, &.trigger, &.MuiButtonBase-root
-    all: unset
 
 input:focus
   outline: none !important
@@ -53,26 +51,6 @@ textarea#edit-message
 // In most contexts you should apply icons to the an input container.
 // Alternatively you can use the work-in-progress +input-button-icon() mixins
 // to see if you can achieve the desired results.
-
-button[type="search"]
-  @extend %button-search
-
-input[type="submit"],
-button[type="submit"]
-  @extend %button-submit
-
-input[type="reset"],
-button[type="reset"]
-  @extend %button-reset
-
-
-button[type="search"]::-webkit-search-cancel-button
-  -webkit-appearance: none
-  display: inline-block
-  width: 20px
-  height: 20px
-  margin-left: 10px
-  +background-icon-left('reset')
 
 input[type="checkbox"],
 input[type="radio"]
@@ -124,22 +102,19 @@ input[type="radio"]
     box-shadow: inset 0 0 0 3px white !important
     background-color: neutral(20)
 
-// Select2 handles pulldowns via js/selectStylesSupport
-// Currently set to use <select> element values to determine sizing
+// <select>: the indicator only. Widths are set by the form that owns the select ($ui_select_width,
+// $ui_select_min_width and $ui_select_max_width are the tokens to use there); Select2 and Chosen read the
+// element's width when they initialise, so a global minimum width reached every enhanced select (3.0.0).
 
 select
-  width: $ui_select_width
-  min-width: $ui_select_min_width
-  max-width: $ui_select_max_width
   +background-icon-right('accordion-expand')
   background-repeat: no-repeat
 
   &:hover
     +background-icon-active('accordion-expand')
-    +fadeInDown($heartbeat*2,$heartbeat)
 
 fieldset
-  border: 1px solid neutral(20)
+  border: $ui_fieldset_border
   margin-bottom: rv($block_spacing)
 
 legend

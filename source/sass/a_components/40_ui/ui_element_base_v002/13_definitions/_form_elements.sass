@@ -31,28 +31,34 @@
   *
   */
 
+// Three layers, as in the post-legacy theme system. %button-base is the reset and nothing else, so it is the only
+// placeholder that may be applied to the bare <button> element. %button-sized enforces the standard height and
+// minimum width; %button-styled is the design. The two are meant to be applied together, and %button is all three:
+// the class vocabulary (_general_ui.sass, $ui_button_classes) and the variants below extend it. Form stylesheets
+// apply the variants to their own buttons by class or by container; never by element type (3.0.0).
+
 %button-base
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
+  cursor: pointer
 
-  text-align: center
-  text-transform: uppercase
+%button-sized
+  height: $btn_height
+  min-width: $btn_minwidth
   width: fit-content
   white-space: nowrap
 
-%button
-  @extend %button-base
+%button-styled
   display: inline-flex
   flex-direction: row
   align-items: center
   justify-content: center
-  cursor: pointer
+  text-align: center
+  text-transform: uppercase
   font-size: $btn_fontsize
   font-weight: $normal
   padding: $btn_padding
-  height: $btn_height
-  min-width: $btn_minwidth
   border: $btn_border_width solid $btn_border_color
   border-radius: $ui_border_radius
   background-color: $btn_bg_color
@@ -72,6 +78,11 @@
     &:hover
       border: 0
 
+%button
+  @extend %button-base
+  @extend %button-sized
+  @extend %button-styled
+
 %button-reverse
   @extend %button
   border: solid $on-dark $btn_border_width
@@ -89,6 +100,10 @@
 
 %button-ghost
   @extend %button-base
+  text-align: center
+  text-transform: uppercase
+  width: fit-content
+  white-space: nowrap
   color: $on-light
   border: none
   background-color: transparent
@@ -104,6 +119,10 @@
 
 %button-text
   @extend %button-base
+  text-align: center
+  text-transform: uppercase
+  width: fit-content
+  white-space: nowrap
   background-color: $black
   text-decoration: underline
   display: inline-flex
@@ -222,8 +241,11 @@
 %button-search
   @extend %button-ghost
   font-size: clamped(-3,-2)
+  font-weight: $normal
   color: $btn_search_color
+  padding: $btn_padding  // complete on its own since 3.0.0: it no longer sits on top of %button via button[type=submit]
   padding-right: calc(#{$ui_padding} + #{$btn_icon_size})
+  border-radius: $ui_border_radius
   min-width: $ui_minheight !important
   height: $ui_minheight !important
   text-decoration: none !important

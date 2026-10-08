@@ -20,3 +20,12 @@ This theme includes build files (final CSS, Javascript, and Image files) for por
 
 #COLOUR ROLES
 What each palette colour is for, WCAG contrast functions, derived legible variants and the build-time check: see COLOUR-ROLES.md.
+
+#CHANGELOG
+
+- 3.0.0 (2026-10-19) — the colour-roles build report also prints the button pair (on-impact on visual-impact)
+  with the white and black alternatives, so the measured grade is visible at build time, not only the guarantee.
+- 3.0.0 — Colour roles (COLOUR-ROLES.md). Form elements: bare elements get resets only; `%button` split into
+  `%button-base` / `%button-sized` / `%button-styled`; the button class vocabulary is configurable
+  (`$ui_button_classes`); no global `<select>` width; `$ui_fieldset_border`; the `all: unset` escape hatch and the
+  duplicated legacy UI configuration blocks removed (FORM-ELEMENTS.md).

@@ -1,17 +1,13 @@
 
 /* =======================
- * General UI and Button Definitions
+ * Button class vocabulary
  * ======================= */
 
+// $ui_button_classes names the selector(s) that carry the button design (default ".button, .btn"). Omeka themes set
+// it to ".agile-button, .btn", because Omeka core uses .button on its own icon buttons. Nothing here targets the
+// bare <button> element: see _form_ui.sass. Variants are modifier classes on the same element.
 
-// Note: applying styles to <button> elements often create problems with third-party modules and admin interfaces.
-// It is advised that you add a button class to button elements to avoid conflicts
-
-//.button:not(.trigger,.MuiButtonBase-root,.icon) was originally called, but its specificity is too high
-// and it’s only applicable to specific platforms and situations where the standard button styling was interfering
-// with specifically styled applications. @todo: figure out another approach.
-
-.button, .btn
+#{$ui_button_classes}
   @extend %button
 
   &.compact
@@ -38,7 +34,16 @@
   &.more
     @extend %button-more
 
-  &.search-submit,&[type='submit'].search-submit
+  &.submit
+    @extend %button-submit
+
+  &.reset
+    @extend %button-reset
+
+  &.ghost
+    @extend %button-ghost
+
+  &.search, &.search-submit, &[type='submit'].search-submit
     @extend %button-search
 
 button

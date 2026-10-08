@@ -34,6 +34,9 @@ $colour-roles-report: true !default
   @each $name, $colour in ('brand-primary': $brand-primary, 'brand-secondary': $brand-secondary)
     @debug "Colour roles: #{$name} #{$colour} — on white #{$white}: #{_s14-permitted-use($colour, $white)} (#{contrast-label($colour, $white)}); on surface-light #{$surface-light}: #{_s14-permitted-use($colour, $surface-light)} (#{contrast-label($colour, $surface-light)}); on surface-dark #{$surface-dark}: #{_s14-permitted-use($colour, $surface-dark)} (#{contrast-label($colour, $surface-dark)}); on black #{$black}: #{_s14-permitted-use($colour, $black)} (#{contrast-label($colour, $black)})"
   @debug "Colour roles: derived text variants — brand-primary-on-light #{$brand-primary-on-light}, brand-primary-on-dark #{$brand-primary-on-dark}, brand-secondary-on-light #{$brand-secondary-on-light}, brand-secondary-on-dark #{$brand-secondary-on-dark}, on-impact #{$on-impact}"
+  // The button pair, so a builder sees the measured grade and not only the guarantee (an AA pass can still look weak
+  // to the eye; a stronger grade means picking a visual-impact colour that one of the fixed text colours reads on).
+  @debug "Colour roles: buttons — on-impact #{$on-impact} on visual-impact #{$visual-impact}: #{contrast-label($on-impact, $visual-impact)} (#{_s14-permitted-use($on-impact, $visual-impact)}); white on visual-impact: #{contrast-label($white, $visual-impact)}; black on visual-impact: #{contrast-label($black, $visual-impact)}"
 
 // The continuum $black | $surface-dark | $surface-light | $white: every text colour of a side must read on both
 // steps of that side.

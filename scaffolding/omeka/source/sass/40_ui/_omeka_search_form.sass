@@ -13,11 +13,11 @@
 
   input[name='text'], input[name='search'], input[name='fulltext_search'], input[name='q']
     @extend %search-form-textfield
-    font-family: $labelfont
+    font-family: $compactfont
     color: neutral(80) !important // Important to ensure contrast against white bg in .reversed contexts
 
     &::placeholder
-      font-family: $labelfont
+      font-family: $compactfont
       color: neutral(80) !important
 
     // Search plus submit
